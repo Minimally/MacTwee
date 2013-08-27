@@ -6,9 +6,9 @@
 #import "CBCoreDataManager.h"
 #import "CBPrimaryWindowController.h"
 
-@implementation CBAppDelegate
-
-CBPrimaryWindowController * primaryWindwowController;
+@implementation CBAppDelegate {
+	CBPrimaryWindowController * primaryWindwowController;
+}
 
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Protocol

@@ -8,6 +8,7 @@
 
 // notifications
 NSString * const kCBPrimaryWindowControllerWillOpenViewNotification = @"kCBPrimaryWindowControllerWillOpenViewNotification";
+
 // paths
 NSString * const kOpenPath = @"kOpenPath";
 NSString * const kSavePath = @"kSavePath";
@@ -20,5 +21,6 @@ NSString * const kLastSourceName = @"kLastSourceName";
 NSString * const kdefaultBuildName = @"build.html";
 NSString * const kdefaultSourceName = @"source.twee";
 NSString * const kUserApplicationSupportDirectory = @"com.ChrisBraithwaite.MacTwee";
+NSString * const kLinkMatch = @"kLinkMatch";
 
 @end

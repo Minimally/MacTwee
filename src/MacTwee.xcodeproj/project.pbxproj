@@ -32,6 +32,7 @@
 		C69DA21417C855AD0007BD17 /* CBTweeFileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21317C855AD0007BD17 /* CBTweeFileTools.m */; };
 		C69DA21717C863520007BD17 /* CBConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21617C863520007BD17 /* CBConstants.m */; };
 		C69DA21F17C87BA70007BD17 /* NSString+PDRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */; };
+		C6B7923F17CC598300C0ADD3 /* CBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7923E17CC598300C0ADD3 /* CBTextView.m */; };
 		C6E90DC217C8143C0049ED37 /* CBPrimaryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC017C8143C0049ED37 /* CBPrimaryWindowController.m */; };
 		C6E90DC317C8143C0049ED37 /* CBPrimaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E90DC117C8143C0049ED37 /* CBPrimaryWindow.xib */; };
 		C6E90DC817C82A370049ED37 /* CBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC617C82A370049ED37 /* CBHomeViewController.m */; };
@@ -96,6 +97,8 @@
 		C69DA21817C865270007BD17 /* CBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBConstants.h; sourceTree = "<group>"; };
 		C69DA21D17C87BA70007BD17 /* NSString+PDRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+PDRegex.h"; path = "RegexOnNSString/NSString+PDRegex.h"; sourceTree = "<group>"; };
 		C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PDRegex.m"; path = "RegexOnNSString/NSString+PDRegex.m"; sourceTree = "<group>"; };
+		C6B7923D17CC598300C0ADD3 /* CBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTextView.h; sourceTree = "<group>"; };
+		C6B7923E17CC598300C0ADD3 /* CBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTextView.m; sourceTree = "<group>"; };
 		C6E90DBF17C8143C0049ED37 /* CBPrimaryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPrimaryWindowController.h; sourceTree = "<group>"; };
 		C6E90DC017C8143C0049ED37 /* CBPrimaryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPrimaryWindowController.m; sourceTree = "<group>"; };
 		C6E90DC117C8143C0049ED37 /* CBPrimaryWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBPrimaryWindow.xib; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 				C69DA20E17C851CE0007BD17 /* CBProjectViewController.m */,
 				C60AFBB017CBABF100C6CA29 /* CBTextViewController.h */,
 				C60AFBB117CBABF100C6CA29 /* CBTextViewController.m */,
+				C6B7923D17CC598300C0ADD3 /* CBTextView.h */,
+				C6B7923E17CC598300C0ADD3 /* CBTextView.m */,
 				C69DA21817C865270007BD17 /* CBConstants.h */,
 				C69DA21617C863520007BD17 /* CBConstants.m */,
 				C6746FA717C977B00054BCD6 /* CBPreferencesManager.h */,
@@ -371,6 +376,7 @@
 				C62A040617CAF84300B89A34 /* CBProject.m in Sources */,
 				C62A040917CAF84300B89A34 /* CBPassage.m in Sources */,
 				C60AFBB217CBABF100C6CA29 /* CBTextViewController.m in Sources */,
+				C6B7923F17CC598300C0ADD3 /* CBTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +500,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacTwee/MacTwee-Prefix.pch";
 				INFOPLIST_FILE = "MacTwee/MacTwee-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = MacTwee;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -508,7 +514,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacTwee/MacTwee-Prefix.pch";
 				INFOPLIST_FILE = "MacTwee/MacTwee-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = MacTwee;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;

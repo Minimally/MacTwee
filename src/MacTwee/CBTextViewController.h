@@ -3,9 +3,10 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "CBTextView.h"
 
-@interface CBTextViewController : NSObject <NSTextStorageDelegate>
+@interface CBTextViewController : NSObject <NSTextStorageDelegate, CBTextViewDelegate>
 
-@property (unsafe_unretained) IBOutlet NSTextView *passageTextView;
+@property (unsafe_unretained) IBOutlet CBTextView *passageTextView;
 
 @end

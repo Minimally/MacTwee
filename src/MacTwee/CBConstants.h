@@ -26,4 +26,6 @@ extern NSString * const kLastBuildDirectory;
 extern NSString * const kdefaultBuildName;
 extern NSString * const kdefaultSourceName;
 extern NSString * const kUserApplicationSupportDirectory;
+extern NSString * const kLinkMatch;
+
 @end
