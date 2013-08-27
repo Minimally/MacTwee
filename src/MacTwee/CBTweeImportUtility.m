@@ -23,13 +23,12 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 	//open up a source file
 	NSURL * url = [self importFileUrlFromDialogue];
 	if (url == nil) {
-		[self operationResult:[NSString stringWithFormat:@"issue with open dialogue url:'%@'", url]];
+		[self operationResultWithTitle:@"Error" msgFormat:@"Import Operation Canceled" defaultButton:@"OK"];
 		return;
 	}
-	
 	NSString * sourceFileString = [self getImportFileAsString:url];
 	if (sourceFileString == nil || sourceFileString.length == 0 ) {
-		[self operationResult:[NSString stringWithFormat:@"issue with string from open dialogue url:'%@'", url]];
+		[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"Couldn't create string from file at '%@'", url] defaultButton:@"OK"];
 		return;
 	}
 	
@@ -54,6 +53,12 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 		//NSLog(@"%s 'Line:%d' - split passage text:'%@'", __func__, __LINE__, passage);
 		[self passageToHeadAndBody:passage];
 	}
+	
+	if (passages.count == 0) {
+		[self operationResultWithTitle:@"Error" msgFormat:@"Zero passages found from file" defaultButton:@"OK"];
+	} else {
+		[self operationResultWithTitle:@"Success" msgFormat:@"Import Complete" defaultButton:@"OK"];
+	}
 }
 - (void)passageToHeadAndBody:(NSString *)passageString {
 	NSAssert((passageString != nil || passageString.length > 0), @"string is nil or empty");
@@ -64,7 +69,9 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 																caseInsensitive:YES
 																 treatAsOneLine:YES];
 	
+	NSAssert((passageBits != nil || passageBits.count > 0), @"passageBits is nil or empty");
 	//NSLog(@"%s 'Line:%d' - sub passages count:'%lu'", __func__, __LINE__, (unsigned long)passageBits.count);
+	
 	switch (passageBits.count) {
 		case 0: {
 			break;
@@ -147,8 +154,6 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 			NSLog(@"%s 'Line:%d' - Open File path: %@", __func__, __LINE__, [openPanel.URLs[0] path]);
 			result = openPanel.URL;
 		}
-	} else {
-		NSLog(@"%s 'Line:%d' - Operation Cancled by user", __func__, __LINE__);
 	}
 	
 	return result;
@@ -157,9 +162,10 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Result
 ////////////////////////////////////////////////////////////////////////
-
-- (void)operationResult:(NSString *)result {
-	NSLog(@"%s 'Line:%d' - %@", __func__, __LINE__, result);
+- (void)operationResultWithTitle:(NSString *)title msgFormat:(NSString *)msgFormat defaultButton:(NSString *)defaultButton {
+	NSRunAlertPanel(title, msgFormat, defaultButton, nil, nil);
+	//[self operationResultWithTitle:@"Error" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
+	//[self operationResultWithTitle:@"Success" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 }
 
 @end

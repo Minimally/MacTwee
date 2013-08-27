@@ -16,17 +16,33 @@ NSString * const exportMessage = @"Choose export destination";
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 ////////////////////////////////////////////////////////////////////////
-
 - (NSURL *)exportTweeFile {
-	NSArray * fetchedObjects = [self getPassages];
-	NSString * sourceString = [self getCombinedPassagesString:fetchedObjects];
-	
 	NSURL * result = [self runSavePanelForExport];
-	if (result != nil)
-		[sourceString writeToURL:result atomically:YES encoding:NSUTF8StringEncoding error:nil];
+	if (result == nil) {
+		[self operationResultWithTitle:@"Error" msgFormat:@"Export operation canceled" defaultButton:@"OK"];
+	} else {
+		
+		NSArray * fetchedObjects = [self getPassages];
+		if (fetchedObjects == nil || fetchedObjects.count < 1) {
+			[self operationResultWithTitle:@"Error" msgFormat:@"Couldn't find any passages to export" defaultButton:@"OK"];
+		} else {
+			
+			NSString * sourceString = [self getCombinedPassagesString:fetchedObjects];
+			if (sourceString == nil || sourceString.length < 1) {
+				[self operationResultWithTitle:@"Error" msgFormat:@"Issue turning passages into a single string" defaultButton:@"OK"];
+			} else {
+				
+				NSError * error;
+				if ( ! [sourceString writeToURL:result atomically:YES encoding:NSUTF8StringEncoding error:&error] ) {
+					[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"%@", error.localizedDescription] defaultButton:@"OK"];
+				} else {
+					[self operationResultWithTitle:@"Success" msgFormat:@"Export operation successful" defaultButton:@"OK"];
+				}
+			}
+		}
+	}
 	return result;
 }
-
 - (NSURL *)exportTempTweeFile {
 	NSArray * fetchedObjects = [self getPassages];
 	NSString * sourceString = [self getCombinedPassagesString:fetchedObjects];
@@ -96,8 +112,6 @@ NSString * const exportMessage = @"Choose export destination";
 		result = savepanel.URL;
 		NSLog(@"%s 'Line:%d' - resultURL:'%@'", __func__, __LINE__, result);
 		[CBPreferencesManager setLastSourceName:[result lastPathComponent]];
-	} else {
-		NSLog(@"%s 'Line:%d' - Operation Cancled by user", __func__, __LINE__);
 	}
 	
 	return result;
@@ -111,5 +125,10 @@ NSString * const exportMessage = @"Choose export destination";
 	//	result = [[CBPreferencesManager documentDirectory] URLByAppendingPathComponent:@"temp.tw"];
 	//	NSLog(@"%s 'Line:%d' - result:'%@'", __func__, __LINE__, result);
 	return result;
+}
+- (void)operationResultWithTitle:(NSString *)title msgFormat:(NSString *)msgFormat defaultButton:(NSString *)defaultButton {
+	NSRunAlertPanel(title, msgFormat, defaultButton, nil, nil);
+	//[self operationResultWithTitle:@"Error" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
+	//[self operationResultWithTitle:@"Success" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 }
 @end

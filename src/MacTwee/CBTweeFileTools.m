@@ -73,24 +73,28 @@ CBTweeBuildUtility * buildUtility;
 	if (result == nil || result.length == 0) {
 		result = @"sugarcane";
 	} else {
-		NSURL * headerDirectory = [[CBPreferencesManager tweeDirectory] URLByDeletingLastPathComponent];
-		//NSLog(@"%s 'Line:%d' - header directory with twee removed:'%@'", __func__, __LINE__, headerDirectory.path);
-		
+		NSURL * headerDirectory = [[CBPreferencesManager tweeDirectory] URLByDeletingLastPathComponent];		
 		headerDirectory = [headerDirectory URLByAppendingPathComponent:@"targets"];
 		headerDirectory = [headerDirectory URLByAppendingPathComponent:[NSString stringWithFormat:@"%@", result]];
 		//NSLog(@"%s 'Line:%d' - header directory with result added:'%@'", __func__, __LINE__, headerDirectory.path);
 				
 		NSError * error;
 		if ( ![headerDirectory checkResourceIsReachableAndReturnError:&error] ) {
-			//NSLog(@"%s 'Line:%d' - error:'%@'", __func__, __LINE__, error.localizedDescription);
+			NSLog(@"%s 'Line:%d' - error with '%@':'%@'", __func__, __LINE__, headerDirectory, error.localizedDescription);
+			[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"%@", error.localizedDescription] defaultButton:@"OK"];
 			result = @"sugarcane";
 		} else {
 			result = [headerDirectory lastPathComponent];
-			//NSLog(@"%s 'Line:%d' - result:'%@'", __func__, __LINE__, result);
+			NSLog(@"%s 'Line:%d' - header is reachable, using:'%@'", __func__, __LINE__, result);
 		}
 	}
 	
 	return result;
 
+}
+- (void)operationResultWithTitle:(NSString *)title msgFormat:(NSString *)msgFormat defaultButton:(NSString *)defaultButton {
+	NSRunAlertPanel(title, msgFormat, defaultButton, nil, nil);
+	//[self operationResultWithTitle:@"Error" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
+	//[self operationResultWithTitle:@"Success" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 }
 @end
