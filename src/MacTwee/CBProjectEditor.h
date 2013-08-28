@@ -19,4 +19,5 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(CBProjectEditor);
 - (NSString *)getStoryFormat;
 - (NSArray *)getPassages;
 - (BOOL)checkPassageExistsInCurrentProject:(NSString *)passage;
+- (BOOL)selectCurrentPassageWithName:(NSString *)passage;
 @end

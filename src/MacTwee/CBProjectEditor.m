@@ -33,7 +33,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(CBProjectEditor);
 	return self.currentProject.storyFormat;
 }
 - (NSArray *)getPassages {
-	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"project = %@", self.currentProject];
+	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"project == %@", self.currentProject];
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Passage"
 											  inManagedObjectContext:CBCoreDataManager.sharedCBCoreDataManager.managedObjectContext];
@@ -62,13 +62,43 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(CBProjectEditor);
 	
 	return result;
 }
-
+- (BOOL)selectCurrentPassageWithName:(NSString *)passage {
+	BOOL result = NO;
+	
+	if ( ![self checkPassageExistsInCurrentProject:passage] ) {
+		result = NO;
+	} else {
+		CBPassage * p = [self getPassageWithName:passage];
+		if (p != nil) {
+			self.currentPassage = p;
+			result = YES;
+		}
+	}
+	
+	return result;
+}
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 ////////////////////////////////////////////////////////////////////////
--(void)setCurrentProject:(CBProject *)proj {
+- (void)setCurrentProject:(CBProject *)proj {
 	_currentProject = proj;
 	_currentProject.lastModifiedDate = [NSDate date];
 }
-
+- (CBPassage *)getPassageWithName:(NSString *)passage {
+	CBPassage * p;
+	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(title == %@) AND (project == %@)", passage, self.currentProject];
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Passage"
+											  inManagedObjectContext:CBCoreDataManager.sharedCBCoreDataManager.managedObjectContext];
+	[fetchRequest setEntity:entity];
+	[fetchRequest setPredicate:predicate];
+	NSError *error = nil;
+	NSArray * foundPassages = [CBCoreDataManager.sharedCBCoreDataManager.managedObjectContext executeFetchRequest:fetchRequest
+																											error:&error];
+	//NSLog(@"%s 'Line:%d' - found:'%lu'", __func__, __LINE__, foundPassages.count);
+	if (foundPassages.count >= 1) {
+		p = foundPassages[0];
+	}
+	return p;
+}
 @end
