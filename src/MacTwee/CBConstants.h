@@ -13,6 +13,7 @@ typedef enum {
 
 // notifications
 extern NSString * const kCBPrimaryWindowControllerWillOpenViewNotification;
+extern NSString * const kCBTextViewControllerDidGetPotentialPassageClickNotification;
 
 // paths
 extern NSString * const kOpenPath;

@@ -22,7 +22,7 @@ NSString * const exportMessage = @"Choose export destination";
 		[self operationResultWithTitle:@"Error" msgFormat:@"Export operation canceled" defaultButton:@"OK"];
 	} else {
 		
-		NSArray * fetchedObjects = [self getPassages];
+		NSArray * fetchedObjects = [[CBProjectEditor sharedCBProjectEditor] getPassages];
 		if (fetchedObjects == nil || fetchedObjects.count < 1) {
 			[self operationResultWithTitle:@"Error" msgFormat:@"Couldn't find any passages to export" defaultButton:@"OK"];
 		} else {
@@ -44,7 +44,7 @@ NSString * const exportMessage = @"Choose export destination";
 	return result;
 }
 - (NSURL *)exportTempTweeFile {
-	NSArray * fetchedObjects = [self getPassages];
+	NSArray * fetchedObjects = [[CBProjectEditor sharedCBProjectEditor] getPassages];
 	NSString * sourceString = [self getCombinedPassagesString:fetchedObjects];
 	
 	NSURL * result = [self getScratchLocationForExport];
@@ -56,18 +56,6 @@ NSString * const exportMessage = @"Choose export destination";
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Export - Passages To String
 ////////////////////////////////////////////////////////////////////////
-- (NSArray *)getPassages {
-	id currentProject = [[CBProjectEditor sharedCBProjectEditor] currentProject];
-	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"project = %@", currentProject];
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Passage"
-											  inManagedObjectContext:CBCoreDataManager.sharedCBCoreDataManager.managedObjectContext];
-	[fetchRequest setEntity:entity];
-	[fetchRequest setPredicate:predicate];
-	NSError *error = nil;
-	return [CBCoreDataManager.sharedCBCoreDataManager.managedObjectContext executeFetchRequest:fetchRequest
-																						 error:&error];
-}
 - (NSString *)getCombinedPassagesString:(NSArray *)fetchedObjects {
 	NSMutableString * combinedPassages = [[NSMutableString alloc] init];
 	

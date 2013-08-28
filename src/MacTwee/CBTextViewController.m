@@ -19,8 +19,7 @@ NSColor * linkColor, * macroColor, * imageColor, * htmlColor, * commentColor, * 
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Lifecycle
 ////////////////////////////////////////////////////////////////////////
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
 	self.passageTextView.delegate = self;
 	
     [[self.passageTextView textStorage] setDelegate:self];
@@ -36,23 +35,30 @@ NSColor * linkColor, * macroColor, * imageColor, * htmlColor, * commentColor, * 
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - NSTextStorageDelegate Protocol
 ////////////////////////////////////////////////////////////////////////
-- (void)linkMatchMade:(CBTextView *)sender matchedString:(NSString *)matchedString
-{
+- (void)linkMatchMade:(CBTextView *)sender matchedString:(NSString *)matchedString {
 	NSAssert(matchedString != nil, @"matchedString is nil");
-    NSLog(@"%s 'Line:%d' - matched string in protocol:'%@'", __func__, __LINE__, matchedString);
+	//NSLog(@"%s 'Line:%d' - matched string in protocol:'%@'", __func__, __LINE__, matchedString);
 	
 	// we want to find the passage of the clicked link
 	
 	if ( [matchedString rangeOfString:@"|"].location == NSNotFound ) {	
 		NSArray * shouldBePotentialPassage = [matchedString stringsByExtractingGroupsUsingRegexPattern:@"^\\[\\[(.*)\\]\\]$" caseInsensitive:YES treatAsOneLine:YES];
 		for (NSString * potentialPassage in shouldBePotentialPassage) {
-			NSLog(@"%s 'Line:%d' - match:'%@'", __func__, __LINE__, potentialPassage);
+			//NSLog(@"%s 'Line:%d' - match regex cleaned to:'%@'", __func__, __LINE__, potentialPassage);
+			NSDictionary * d = @{ @"index":potentialPassage };
+			[[NSNotificationCenter defaultCenter] postNotificationName:kCBTextViewControllerDidGetPotentialPassageClickNotification
+																object:self
+															  userInfo:d];
 		}
 	} else {
 		NSArray * components = [matchedString componentsSeparatedByString:@"|"];
 		NSArray * shouldBePotentialPassage = [components[1] stringsByExtractingGroupsUsingRegexPattern:@"^(.*)\\]\\]$" caseInsensitive:YES treatAsOneLine:YES];
 		for (NSString * potentialPassage in shouldBePotentialPassage) {
-			NSLog(@"%s 'Line:%d' - match:'%@'", __func__, __LINE__, potentialPassage);
+			//NSLog(@"%s 'Line:%d' - match regex cleaned to:'%@'", __func__, __LINE__, potentialPassage);
+			NSDictionary * d = @{ @"index":potentialPassage };
+			[[NSNotificationCenter defaultCenter] postNotificationName:kCBTextViewControllerDidGetPotentialPassageClickNotification
+																object:self
+															  userInfo:d];
 		}
 	}
 }
@@ -60,8 +66,7 @@ NSColor * linkColor, * macroColor, * imageColor, * htmlColor, * commentColor, * 
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - CBTextViewDelegate Protocol
 ////////////////////////////////////////////////////////////////////////
-- (void)textStorageDidProcessEditing:(NSNotification *)aNotification
-{
+- (void)textStorageDidProcessEditing:(NSNotification *)aNotification {
     NSTextStorage * textStorage = [aNotification object];
     NSString * passageString = [textStorage string];
     NSUInteger passageLength = [passageString length];
@@ -110,5 +115,4 @@ NSColor * linkColor, * macroColor, * imageColor, * htmlColor, * commentColor, * 
 								 }
 	 ];
 }
-
 @end

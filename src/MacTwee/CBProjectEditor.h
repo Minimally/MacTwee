@@ -17,5 +17,6 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(CBProjectEditor);
 - (void)createPassageWithTitle:(NSString *)title andTags:(NSString *)tags andText:(NSString *)text;
 - (void)newPassage;
 - (NSString *)getStoryFormat;
-
+- (NSArray *)getPassages;
+- (BOOL)checkPassageExistsInCurrentProject:(NSString *)passage;
 @end

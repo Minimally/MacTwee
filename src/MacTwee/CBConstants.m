@@ -8,6 +8,7 @@
 
 // notifications
 NSString * const kCBPrimaryWindowControllerWillOpenViewNotification = @"kCBPrimaryWindowControllerWillOpenViewNotification";
+NSString * const kCBTextViewControllerDidGetPotentialPassageClickNotification = @"kCBTextViewControllerDidGetPotentialPassageClickNotification";
 
 // paths
 NSString * const kOpenPath = @"kOpenPath";
