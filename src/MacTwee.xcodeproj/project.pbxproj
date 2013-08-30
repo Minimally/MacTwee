@@ -23,9 +23,10 @@
 		C62A03FD17CA8C7E00B89A34 /* CBTweeImportUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A03FC17CA8C7D00B89A34 /* CBTweeImportUtility.m */; };
 		C62A040017CA8C8E00B89A34 /* CBTweeExportUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A03FF17CA8C8E00B89A34 /* CBTweeExportUtility.m */; };
 		C62A040317CA8C9E00B89A34 /* CBTweeBuildUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A040217CA8C9E00B89A34 /* CBTweeBuildUtility.m */; };
-		C62A040617CAF84300B89A34 /* CBProject.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A040517CAF84200B89A34 /* CBProject.m */; };
-		C62A040917CAF84300B89A34 /* CBPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A040817CAF84300B89A34 /* CBPassage.m */; };
+		C63E6C6C17CF046200FCEDEB /* CBPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E6C6A17CF046200FCEDEB /* CBPreferencesWindowController.m */; };
+		C63E6C6D17CF046200FCEDEB /* CBPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C63E6C6B17CF046200FCEDEB /* CBPreferencesView.xib */; };
 		C6746FA917C977B00054BCD6 /* CBPreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6746FA817C977B00054BCD6 /* CBPreferencesManager.m */; };
+		C6931E7C17D06B6A007DFC04 /* NSUserDefaults+ColorSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = C6931E7B17D06B6A007DFC04 /* NSUserDefaults+ColorSupport.m */; };
 		C69DA20617C83B730007BD17 /* CBProjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA20517C83B730007BD17 /* CBProjectEditor.m */; };
 		C69DA21017C851CE0007BD17 /* CBProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA20E17C851CE0007BD17 /* CBProjectViewController.m */; };
 		C69DA21117C851CE0007BD17 /* CBProjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C69DA20F17C851CE0007BD17 /* CBProjectView.xib */; };
@@ -33,6 +34,9 @@
 		C69DA21717C863520007BD17 /* CBConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21617C863520007BD17 /* CBConstants.m */; };
 		C69DA21F17C87BA70007BD17 /* NSString+PDRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */; };
 		C6B7923F17CC598300C0ADD3 /* CBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7923E17CC598300C0ADD3 /* CBTextView.m */; };
+		C6B94A5817CDBD4B00FC53E6 /* CBProject.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B94A5717CDBD4B00FC53E6 /* CBProject.m */; };
+		C6B94A5B17CDBD4B00FC53E6 /* CBSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B94A5A17CDBD4B00FC53E6 /* CBSnippet.m */; };
+		C6B94A5E17CDBDDC00FC53E6 /* CBPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B94A5D17CDBDDC00FC53E6 /* CBPassage.m */; };
 		C6E90DC217C8143C0049ED37 /* CBPrimaryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC017C8143C0049ED37 /* CBPrimaryWindowController.m */; };
 		C6E90DC317C8143C0049ED37 /* CBPrimaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E90DC117C8143C0049ED37 /* CBPrimaryWindow.xib */; };
 		C6E90DC817C82A370049ED37 /* CBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC617C82A370049ED37 /* CBHomeViewController.m */; };
@@ -80,12 +84,13 @@
 		C62A03FF17CA8C8E00B89A34 /* CBTweeExportUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTweeExportUtility.m; sourceTree = "<group>"; };
 		C62A040117CA8C9E00B89A34 /* CBTweeBuildUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTweeBuildUtility.h; sourceTree = "<group>"; };
 		C62A040217CA8C9E00B89A34 /* CBTweeBuildUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTweeBuildUtility.m; sourceTree = "<group>"; };
-		C62A040417CAF84200B89A34 /* CBProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBProject.h; sourceTree = "<group>"; };
-		C62A040517CAF84200B89A34 /* CBProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBProject.m; sourceTree = "<group>"; };
-		C62A040717CAF84300B89A34 /* CBPassage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPassage.h; sourceTree = "<group>"; };
-		C62A040817CAF84300B89A34 /* CBPassage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPassage.m; sourceTree = "<group>"; };
+		C63E6C6917CF046200FCEDEB /* CBPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPreferencesWindowController.h; sourceTree = "<group>"; };
+		C63E6C6A17CF046200FCEDEB /* CBPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPreferencesWindowController.m; sourceTree = "<group>"; };
+		C63E6C6B17CF046200FCEDEB /* CBPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBPreferencesView.xib; sourceTree = "<group>"; };
 		C6746FA717C977B00054BCD6 /* CBPreferencesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPreferencesManager.h; sourceTree = "<group>"; };
 		C6746FA817C977B00054BCD6 /* CBPreferencesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPreferencesManager.m; sourceTree = "<group>"; };
+		C6931E7A17D06B6A007DFC04 /* NSUserDefaults+ColorSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+ColorSupport.h"; sourceTree = "<group>"; };
+		C6931E7B17D06B6A007DFC04 /* NSUserDefaults+ColorSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+ColorSupport.m"; sourceTree = "<group>"; };
 		C69DA20417C83B730007BD17 /* CBProjectEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBProjectEditor.h; sourceTree = "<group>"; };
 		C69DA20517C83B730007BD17 /* CBProjectEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBProjectEditor.m; sourceTree = "<group>"; };
 		C69DA20D17C851CE0007BD17 /* CBProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBProjectViewController.h; sourceTree = "<group>"; };
@@ -99,6 +104,12 @@
 		C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PDRegex.m"; path = "RegexOnNSString/NSString+PDRegex.m"; sourceTree = "<group>"; };
 		C6B7923D17CC598300C0ADD3 /* CBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTextView.h; sourceTree = "<group>"; };
 		C6B7923E17CC598300C0ADD3 /* CBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTextView.m; sourceTree = "<group>"; };
+		C6B94A5617CDBD4B00FC53E6 /* CBProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBProject.h; sourceTree = "<group>"; };
+		C6B94A5717CDBD4B00FC53E6 /* CBProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBProject.m; sourceTree = "<group>"; };
+		C6B94A5917CDBD4B00FC53E6 /* CBSnippet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSnippet.h; sourceTree = "<group>"; };
+		C6B94A5A17CDBD4B00FC53E6 /* CBSnippet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSnippet.m; sourceTree = "<group>"; };
+		C6B94A5C17CDBDDC00FC53E6 /* CBPassage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPassage.h; sourceTree = "<group>"; };
+		C6B94A5D17CDBDDC00FC53E6 /* CBPassage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPassage.m; sourceTree = "<group>"; };
 		C6E90DBF17C8143C0049ED37 /* CBPrimaryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPrimaryWindowController.h; sourceTree = "<group>"; };
 		C6E90DC017C8143C0049ED37 /* CBPrimaryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPrimaryWindowController.m; sourceTree = "<group>"; };
 		C6E90DC117C8143C0049ED37 /* CBPrimaryWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBPrimaryWindow.xib; sourceTree = "<group>"; };
@@ -185,10 +196,12 @@
 				C607045B17C5CEFC0076E919 /* CBCoreDataManager.h */,
 				C607045C17C5CEFC0076E919 /* CBCoreDataManager.m */,
 				C607043C17C5CE0F0076E919 /* MacTwee.xcdatamodeld */,
-				C62A040717CAF84300B89A34 /* CBPassage.h */,
-				C62A040817CAF84300B89A34 /* CBPassage.m */,
-				C62A040417CAF84200B89A34 /* CBProject.h */,
-				C62A040517CAF84200B89A34 /* CBProject.m */,
+				C6B94A5C17CDBDDC00FC53E6 /* CBPassage.h */,
+				C6B94A5D17CDBDDC00FC53E6 /* CBPassage.m */,
+				C6B94A5617CDBD4B00FC53E6 /* CBProject.h */,
+				C6B94A5717CDBD4B00FC53E6 /* CBProject.m */,
+				C6B94A5917CDBD4B00FC53E6 /* CBSnippet.h */,
+				C6B94A5A17CDBD4B00FC53E6 /* CBSnippet.m */,
 				C69DA20417C83B730007BD17 /* CBProjectEditor.h */,
 				C69DA20517C83B730007BD17 /* CBProjectEditor.m */,
 				C6E90DC117C8143C0049ED37 /* CBPrimaryWindow.xib */,
@@ -204,13 +217,18 @@
 				C60AFBB117CBABF100C6CA29 /* CBTextViewController.m */,
 				C6B7923D17CC598300C0ADD3 /* CBTextView.h */,
 				C6B7923E17CC598300C0ADD3 /* CBTextView.m */,
-				C69DA21817C865270007BD17 /* CBConstants.h */,
-				C69DA21617C863520007BD17 /* CBConstants.m */,
+				C63E6C6B17CF046200FCEDEB /* CBPreferencesView.xib */,
+				C63E6C6917CF046200FCEDEB /* CBPreferencesWindowController.h */,
+				C63E6C6A17CF046200FCEDEB /* CBPreferencesWindowController.m */,
 				C6746FA717C977B00054BCD6 /* CBPreferencesManager.h */,
 				C6746FA817C977B00054BCD6 /* CBPreferencesManager.m */,
+				C69DA21817C865270007BD17 /* CBConstants.h */,
+				C69DA21617C863520007BD17 /* CBConstants.m */,
 				C607046217C5D0D60076E919 /* CWLSynthesizeSingleton.h */,
 				C69DA21D17C87BA70007BD17 /* NSString+PDRegex.h */,
 				C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */,
+				C6931E7A17D06B6A007DFC04 /* NSUserDefaults+ColorSupport.h */,
+				C6931E7B17D06B6A007DFC04 /* NSUserDefaults+ColorSupport.m */,
 				C607042B17C5CE0F0076E919 /* Supporting Files */,
 			);
 			path = MacTwee;
@@ -324,6 +342,7 @@
 				C6E90DC317C8143C0049ED37 /* CBPrimaryWindow.xib in Resources */,
 				C6E90DC917C82A370049ED37 /* CBHomeView.xib in Resources */,
 				C69DA21117C851CE0007BD17 /* CBProjectView.xib in Resources */,
+				C63E6C6D17CF046200FCEDEB /* CBPreferencesView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,10 +392,13 @@
 				C62A03FD17CA8C7E00B89A34 /* CBTweeImportUtility.m in Sources */,
 				C62A040017CA8C8E00B89A34 /* CBTweeExportUtility.m in Sources */,
 				C62A040317CA8C9E00B89A34 /* CBTweeBuildUtility.m in Sources */,
-				C62A040617CAF84300B89A34 /* CBProject.m in Sources */,
-				C62A040917CAF84300B89A34 /* CBPassage.m in Sources */,
 				C60AFBB217CBABF100C6CA29 /* CBTextViewController.m in Sources */,
 				C6B7923F17CC598300C0ADD3 /* CBTextView.m in Sources */,
+				C6B94A5817CDBD4B00FC53E6 /* CBProject.m in Sources */,
+				C6B94A5B17CDBD4B00FC53E6 /* CBSnippet.m in Sources */,
+				C6B94A5E17CDBDDC00FC53E6 /* CBPassage.m in Sources */,
+				C63E6C6C17CF046200FCEDEB /* CBPreferencesWindowController.m in Sources */,
+				C6931E7C17D06B6A007DFC04 /* NSUserDefaults+ColorSupport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

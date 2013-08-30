@@ -1,6 +1,10 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
+//
+//  CBProject.m
+//  MacTwee
+//
+//  Created by CGB on 8/28/13.
+//  Copyright (c) 2013 Chris Braithwaite. All rights reserved.
+//
 
 #import "CBProject.h"
 #import "CBPassage.h"
@@ -11,10 +15,10 @@
 @dynamic buildDirectory;
 @dynamic lastModifiedDate;
 @dynamic projectName;
-@dynamic storyAuthor;
-@dynamic storyTitle;
 @dynamic sourceDirectory;
+@dynamic storyAuthor;
 @dynamic storyFormat;
+@dynamic storyTitle;
 @dynamic passages;
 
 @end

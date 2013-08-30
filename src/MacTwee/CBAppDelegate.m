@@ -4,10 +4,13 @@
 
 #import "CBAppDelegate.h"
 #import "CBCoreDataManager.h"
+#import "CBPreferencesManager.h"
 #import "CBPrimaryWindowController.h"
+#import "CBPreferencesWindowController.h"
 
 @implementation CBAppDelegate {
 	CBPrimaryWindowController * primaryWindwowController;
+	CBPreferencesWindowController * pref;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -15,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+	[CBPreferencesManager checkDefaults];
 	[self newDocument:self];
 }
 
@@ -39,5 +43,15 @@
 }
 - (IBAction)saveDocument:(id)sender {
 	[[CBCoreDataManager sharedCBCoreDataManager] save];
+}
+- (IBAction)preferencesMenuItem:(id)sender {
+	if (pref == nil)
+		pref = [[CBPreferencesWindowController alloc] initWithWindowNibName:@"CBPreferencesView"];
+	
+	NSLog(@"Is of type: %@", [pref className]);
+	
+	[[pref window] center];
+	
+	[pref showWindow:nil];
 }
 @end

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="11E53" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Passage" representedClassName="CBPassage" syncable="YES">
-        <attribute name="build" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="buildable" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="locked" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" defaultValueString="Enter passage text here" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" defaultValueString="NEW PASSAGE" syncable="YES"/>
+        <relationship name="incoming" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Passage" inverseName="outgoing" inverseEntity="Passage" syncable="YES"/>
+        <relationship name="outgoing" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Passage" inverseName="incoming" inverseEntity="Passage" syncable="YES"/>
         <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="passages" inverseEntity="Project" syncable="YES"/>
     </entity>
     <entity name="Project" representedClassName="CBProject" syncable="YES">
@@ -19,8 +21,14 @@
         <attribute name="storyTitle" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="passages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Passage" inverseName="project" inverseEntity="Passage" syncable="YES"/>
     </entity>
+    <entity name="Snippet" representedClassName="CBSnippet" syncable="YES">
+        <attribute name="owner" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Passage" positionX="153" positionY="204" width="128" height="150"/>
+        <element name="Passage" positionX="153" positionY="204" width="128" height="180"/>
         <element name="Project" positionX="-47" positionY="108" width="128" height="165"/>
+        <element name="Snippet" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

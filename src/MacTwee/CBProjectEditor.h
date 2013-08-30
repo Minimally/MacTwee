@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CWLSynthesizeSingleton.h"
+
 @class CBPassage;
 @class CBProject;
 

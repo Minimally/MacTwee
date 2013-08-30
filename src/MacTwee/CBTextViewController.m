@@ -4,8 +4,12 @@
 
 #import "CBTextViewController.h"
 #import "NSString+PDRegex.h"
+#import "NSUserDefaults+ColorSupport.h"
 
-@implementation CBTextViewController
+@implementation CBTextViewController {
+	NSNumber * textSize;
+	NSColor * passageColor, * backgroundColor, * linkColor, * macroColor, * imageColor, * htmlColor, * commentColor, * displayColor;
+}
 
 NSString * const linkReg = @"\\[\\[([^\\|\\]]*?)(?:(\\]\\])|(\\|(.*?)\\]\\]))";
 NSString * const macroReg = @"<<([^>\\s]+)(?:\\s*)((?:[^>]|>(?!>))*)>>";
@@ -13,8 +17,6 @@ NSString * const imageReg = @"\\[([<]?)(>?)img\\[(?:([^\\|\\]]+)\\|)?([^\\[\\]\\
 NSString * const htmlReg = @"<html>((?:.|\\n)*?)</html>";
 NSString * const commentReg = @"/%((?:.|\\n)*?)%/";
 NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
-
-NSColor * linkColor, * macroColor, * imageColor, * htmlColor, * commentColor, * displayColor;
 
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Lifecycle
@@ -24,14 +26,31 @@ NSColor * linkColor, * macroColor, * imageColor, * htmlColor, * commentColor, * 
 	
     [[self.passageTextView textStorage] setDelegate:self];
 	
-	linkColor = [NSColor blueColor];
-	macroColor = [NSColor purpleColor];
-	imageColor = [NSColor redColor];
-	htmlColor = [NSColor orangeColor];
-	commentColor = [NSColor yellowColor];
-	displayColor = [NSColor greenColor];
+	passageColor = [self colorLoadNBind:@"passageColor"];
+	backgroundColor = [self colorLoadNBind:@"backgroundColor"];
+	linkColor = [self colorLoadNBind:@"linkColor"];
+	macroColor = [self colorLoadNBind:@"macroColor"];
+	
+	imageColor = [self colorLoadNBind:@"imageColor"];
+	htmlColor = [self colorLoadNBind:@"htmlColor"];
+	commentColor = [self colorLoadNBind:@"commentColor"];
+	displayColor = [self colorLoadNBind:@"displayColor"];
+	
+	textSize = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"textSize"];
+	
+	[self bind:@"textSize"
+	  toObject:[NSUserDefaultsController sharedUserDefaultsController]
+   withKeyPath:@"values.textSize"
+	   options:@{ @"NSContinuouslyUpdatesValue":[NSNumber numberWithBool:YES] }];
 }
-
+- (NSColor *)colorLoadNBind:(NSString *)key {
+	NSColor * c = [self colorForKey:key];
+	[self bind:key
+	  toObject:[NSUserDefaultsController sharedUserDefaultsController]
+   withKeyPath:[NSString stringWithFormat:@"values.%@", key]
+	   options:@{ @"NSContinuouslyUpdatesValue":[NSNumber numberWithBool:YES], NSValueTransformerNameBindingOption:NSUnarchiveFromDataTransformerName}];
+	return c;
+}
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - NSTextStorageDelegate Protocol
 ////////////////////////////////////////////////////////////////////////
@@ -41,7 +60,7 @@ NSColor * linkColor, * macroColor, * imageColor, * htmlColor, * commentColor, * 
 	
 	// we want to find the passage of the clicked link
 	
-	if ( [matchedString rangeOfString:@"|"].location == NSNotFound ) {	
+	if ( [matchedString rangeOfString:@"|"].location == NSNotFound ) {
 		NSArray * shouldBePotentialPassage = [matchedString stringsByExtractingGroupsUsingRegexPattern:@"^\\[\\[(.*)\\]\\]$" caseInsensitive:YES treatAsOneLine:YES];
 		for (NSString * potentialPassage in shouldBePotentialPassage) {
 			//NSLog(@"%s 'Line:%d' - match regex cleaned to:'%@'", __func__, __LINE__, potentialPassage);
@@ -66,42 +85,41 @@ NSColor * linkColor, * macroColor, * imageColor, * htmlColor, * commentColor, * 
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - CBTextViewDelegate Protocol
 ////////////////////////////////////////////////////////////////////////
-- (void)textStorageDidProcessEditing:(NSNotification *)aNotification {
-    NSTextStorage * textStorage = [aNotification object];
-    NSString * passageString = [textStorage string];
-    NSUInteger passageLength = [passageString length];
-	NSRange passageRange = NSMakeRange(0, passageLength);
+- (void)textStorageWillProcessEditing:(NSNotification *)aNotification {
+    NSTextStorage * textStorage = aNotification.object;
+    NSString * string = textStorage.string;
+	NSRange range = textStorage.editedRange;
+	//NSRange passageRange = NSMakeRange(0, passageString.length);
+	//NSLog(@"%s 'Line:%d' - passageRange range:'%lu' textStorage range:'%lu'", __func__, __LINE__, passageRange.length, range.length);
 	
-	// remove the old colors
-    [textStorage removeAttribute:NSForegroundColorAttributeName range:passageRange];
-    
+	NSFont * font = [[NSFontManager sharedFontManager] fontWithFamily:@"Arial" traits:0 weight:5 size:textSize.floatValue];
+	
+	NSDictionary * fullAttributes = @{ NSForegroundColorAttributeName:passageColor, NSBackgroundColorAttributeName:backgroundColor, NSFontSizeAttribute:textSize, NSFontAttributeName:font };
+	[textStorage setAttributes:fullAttributes range:range];
+	
 	// highlight
-	[self performHighlightingOnTextStorage:textStorage regExpression:linkReg passageString:passageString passageRange:passageRange color:linkColor linkAttribute:YES];
-	[self performHighlightingOnTextStorage:textStorage regExpression:macroReg passageString:passageString passageRange:passageRange color:macroColor linkAttribute:NO];
-	[self performHighlightingOnTextStorage:textStorage regExpression:imageReg passageString:passageString passageRange:passageRange color:imageColor linkAttribute:NO];
-	[self performHighlightingOnTextStorage:textStorage regExpression:htmlReg passageString:passageString passageRange:passageRange color:htmlColor linkAttribute:NO];
-	[self performHighlightingOnTextStorage:textStorage regExpression:commentReg passageString:passageString passageRange:passageRange color:commentColor linkAttribute:NO];
-	[self performHighlightingOnTextStorage:textStorage regExpression:displayReg passageString:passageString passageRange:passageRange color:displayColor linkAttribute:NO];
+	[self addHighlights:textStorage regex:linkReg string:string range:range color:linkColor isLink:YES];
+	[self addHighlights:textStorage regex:macroReg string:string range:range color:macroColor isLink:NO];
+	[self addHighlights:textStorage regex:imageReg string:string range:range color:imageColor isLink:NO];
+	[self addHighlights:textStorage regex:htmlReg string:string range:range color:htmlColor isLink:NO];
+	[self addHighlights:textStorage regex:commentReg string:string range:range color:commentColor isLink:NO];
+	[self addHighlights:textStorage regex:displayReg string:string range:range color:displayColor isLink:NO];
 }
 
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 ////////////////////////////////////////////////////////////////////////
-- (void)performHighlightingOnTextStorage:(NSTextStorage *)textStorage regExpression:(NSString *)expression passageString:(NSString *)passageString passageRange:(NSRange)passageRange color:(NSColor *)color linkAttribute:(BOOL)linkAttribute {
-	
-	NSRegularExpression * regExpression = [NSRegularExpression regularExpressionWithPattern:expression
-																					options:0
-																					  error:nil];
-	
+- (void)addHighlights:(NSTextStorage *)textStorage regex:(NSString *)expression string:(NSString *)passageString range:(NSRange)passageRange color:(NSColor *)color isLink:(BOOL)linkAttribute {
+	NSRegularExpression * regExpression = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
 	[regExpression enumerateMatchesInString:passageString // The string.
 									options:0 // The matching options to report. See “NSMatchingOptions” for the supported values.
 									  range:passageRange // The range of the string to test.
 								 usingBlock:^(NSTextCheckingResult * result, NSMatchingFlags flags, BOOL * stop) {
-
+									 
 									 NSRange substringRange = result.range;
 									 
 									 if (linkAttribute) {
-										NSString * substring = [passageString substringWithRange:substringRange];
+										 NSString * substring = [passageString substringWithRange:substringRange];
 										 //NSLog(@"%s 'Line:%d' - substring:'%@'", __func__, __LINE__, substring);
 										 
 										 NSDictionary *fullAttributes = @{ NSForegroundColorAttributeName:color, kLinkMatch:substring };
@@ -114,5 +132,12 @@ NSColor * linkColor, * macroColor, * imageColor, * htmlColor, * commentColor, * 
 									 }
 								 }
 	 ];
+}
+- (NSColor *)colorForKey:(NSString *)key {
+    NSColor * color = nil;
+	NSData * theData = [[NSUserDefaults standardUserDefaults] dataForKey:key];
+	if (theData != nil)
+		color = (NSColor *)[NSUnarchiver unarchiveObjectWithData:theData];
+    return color;
 }
 @end

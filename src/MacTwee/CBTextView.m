@@ -36,8 +36,7 @@ BOOL holdingAlt = NO;
 
 - (void)flagsChanged:(NSEvent *)theEvent {
 	NSUInteger mod = theEvent.modifierFlags;
-	NSLog(@"%s 'Line:%d' - mod flags:'%lu' NSAlternateKeyMask is '%u'", __func__, __LINE__, mod, NSAlternateKeyMask);
-	
+	//NSLog(@"%s 'Line:%d' - mod flags:'%lu' NSAlternateKeyMask is '%u'", __func__, __LINE__, mod, NSAlternateKeyMask);
 	holdingAlt = (mod & NSAlternateKeyMask) ? YES : NO;
 }
 

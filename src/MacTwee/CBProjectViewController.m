@@ -40,16 +40,16 @@
 	if (![sender respondsToSelector:@selector(selectedRow)]) {
 		return;
 	}
-	//NSLog(@"%s 'Line:%d' - selectedRow:%ld", __func__, __LINE__, (long)[sender selectedRow]);
-	if ( (long)[sender selectedRow] != -1 ) {
-		NSLog(@"Something selected");
+	NSUInteger selectedRow = [sender selectedRow];
+	//NSLog(@"%s 'Line:%d' - selectedRow:%ld", __func__, __LINE__, selectedRow);
+	if ( selectedRow != -1 ) {
 		if ([[self.passageArrayController selectedObjects] count] > 0) {
-			id selectedPassage = [[self.passageArrayController selectedObjects] objectAtIndex:0];
-			//NSLog(@"%@", selectedProduction);
-			[[CBProjectEditor sharedCBProjectEditor] setCurrentPassage:selectedPassage];
+			id selectedPassage = self.passageArrayController.selectedObjects[0];
+			if (selectedPassage != nil) {
+				//NSLog(@"%s 'Line:%d' - selection description:'%@'", __func__, __LINE__, selectedPassage);
+				[[CBProjectEditor sharedCBProjectEditor] setCurrentPassage:selectedPassage];
+			}
 		}
-	} else {
-		//NSLog(@"Nothing selected");
 	}
 }
 @end

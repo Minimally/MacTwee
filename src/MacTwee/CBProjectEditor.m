@@ -84,6 +84,13 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(CBProjectEditor);
 	_currentProject = proj;
 	_currentProject.lastModifiedDate = [NSDate date];
 }
+- (void)setCurrentPassage:(CBPassage *)passage {
+	[self willChangeValueForKey:@"currentPassage"];
+	_currentPassage = nil;
+	_currentPassage = passage;
+	_currentPassage.lastModifiedDate = [NSDate date];
+	[self didChangeValueForKey:@"currentPassage"];
+}
 - (CBPassage *)getPassageWithName:(NSString *)passage {
 	CBPassage * p;
 	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(title == %@) AND (project == %@)", passage, self.currentProject];

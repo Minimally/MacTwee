@@ -17,4 +17,5 @@
 + (NSURL *)lastBuildDirectory;
 + (void)setLastBuildDirectory:(NSURL *)directory;
 
++ (void)checkDefaults;
 @end

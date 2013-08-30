@@ -68,7 +68,18 @@
 + (void)setLastBuildDirectory:(NSURL *)directory {
 	[[NSUserDefaults standardUserDefaults] setURL:directory forKey:kLastBuildDirectory];
 }
-
++ (void)checkDefaults {
+	[CBPreferencesManager colorCheck:@"passageColor" color:[NSColor whiteColor]];
+	[CBPreferencesManager colorCheck:@"backgroundColor" color:[NSColor blackColor]];
+	[CBPreferencesManager colorCheck:@"linkColor" color:[NSColor blueColor]];
+	[CBPreferencesManager colorCheck:@"macroColor" color:[NSColor purpleColor]];
+	[CBPreferencesManager colorCheck:@"imageColor" color:[NSColor yellowColor]];
+	[CBPreferencesManager colorCheck:@"htmlColor" color:[NSColor orangeColor]];
+	[CBPreferencesManager colorCheck:@"commentColor" color:[NSColor lightGrayColor]];
+	[CBPreferencesManager colorCheck:@"displayColor" color:[NSColor greenColor]];
+	if ( [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"textSize"] == nil)
+		[[NSUserDefaults standardUserDefaults] setInteger:14 forKey:@"textSize"];
+}
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 ////////////////////////////////////////////////////////////////////////
@@ -100,5 +111,11 @@
 	}
 	
 	return result;
+}
++ (void)colorCheck:(NSString *)key color:(NSColor *)color {
+	if ([[NSUserDefaults standardUserDefaults] valueForKey:key] == nil) {
+		NSData * data = [NSArchiver archivedDataWithRootObject:color];
+		[[NSUserDefaults standardUserDefaults] setObject:data forKey:key];
+	};
 }
 @end
