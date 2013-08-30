@@ -6,8 +6,8 @@
 #import "CBPreferencesManager.h"
 #import "CBCoreDataManager.h"
 #import "CBProjectEditor.h"
-#import "CBPassage.h"
 #import "CBProject.h"
+#import "CBPassage.h"
 
 @implementation CBTweeExportUtility
 
@@ -93,13 +93,13 @@ NSString * const exportMessage = @"Choose export destination";
 	
 	NSSavePanel *savepanel = [NSSavePanel savePanel];
 	savepanel.canCreateDirectories = YES;
-	savepanel.nameFieldStringValue = [CBPreferencesManager lastSourceName];
+	savepanel.nameFieldStringValue = [CBProjectEditor sharedCBProjectEditor].currentProject.sourceName;
 	savepanel.message = exportMessage;
 	
 	if( [savepanel runModal] == NSFileHandlingPanelOKButton) {
 		result = savepanel.URL;
 		NSLog(@"%s 'Line:%d' - resultURL:'%@'", __func__, __LINE__, result);
-		[CBPreferencesManager setLastSourceName:[result lastPathComponent]];
+		[CBProjectEditor sharedCBProjectEditor].currentProject.sourceName = [result lastPathComponent];
 	}
 	
 	return result;

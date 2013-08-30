@@ -6,16 +6,6 @@
 
 @interface CBPreferencesManager : NSObject
 
-+ (NSURL *)tweeDirectory;
++ (NSURL *) documentDirectory;
 
-+ (NSString *)lastBuildName;
-+ (void)setLastBuildName:(NSString *)buildName;
-
-+ (NSString *)lastSourceName;
-+ (void)setLastSourceName:(NSString *)sourceName;
-
-+ (NSURL *)lastBuildDirectory;
-+ (void)setLastBuildDirectory:(NSURL *)directory;
-
-+ (void)checkDefaults;
 @end

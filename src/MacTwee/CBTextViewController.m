@@ -4,7 +4,6 @@
 
 #import "CBTextViewController.h"
 #import "NSString+PDRegex.h"
-#import "NSUserDefaults+ColorSupport.h"
 
 @implementation CBTextViewController {
 	NSNumber * textSize;

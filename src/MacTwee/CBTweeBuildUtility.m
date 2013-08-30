@@ -5,14 +5,20 @@
 #import "CBTweeBuildUtility.h"
 #import "NSString+PDRegex.h"
 #import "CBPreferencesManager.h"
+#import "CBProjectEditor.h"
+#import "CBProject.h"
 
 @implementation CBTweeBuildUtility
 
 NSString * const promptBuild = @"Choose build destination";
+NSString * const promptTwee = @"Please select Twee terminal application";
 
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 ////////////////////////////////////////////////////////////////////////
+- (void)buildHtmlFileWithSource:(NSURL *)url {
+	[self buildHtmlFileWithSource:url andHeader:@"sugarcane"];
+}
 - (void)buildHtmlFileWithSource:(NSURL *)url andHeader:(NSString *)header {
 	NSAssert(url != nil, @"url is nil");
 	NSAssert((header != nil || header.length > 0), @"string is nil or empty");
@@ -23,7 +29,7 @@ NSString * const promptBuild = @"Choose build destination";
 	}
 	
 	if (header == nil || header.length == 0) {
-		[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"Issue with header '%@'",header] defaultButton:@"OK"];
+		[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"Issue with story format"] defaultButton:@"OK"];
 		return;
 	}
 	
@@ -38,10 +44,11 @@ NSString * const promptBuild = @"Choose build destination";
 	NSAssert(path != nil, @"url is nil");
 	NSAssert((header != nil || header.length > 0), @"string is nil or empty");
 	
-	NSString * locationOfTwee = [[CBPreferencesManager tweeDirectory] path];
+	NSString * locationOfTwee = [self getTwee];
+	NSAssert((locationOfTwee != nil || locationOfTwee.length > 0), @"locationOfTwee is nil or empty");
 	
 	if (locationOfTwee == nil || locationOfTwee.length == 0) {
-		[self operationResultWithTitle:@"Error" msgFormat:@"Issue location twee file" defaultButton:@"OK"];
+		[self operationResultWithTitle:@"Error" msgFormat:@"Cannot locate twee file" defaultButton:@"OK"];
 		return;
 	}
 	
@@ -95,7 +102,7 @@ NSString * const promptBuild = @"Choose build destination";
 	
 	if( fileURL != nil) {
 		if ([resultString writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
-			[CBPreferencesManager setLastBuildDirectory:fileURL];
+			[CBProjectEditor sharedCBProjectEditor].currentProject.buildDirectory = fileURL.path;
 		} else {
 			[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"issue writing html file string to url '%@'", fileURL] defaultButton:@"OK"];
 		}
@@ -105,22 +112,87 @@ NSString * const promptBuild = @"Choose build destination";
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - User Dialogues & Results
 ////////////////////////////////////////////////////////////////////////
+- (NSString *)getTwee {
+	NSString * result;NSURL * urlCheck;
+	
+	// try user defaults
+	result = [[NSUserDefaults standardUserDefaults] stringForKey:kPathToTwee]; //NSLog(@"%s 'Line:%d' - result:'%@'", __func__, __LINE__, result);
+	urlCheck = [NSURL fileURLWithPath:result isDirectory:NO];
+	
+	if ( ! [[urlCheck lastPathComponent] isEqualToString:@"twee"] ) {
+		// ask user
+		urlCheck = [self runPanelForTweeDirectory];
+		if ( ! [[urlCheck lastPathComponent] isEqualToString:@"twee"] ) {
+			result = nil;
+		} else {
+			result = [urlCheck path]; //NSLog(@"%s 'Line:%d' - result:'%@'", __func__, __LINE__, result);
+		}
+	}
+	
+	return result;
+}
+- (NSURL *)runPanelForTweeDirectory {// gets the user to specify a directory for twee ? this workflow kinda sucks
+	NSURL * result;
+	
+	NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+	openPanel.allowsMultipleSelection = NO;
+	openPanel.message = promptTwee;
+	openPanel.canChooseFiles = YES;
+	openPanel.canChooseDirectories = NO;
+	openPanel.resolvesAliases = YES;
+	
+	if ( ([openPanel runModal] == NSOKButton) && ([[openPanel URL] isFileURL]) ) {
+		result = openPanel.URLs[0];
+		[[NSUserDefaults standardUserDefaults] setValue:[result path] forKey:kPathToTwee];
+	} else {
+		NSLog(@"%s 'Line:%d' - Operation Cancled by user", __func__, __LINE__);
+	}
+	
+	return result;
+}
 - (NSURL *)getSaveDestination {
 	NSURL * result;
 	
 	NSSavePanel *savepanel = [NSSavePanel savePanel];
 	savepanel.canCreateDirectories = YES;
-	savepanel.nameFieldStringValue = [CBPreferencesManager lastBuildName];
+	savepanel.nameFieldStringValue = [CBProjectEditor sharedCBProjectEditor].currentProject.buildName;
 	savepanel.message = promptBuild;
 	
 	if( [savepanel runModal] == NSFileHandlingPanelOKButton) {
 		result = savepanel.URL;
-		[CBPreferencesManager setLastBuildName:[result lastPathComponent]];
+		[CBProjectEditor sharedCBProjectEditor].currentProject.buildName = [result lastPathComponent];
 	} else {
 		[self operationResultWithTitle:@"Error" msgFormat:@"Build Operation Canceled" defaultButton:@"OK"];
 	}
 	
 	return result;
+}
+- (NSString *)getHeader {
+	NSString * result = [[CBProjectEditor sharedCBProjectEditor] getStoryFormat];
+	
+	if (result == nil || result.length == 0) {
+		result = @"sugarcane";
+	} else { // not checking the validity of header strings for now
+		/*
+		 NSURL * headerDirectory = [[CBPreferencesManager tweeDirectory] URLByDeletingLastPathComponent];
+		headerDirectory = [headerDirectory URLByAppendingPathComponent:@"targets"];
+		headerDirectory = [headerDirectory URLByAppendingPathComponent:[NSString stringWithFormat:@"%@", result]];
+		//NSLog(@"%s 'Line:%d' - header directory with result added:'%@'", __func__, __LINE__, headerDirectory.path);
+		
+		NSError * error;
+		if ( ![headerDirectory checkResourceIsReachableAndReturnError:&error] ) {
+			NSLog(@"%s 'Line:%d' - error with '%@':'%@'", __func__, __LINE__, headerDirectory, error.localizedDescription);
+			[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"%@", error.localizedDescription] defaultButton:@"OK"];
+			result = @"sugarcane";
+		} else {
+			result = [headerDirectory lastPathComponent];
+			NSLog(@"%s 'Line:%d' - header is reachable, using:'%@'", __func__, __LINE__, result);
+		}
+		 */
+	}
+	
+	return result;
+	
 }
 - (void)operationResultWithTitle:(NSString *)title msgFormat:(NSString *)msgFormat defaultButton:(NSString *)defaultButton {
 	NSLog(@"%s 'Line:%d' - msgFormat:'%@'", __func__, __LINE__, msgFormat);

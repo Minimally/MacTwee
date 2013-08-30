@@ -13,9 +13,11 @@
     </entity>
     <entity name="Project" representedClassName="CBProject" syncable="YES">
         <attribute name="buildDirectory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="buildName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="projectName" optional="YES" attributeType="String" defaultValueString="New Project" syncable="YES"/>
         <attribute name="sourceDirectory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sourceName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="storyAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="storyFormat" optional="YES" attributeType="String" defaultValueString="sugarcane" syncable="YES"/>
         <attribute name="storyTitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,7 +30,7 @@
     </entity>
     <elements>
         <element name="Passage" positionX="153" positionY="204" width="128" height="180"/>
-        <element name="Project" positionX="-47" positionY="108" width="128" height="165"/>
+        <element name="Project" positionX="-47" positionY="108" width="128" height="195"/>
         <element name="Snippet" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

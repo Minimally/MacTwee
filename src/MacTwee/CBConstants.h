@@ -19,9 +19,6 @@ extern NSString * const kCBTextViewControllerDidGetPotentialPassageClickNotifica
 extern NSString * const kOpenPath;
 extern NSString * const kSavePath;
 extern NSString * const kPathToTwee;
-extern NSString * const kLastBuildName;
-extern NSString * const kLastSourceName;
-extern NSString * const kLastBuildDirectory;
 
 // assorted strings
 extern NSString * const kdefaultBuildName;

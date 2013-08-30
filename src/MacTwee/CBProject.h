@@ -1,10 +1,6 @@
-//
-//  CBProject.h
-//  MacTwee
-//
-//  Created by CGB on 8/28/13.
-//  Copyright (c) 2013 Chris Braithwaite. All rights reserved.
-//
+/*
+ Copyright (c) 2013 Chris Braithwaite. All rights reserved.
+ */
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
@@ -20,6 +16,8 @@
 @property (nonatomic, retain) NSString * storyAuthor;
 @property (nonatomic, retain) NSString * storyFormat;
 @property (nonatomic, retain) NSString * storyTitle;
+@property (nonatomic, retain) NSString * buildName;
+@property (nonatomic, retain) NSString * sourceName;
 @property (nonatomic, retain) NSSet *passages;
 @end
 
