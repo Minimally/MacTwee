@@ -52,7 +52,6 @@
 						<string key="NSFrame">{{530, 19}, {200, 23}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:22</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="15050791">
@@ -147,7 +146,7 @@
 										</object>
 										<array class="NSMutableArray" key="NSTableColumns">
 											<object class="NSTableColumn" id="345933708">
-												<double key="NSWidth">449.16015625</double>
+												<double key="NSWidth">479.16015625</double>
 												<double key="NSMinWidth">40</double>
 												<double key="NSMaxWidth">1000</double>
 												<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -197,7 +196,7 @@
 												<reference key="NSTableView" ref="79682535"/>
 											</object>
 											<object class="NSTableColumn" id="716211440">
-												<double key="NSWidth">253</double>
+												<double key="NSWidth">222</double>
 												<double key="NSMinWidth">40</double>
 												<double key="NSMaxWidth">1000</double>
 												<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -282,7 +281,7 @@
 								<string key="NSReuseIdentifierKey">_NS:58</string>
 								<reference key="NSTarget" ref="418518482"/>
 								<string key="NSAction">_doScroller:</string>
-								<double key="NSPercent">0.99811320754716981</double>
+								<double key="NSPercent">0.97164461247637046</double>
 							</object>
 							<object class="NSScroller" id="1053655809">
 								<reference key="NSNextResponder" ref="418518482"/>
@@ -292,6 +291,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="703790924"/>
 								<string key="NSReuseIdentifierKey">_NS:60</string>
+								<bool key="NSEnabled">YES</bool>
 								<int key="NSsFlags">1</int>
 								<reference key="NSTarget" ref="418518482"/>
 								<string key="NSAction">_doScroller:</string>
@@ -303,7 +303,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="291563666"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<int key="NSsFlags">133682</int>
+						<int key="NSsFlags">133810</int>
 						<reference key="NSVScroller" ref="884895764"/>
 						<reference key="NSHScroller" ref="1053655809"/>
 						<reference key="NSContentView" ref="291563666"/>
