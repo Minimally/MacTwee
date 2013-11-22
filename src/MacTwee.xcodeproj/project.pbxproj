@@ -11,46 +11,32 @@
 		C607042F17C5CE0F0076E919 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C607042D17C5CE0F0076E919 /* InfoPlist.strings */; };
 		C607043117C5CE0F0076E919 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C607043017C5CE0F0076E919 /* main.m */; };
 		C607043517C5CE0F0076E919 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C607043317C5CE0F0076E919 /* Credits.rtf */; };
-		C607043817C5CE0F0076E919 /* CBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C607043717C5CE0F0076E919 /* CBAppDelegate.m */; };
+		C607043817C5CE0F0076E919 /* MTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C607043717C5CE0F0076E919 /* MTAppDelegate.m */; };
 		C607043B17C5CE0F0076E919 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C607043917C5CE0F0076E919 /* MainMenu.xib */; };
 		C607043E17C5CE0F0076E919 /* MacTwee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C607043C17C5CE0F0076E919 /* MacTwee.xcdatamodeld */; };
-		C607044617C5CE0F0076E919 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C607044517C5CE0F0076E919 /* SenTestingKit.framework */; };
-		C607044717C5CE0F0076E919 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C607042417C5CE0F0076E919 /* Cocoa.framework */; };
-		C607044F17C5CE0F0076E919 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C607044D17C5CE0F0076E919 /* InfoPlist.strings */; };
-		C607045217C5CE0F0076E919 /* MacTweeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C607045117C5CE0F0076E919 /* MacTweeTests.m */; };
-		C607045D17C5CEFC0076E919 /* CBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C607045C17C5CEFC0076E919 /* CBCoreDataManager.m */; };
-		C60AFBB217CBABF100C6CA29 /* CBTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C60AFBB117CBABF100C6CA29 /* CBTextViewController.m */; };
-		C62A03FD17CA8C7E00B89A34 /* CBTweeImportUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A03FC17CA8C7D00B89A34 /* CBTweeImportUtility.m */; };
-		C62A040017CA8C8E00B89A34 /* CBTweeExportUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A03FF17CA8C8E00B89A34 /* CBTweeExportUtility.m */; };
-		C62A040317CA8C9E00B89A34 /* CBTweeBuildUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A040217CA8C9E00B89A34 /* CBTweeBuildUtility.m */; };
-		C63E6C6C17CF046200FCEDEB /* CBPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E6C6A17CF046200FCEDEB /* CBPreferencesWindowController.m */; };
-		C63E6C6D17CF046200FCEDEB /* CBPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C63E6C6B17CF046200FCEDEB /* CBPreferencesView.xib */; };
-		C643DDD217D0F72800F84002 /* CBProject.m in Sources */ = {isa = PBXBuildFile; fileRef = C643DDD117D0F72800F84002 /* CBProject.m */; };
-		C6746FA917C977B00054BCD6 /* CBPreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6746FA817C977B00054BCD6 /* CBPreferencesManager.m */; };
-		C69DA20617C83B730007BD17 /* CBProjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA20517C83B730007BD17 /* CBProjectEditor.m */; };
-		C69DA21017C851CE0007BD17 /* CBProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA20E17C851CE0007BD17 /* CBProjectViewController.m */; };
-		C69DA21117C851CE0007BD17 /* CBProjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C69DA20F17C851CE0007BD17 /* CBProjectView.xib */; };
-		C69DA21417C855AD0007BD17 /* CBTweeFileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21317C855AD0007BD17 /* CBTweeFileTools.m */; };
-		C69DA21717C863520007BD17 /* CBConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21617C863520007BD17 /* CBConstants.m */; };
+		C607045D17C5CEFC0076E919 /* MTCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C607045C17C5CEFC0076E919 /* MTCoreDataManager.m */; };
+		C60AFBB217CBABF100C6CA29 /* MTTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C60AFBB117CBABF100C6CA29 /* MTTextViewController.m */; };
+		C62A03FD17CA8C7E00B89A34 /* MTTweeImportUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A03FC17CA8C7D00B89A34 /* MTTweeImportUtility.m */; };
+		C62A040017CA8C8E00B89A34 /* MTTweeExportUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A03FF17CA8C8E00B89A34 /* MTTweeExportUtility.m */; };
+		C62A040317CA8C9E00B89A34 /* MTTweeBuildUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A040217CA8C9E00B89A34 /* MTTweeBuildUtility.m */; };
+		C63E6C6C17CF046200FCEDEB /* MTPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E6C6A17CF046200FCEDEB /* MTPreferencesWindowController.m */; };
+		C63E6C6D17CF046200FCEDEB /* MTPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C63E6C6B17CF046200FCEDEB /* MTPreferencesView.xib */; };
+		C643DDD217D0F72800F84002 /* MTProject.m in Sources */ = {isa = PBXBuildFile; fileRef = C643DDD117D0F72800F84002 /* MTProject.m */; };
+		C6746FA917C977B00054BCD6 /* MTPreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6746FA817C977B00054BCD6 /* MTPreferencesManager.m */; };
+		C69DA20617C83B730007BD17 /* MTProjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA20517C83B730007BD17 /* MTProjectEditor.m */; };
+		C69DA21017C851CE0007BD17 /* MTProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA20E17C851CE0007BD17 /* MTProjectViewController.m */; };
+		C69DA21117C851CE0007BD17 /* MTProjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C69DA20F17C851CE0007BD17 /* MTProjectView.xib */; };
+		C69DA21417C855AD0007BD17 /* MTTweeFileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21317C855AD0007BD17 /* MTTweeFileTools.m */; };
+		C69DA21717C863520007BD17 /* MTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21617C863520007BD17 /* MTConstants.m */; };
 		C69DA21F17C87BA70007BD17 /* NSString+PDRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */; };
-		C6B7923F17CC598300C0ADD3 /* CBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7923E17CC598300C0ADD3 /* CBTextView.m */; };
-		C6B94A5B17CDBD4B00FC53E6 /* CBSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B94A5A17CDBD4B00FC53E6 /* CBSnippet.m */; };
-		C6B94A5E17CDBDDC00FC53E6 /* CBPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B94A5D17CDBDDC00FC53E6 /* CBPassage.m */; };
-		C6E90DC217C8143C0049ED37 /* CBPrimaryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC017C8143C0049ED37 /* CBPrimaryWindowController.m */; };
-		C6E90DC317C8143C0049ED37 /* CBPrimaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E90DC117C8143C0049ED37 /* CBPrimaryWindow.xib */; };
-		C6E90DC817C82A370049ED37 /* CBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC617C82A370049ED37 /* CBHomeViewController.m */; };
-		C6E90DC917C82A370049ED37 /* CBHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E90DC717C82A370049ED37 /* CBHomeView.xib */; };
+		C6B7923F17CC598300C0ADD3 /* MTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7923E17CC598300C0ADD3 /* MTTextView.m */; };
+		C6B94A5B17CDBD4B00FC53E6 /* MTSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B94A5A17CDBD4B00FC53E6 /* MTSnippet.m */; };
+		C6B94A5E17CDBDDC00FC53E6 /* MTPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B94A5D17CDBDDC00FC53E6 /* MTPassage.m */; };
+		C6E90DC217C8143C0049ED37 /* MTPrimaryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC017C8143C0049ED37 /* MTPrimaryWindowController.m */; };
+		C6E90DC317C8143C0049ED37 /* MTPrimaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E90DC117C8143C0049ED37 /* MTPrimaryWindow.xib */; };
+		C6E90DC817C82A370049ED37 /* MTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC617C82A370049ED37 /* MTHomeViewController.m */; };
+		C6E90DC917C82A370049ED37 /* MTHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E90DC717C82A370049ED37 /* MTHomeView.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C607044817C5CE0F0076E919 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C607041917C5CE0F0076E919 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C607042017C5CE0F0076E919;
-			remoteInfo = MacTwee;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C607042117C5CE0F0076E919 /* MacTwee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacTwee.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,56 +49,52 @@
 		C607043017C5CE0F0076E919 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C607043217C5CE0F0076E919 /* MacTwee-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacTwee-Prefix.pch"; sourceTree = "<group>"; };
 		C607043417C5CE0F0076E919 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		C607043617C5CE0F0076E919 /* CBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAppDelegate.h; sourceTree = "<group>"; };
-		C607043717C5CE0F0076E919 /* CBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAppDelegate.m; sourceTree = "<group>"; };
+		C607043617C5CE0F0076E919 /* MTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTAppDelegate.h; sourceTree = "<group>"; };
+		C607043717C5CE0F0076E919 /* MTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTAppDelegate.m; sourceTree = "<group>"; };
 		C607043A17C5CE0F0076E919 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C607043D17C5CE0F0076E919 /* MacTwee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MacTwee.xcdatamodel; sourceTree = "<group>"; };
-		C607044417C5CE0F0076E919 /* MacTweeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacTweeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C607044517C5CE0F0076E919 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		C607044C17C5CE0F0076E919 /* MacTweeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacTweeTests-Info.plist"; sourceTree = "<group>"; };
-		C607044E17C5CE0F0076E919 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C607045117C5CE0F0076E919 /* MacTweeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MacTweeTests.m; sourceTree = "<group>"; };
-		C607045B17C5CEFC0076E919 /* CBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBCoreDataManager.h; sourceTree = "<group>"; };
-		C607045C17C5CEFC0076E919 /* CBCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBCoreDataManager.m; sourceTree = "<group>"; };
+		C607045B17C5CEFC0076E919 /* MTCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCoreDataManager.h; sourceTree = "<group>"; };
+		C607045C17C5CEFC0076E919 /* MTCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCoreDataManager.m; sourceTree = "<group>"; };
 		C607046217C5D0D60076E919 /* CWLSynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLSynthesizeSingleton.h; sourceTree = "<group>"; };
-		C60AFBB017CBABF100C6CA29 /* CBTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTextViewController.h; sourceTree = "<group>"; };
-		C60AFBB117CBABF100C6CA29 /* CBTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTextViewController.m; sourceTree = "<group>"; };
-		C62A03FB17CA8C7D00B89A34 /* CBTweeImportUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTweeImportUtility.h; sourceTree = "<group>"; };
-		C62A03FC17CA8C7D00B89A34 /* CBTweeImportUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTweeImportUtility.m; sourceTree = "<group>"; };
-		C62A03FE17CA8C8E00B89A34 /* CBTweeExportUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTweeExportUtility.h; sourceTree = "<group>"; };
-		C62A03FF17CA8C8E00B89A34 /* CBTweeExportUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTweeExportUtility.m; sourceTree = "<group>"; };
-		C62A040117CA8C9E00B89A34 /* CBTweeBuildUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTweeBuildUtility.h; sourceTree = "<group>"; };
-		C62A040217CA8C9E00B89A34 /* CBTweeBuildUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTweeBuildUtility.m; sourceTree = "<group>"; };
-		C63E6C6917CF046200FCEDEB /* CBPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPreferencesWindowController.h; sourceTree = "<group>"; };
-		C63E6C6A17CF046200FCEDEB /* CBPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPreferencesWindowController.m; sourceTree = "<group>"; };
-		C63E6C6B17CF046200FCEDEB /* CBPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBPreferencesView.xib; sourceTree = "<group>"; };
-		C643DDD017D0F72800F84002 /* CBProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBProject.h; sourceTree = "<group>"; };
-		C643DDD117D0F72800F84002 /* CBProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBProject.m; sourceTree = "<group>"; };
-		C6746FA717C977B00054BCD6 /* CBPreferencesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPreferencesManager.h; sourceTree = "<group>"; };
-		C6746FA817C977B00054BCD6 /* CBPreferencesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPreferencesManager.m; sourceTree = "<group>"; };
-		C69DA20417C83B730007BD17 /* CBProjectEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBProjectEditor.h; sourceTree = "<group>"; };
-		C69DA20517C83B730007BD17 /* CBProjectEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBProjectEditor.m; sourceTree = "<group>"; };
-		C69DA20D17C851CE0007BD17 /* CBProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBProjectViewController.h; sourceTree = "<group>"; };
-		C69DA20E17C851CE0007BD17 /* CBProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBProjectViewController.m; sourceTree = "<group>"; };
-		C69DA20F17C851CE0007BD17 /* CBProjectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBProjectView.xib; sourceTree = "<group>"; };
-		C69DA21217C855AD0007BD17 /* CBTweeFileTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTweeFileTools.h; sourceTree = "<group>"; };
-		C69DA21317C855AD0007BD17 /* CBTweeFileTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTweeFileTools.m; sourceTree = "<group>"; };
-		C69DA21617C863520007BD17 /* CBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBConstants.m; sourceTree = "<group>"; };
-		C69DA21817C865270007BD17 /* CBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBConstants.h; sourceTree = "<group>"; };
+		C60AFBB017CBABF100C6CA29 /* MTTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTextViewController.h; sourceTree = "<group>"; };
+		C60AFBB117CBABF100C6CA29 /* MTTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTextViewController.m; sourceTree = "<group>"; };
+		C62A03FB17CA8C7D00B89A34 /* MTTweeImportUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTweeImportUtility.h; sourceTree = "<group>"; };
+		C62A03FC17CA8C7D00B89A34 /* MTTweeImportUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTweeImportUtility.m; sourceTree = "<group>"; };
+		C62A03FE17CA8C8E00B89A34 /* MTTweeExportUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTweeExportUtility.h; sourceTree = "<group>"; };
+		C62A03FF17CA8C8E00B89A34 /* MTTweeExportUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTweeExportUtility.m; sourceTree = "<group>"; };
+		C62A040117CA8C9E00B89A34 /* MTTweeBuildUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTweeBuildUtility.h; sourceTree = "<group>"; };
+		C62A040217CA8C9E00B89A34 /* MTTweeBuildUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTweeBuildUtility.m; sourceTree = "<group>"; };
+		C63E6C6917CF046200FCEDEB /* MTPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPreferencesWindowController.h; sourceTree = "<group>"; };
+		C63E6C6A17CF046200FCEDEB /* MTPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPreferencesWindowController.m; sourceTree = "<group>"; };
+		C63E6C6B17CF046200FCEDEB /* MTPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTPreferencesView.xib; sourceTree = "<group>"; };
+		C643DDD017D0F72800F84002 /* MTProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProject.h; sourceTree = "<group>"; };
+		C643DDD117D0F72800F84002 /* MTProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProject.m; sourceTree = "<group>"; };
+		C6746FA717C977B00054BCD6 /* MTPreferencesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPreferencesManager.h; sourceTree = "<group>"; };
+		C6746FA817C977B00054BCD6 /* MTPreferencesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPreferencesManager.m; sourceTree = "<group>"; };
+		C69DA20417C83B730007BD17 /* MTProjectEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProjectEditor.h; sourceTree = "<group>"; };
+		C69DA20517C83B730007BD17 /* MTProjectEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProjectEditor.m; sourceTree = "<group>"; };
+		C69DA20D17C851CE0007BD17 /* MTProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProjectViewController.h; sourceTree = "<group>"; };
+		C69DA20E17C851CE0007BD17 /* MTProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProjectViewController.m; sourceTree = "<group>"; };
+		C69DA20F17C851CE0007BD17 /* MTProjectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTProjectView.xib; sourceTree = "<group>"; };
+		C69DA21217C855AD0007BD17 /* MTTweeFileTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTweeFileTools.h; sourceTree = "<group>"; };
+		C69DA21317C855AD0007BD17 /* MTTweeFileTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTweeFileTools.m; sourceTree = "<group>"; };
+		C69DA21617C863520007BD17 /* MTConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTConstants.m; sourceTree = "<group>"; };
+		C69DA21817C865270007BD17 /* MTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTConstants.h; sourceTree = "<group>"; };
 		C69DA21D17C87BA70007BD17 /* NSString+PDRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+PDRegex.h"; path = "RegexOnNSString/NSString+PDRegex.h"; sourceTree = "<group>"; };
 		C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PDRegex.m"; path = "RegexOnNSString/NSString+PDRegex.m"; sourceTree = "<group>"; };
-		C6B7923D17CC598300C0ADD3 /* CBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTextView.h; sourceTree = "<group>"; };
-		C6B7923E17CC598300C0ADD3 /* CBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTextView.m; sourceTree = "<group>"; };
-		C6B94A5917CDBD4B00FC53E6 /* CBSnippet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSnippet.h; sourceTree = "<group>"; };
-		C6B94A5A17CDBD4B00FC53E6 /* CBSnippet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSnippet.m; sourceTree = "<group>"; };
-		C6B94A5C17CDBDDC00FC53E6 /* CBPassage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPassage.h; sourceTree = "<group>"; };
-		C6B94A5D17CDBDDC00FC53E6 /* CBPassage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPassage.m; sourceTree = "<group>"; };
-		C6E90DBF17C8143C0049ED37 /* CBPrimaryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPrimaryWindowController.h; sourceTree = "<group>"; };
-		C6E90DC017C8143C0049ED37 /* CBPrimaryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPrimaryWindowController.m; sourceTree = "<group>"; };
-		C6E90DC117C8143C0049ED37 /* CBPrimaryWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBPrimaryWindow.xib; sourceTree = "<group>"; };
-		C6E90DC517C82A370049ED37 /* CBHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBHomeViewController.h; sourceTree = "<group>"; };
-		C6E90DC617C82A370049ED37 /* CBHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBHomeViewController.m; sourceTree = "<group>"; };
-		C6E90DC717C82A370049ED37 /* CBHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBHomeView.xib; sourceTree = "<group>"; };
+		C6B7923D17CC598300C0ADD3 /* MTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTextView.h; sourceTree = "<group>"; };
+		C6B7923E17CC598300C0ADD3 /* MTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTextView.m; sourceTree = "<group>"; };
+		C6B94A5917CDBD4B00FC53E6 /* MTSnippet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSnippet.h; sourceTree = "<group>"; };
+		C6B94A5A17CDBD4B00FC53E6 /* MTSnippet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSnippet.m; sourceTree = "<group>"; };
+		C6B94A5C17CDBDDC00FC53E6 /* MTPassage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPassage.h; sourceTree = "<group>"; };
+		C6B94A5D17CDBDDC00FC53E6 /* MTPassage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPassage.m; sourceTree = "<group>"; };
+		C6E90DBF17C8143C0049ED37 /* MTPrimaryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPrimaryWindowController.h; sourceTree = "<group>"; };
+		C6E90DC017C8143C0049ED37 /* MTPrimaryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPrimaryWindowController.m; sourceTree = "<group>"; };
+		C6E90DC117C8143C0049ED37 /* MTPrimaryWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTPrimaryWindow.xib; sourceTree = "<group>"; };
+		C6E90DC517C82A370049ED37 /* MTHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTHomeViewController.h; sourceTree = "<group>"; };
+		C6E90DC617C82A370049ED37 /* MTHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTHomeViewController.m; sourceTree = "<group>"; };
+		C6E90DC717C82A370049ED37 /* MTHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTHomeView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,15 +106,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C607044017C5CE0F0076E919 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C607044617C5CE0F0076E919 /* SenTestingKit.framework in Frameworks */,
-				C607044717C5CE0F0076E919 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -140,9 +113,9 @@
 			isa = PBXGroup;
 			children = (
 				C607042A17C5CE0F0076E919 /* MacTwee */,
-				C607044A17C5CE0F0076E919 /* MacTweeTests */,
 				C607042317C5CE0F0076E919 /* Frameworks */,
 				C607042217C5CE0F0076E919 /* Products */,
+				C643DDCC17D0F0A600F84002 /* Tools */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				C607042117C5CE0F0076E919 /* MacTwee.app */,
-				C607044417C5CE0F0076E919 /* MacTweeTests.octest */,
 			);
 			name = Products;
 			path = MacTwee;
@@ -180,29 +152,15 @@
 			isa = PBXGroup;
 			children = (
 				C607043917C5CE0F0076E919 /* MainMenu.xib */,
-				C607043617C5CE0F0076E919 /* CBAppDelegate.h */,
-				C607043717C5CE0F0076E919 /* CBAppDelegate.m */,
+				C607043617C5CE0F0076E919 /* MTAppDelegate.h */,
+				C607043717C5CE0F0076E919 /* MTAppDelegate.m */,
 				C643DDCE17D0F51B00F84002 /* Twee */,
 				C643DDCF17D0F52300F84002 /* Core Data */,
-				C69DA20417C83B730007BD17 /* CBProjectEditor.h */,
-				C69DA20517C83B730007BD17 /* CBProjectEditor.m */,
-				C6E90DC117C8143C0049ED37 /* CBPrimaryWindow.xib */,
-				C6E90DBF17C8143C0049ED37 /* CBPrimaryWindowController.h */,
-				C6E90DC017C8143C0049ED37 /* CBPrimaryWindowController.m */,
-				C6E90DC717C82A370049ED37 /* CBHomeView.xib */,
-				C6E90DC517C82A370049ED37 /* CBHomeViewController.h */,
-				C6E90DC617C82A370049ED37 /* CBHomeViewController.m */,
-				C69DA20F17C851CE0007BD17 /* CBProjectView.xib */,
-				C69DA20D17C851CE0007BD17 /* CBProjectViewController.h */,
-				C69DA20E17C851CE0007BD17 /* CBProjectViewController.m */,
-				C60AFBB017CBABF100C6CA29 /* CBTextViewController.h */,
-				C60AFBB117CBABF100C6CA29 /* CBTextViewController.m */,
-				C6B7923D17CC598300C0ADD3 /* CBTextView.h */,
-				C6B7923E17CC598300C0ADD3 /* CBTextView.m */,
+				C65EEE8D1840231100CBA70B /* Managers */,
+				C65EEE8E1840232000CBA70B /* Primary Views */,
+				C65EEE8F1840233000CBA70B /* Text Views */,
 				C643DDCD17D0F51100F84002 /* Preferences */,
-				C69DA21817C865270007BD17 /* CBConstants.h */,
-				C69DA21617C863520007BD17 /* CBConstants.m */,
-				C643DDCC17D0F0A600F84002 /* Tools */,
+				C65EEE901840234500CBA70B /* Extras */,
 				C607042B17C5CE0F0076E919 /* Supporting Files */,
 			);
 			path = MacTwee;
@@ -220,24 +178,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C607044A17C5CE0F0076E919 /* MacTweeTests */ = {
-			isa = PBXGroup;
-			children = (
-				C607045117C5CE0F0076E919 /* MacTweeTests.m */,
-				C607044B17C5CE0F0076E919 /* Supporting Files */,
-			);
-			path = MacTweeTests;
-			sourceTree = "<group>";
-		};
-		C607044B17C5CE0F0076E919 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C607044C17C5CE0F0076E919 /* MacTweeTests-Info.plist */,
-				C607044D17C5CE0F0076E919 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		C643DDCC17D0F0A600F84002 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,16 +186,17 @@
 				C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */,
 			);
 			name = Tools;
+			path = MacTwee;
 			sourceTree = "<group>";
 		};
 		C643DDCD17D0F51100F84002 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				C63E6C6B17CF046200FCEDEB /* CBPreferencesView.xib */,
-				C63E6C6917CF046200FCEDEB /* CBPreferencesWindowController.h */,
-				C63E6C6A17CF046200FCEDEB /* CBPreferencesWindowController.m */,
-				C6746FA717C977B00054BCD6 /* CBPreferencesManager.h */,
-				C6746FA817C977B00054BCD6 /* CBPreferencesManager.m */,
+				C63E6C6B17CF046200FCEDEB /* MTPreferencesView.xib */,
+				C63E6C6917CF046200FCEDEB /* MTPreferencesWindowController.h */,
+				C63E6C6A17CF046200FCEDEB /* MTPreferencesWindowController.m */,
+				C6746FA717C977B00054BCD6 /* MTPreferencesManager.h */,
+				C6746FA817C977B00054BCD6 /* MTPreferencesManager.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -263,14 +204,14 @@
 		C643DDCE17D0F51B00F84002 /* Twee */ = {
 			isa = PBXGroup;
 			children = (
-				C69DA21217C855AD0007BD17 /* CBTweeFileTools.h */,
-				C69DA21317C855AD0007BD17 /* CBTweeFileTools.m */,
-				C62A03FB17CA8C7D00B89A34 /* CBTweeImportUtility.h */,
-				C62A03FC17CA8C7D00B89A34 /* CBTweeImportUtility.m */,
-				C62A03FE17CA8C8E00B89A34 /* CBTweeExportUtility.h */,
-				C62A03FF17CA8C8E00B89A34 /* CBTweeExportUtility.m */,
-				C62A040117CA8C9E00B89A34 /* CBTweeBuildUtility.h */,
-				C62A040217CA8C9E00B89A34 /* CBTweeBuildUtility.m */,
+				C69DA21217C855AD0007BD17 /* MTTweeFileTools.h */,
+				C69DA21317C855AD0007BD17 /* MTTweeFileTools.m */,
+				C62A03FB17CA8C7D00B89A34 /* MTTweeImportUtility.h */,
+				C62A03FC17CA8C7D00B89A34 /* MTTweeImportUtility.m */,
+				C62A03FE17CA8C8E00B89A34 /* MTTweeExportUtility.h */,
+				C62A03FF17CA8C8E00B89A34 /* MTTweeExportUtility.m */,
+				C62A040117CA8C9E00B89A34 /* MTTweeBuildUtility.h */,
+				C62A040217CA8C9E00B89A34 /* MTTweeBuildUtility.m */,
 			);
 			name = Twee;
 			sourceTree = "<group>";
@@ -278,17 +219,62 @@
 		C643DDCF17D0F52300F84002 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				C607045B17C5CEFC0076E919 /* CBCoreDataManager.h */,
-				C607045C17C5CEFC0076E919 /* CBCoreDataManager.m */,
+				C607045B17C5CEFC0076E919 /* MTCoreDataManager.h */,
+				C607045C17C5CEFC0076E919 /* MTCoreDataManager.m */,
 				C607043C17C5CE0F0076E919 /* MacTwee.xcdatamodeld */,
-				C643DDD017D0F72800F84002 /* CBProject.h */,
-				C643DDD117D0F72800F84002 /* CBProject.m */,
-				C6B94A5C17CDBDDC00FC53E6 /* CBPassage.h */,
-				C6B94A5D17CDBDDC00FC53E6 /* CBPassage.m */,
-				C6B94A5917CDBD4B00FC53E6 /* CBSnippet.h */,
-				C6B94A5A17CDBD4B00FC53E6 /* CBSnippet.m */,
+				C643DDD017D0F72800F84002 /* MTProject.h */,
+				C643DDD117D0F72800F84002 /* MTProject.m */,
+				C6B94A5C17CDBDDC00FC53E6 /* MTPassage.h */,
+				C6B94A5D17CDBDDC00FC53E6 /* MTPassage.m */,
+				C6B94A5917CDBD4B00FC53E6 /* MTSnippet.h */,
+				C6B94A5A17CDBD4B00FC53E6 /* MTSnippet.m */,
 			);
 			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		C65EEE8D1840231100CBA70B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C69DA20417C83B730007BD17 /* MTProjectEditor.h */,
+				C69DA20517C83B730007BD17 /* MTProjectEditor.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		C65EEE8E1840232000CBA70B /* Primary Views */ = {
+			isa = PBXGroup;
+			children = (
+				C6E90DC117C8143C0049ED37 /* MTPrimaryWindow.xib */,
+				C6E90DBF17C8143C0049ED37 /* MTPrimaryWindowController.h */,
+				C6E90DC017C8143C0049ED37 /* MTPrimaryWindowController.m */,
+				C6E90DC717C82A370049ED37 /* MTHomeView.xib */,
+				C6E90DC517C82A370049ED37 /* MTHomeViewController.h */,
+				C6E90DC617C82A370049ED37 /* MTHomeViewController.m */,
+				C69DA20F17C851CE0007BD17 /* MTProjectView.xib */,
+				C69DA20D17C851CE0007BD17 /* MTProjectViewController.h */,
+				C69DA20E17C851CE0007BD17 /* MTProjectViewController.m */,
+			);
+			name = "Primary Views";
+			sourceTree = "<group>";
+		};
+		C65EEE8F1840233000CBA70B /* Text Views */ = {
+			isa = PBXGroup;
+			children = (
+				C60AFBB017CBABF100C6CA29 /* MTTextViewController.h */,
+				C60AFBB117CBABF100C6CA29 /* MTTextViewController.m */,
+				C6B7923D17CC598300C0ADD3 /* MTTextView.h */,
+				C6B7923E17CC598300C0ADD3 /* MTTextView.m */,
+			);
+			name = "Text Views";
+			sourceTree = "<group>";
+		};
+		C65EEE901840234500CBA70B /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				C69DA21817C865270007BD17 /* MTConstants.h */,
+				C69DA21617C863520007BD17 /* MTConstants.m */,
+			);
+			name = Extras;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,25 +297,6 @@
 			productReference = C607042117C5CE0F0076E919 /* MacTwee.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C607044317C5CE0F0076E919 /* MacTweeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C607045817C5CE0F0076E919 /* Build configuration list for PBXNativeTarget "MacTweeTests" */;
-			buildPhases = (
-				C607043F17C5CE0F0076E919 /* Sources */,
-				C607044017C5CE0F0076E919 /* Frameworks */,
-				C607044117C5CE0F0076E919 /* Resources */,
-				C607044217C5CE0F0076E919 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C607044917C5CE0F0076E919 /* PBXTargetDependency */,
-			);
-			name = MacTweeTests;
-			productName = MacTweeTests;
-			productReference = C607044417C5CE0F0076E919 /* MacTweeTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -337,7 +304,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CB;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Chris Braithwaite";
 			};
 			buildConfigurationList = C607041C17C5CE0F0076E919 /* Build configuration list for PBXProject "MacTwee" */;
@@ -353,7 +320,6 @@
 			projectRoot = "";
 			targets = (
 				C607042017C5CE0F0076E919 /* MacTwee */,
-				C607044317C5CE0F0076E919 /* MacTweeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -366,38 +332,14 @@
 				C607042F17C5CE0F0076E919 /* InfoPlist.strings in Resources */,
 				C607043517C5CE0F0076E919 /* Credits.rtf in Resources */,
 				C607043B17C5CE0F0076E919 /* MainMenu.xib in Resources */,
-				C6E90DC317C8143C0049ED37 /* CBPrimaryWindow.xib in Resources */,
-				C6E90DC917C82A370049ED37 /* CBHomeView.xib in Resources */,
-				C69DA21117C851CE0007BD17 /* CBProjectView.xib in Resources */,
-				C63E6C6D17CF046200FCEDEB /* CBPreferencesView.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C607044117C5CE0F0076E919 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C607044F17C5CE0F0076E919 /* InfoPlist.strings in Resources */,
+				C6E90DC317C8143C0049ED37 /* MTPrimaryWindow.xib in Resources */,
+				C6E90DC917C82A370049ED37 /* MTHomeView.xib in Resources */,
+				C69DA21117C851CE0007BD17 /* MTProjectView.xib in Resources */,
+				C63E6C6D17CF046200FCEDEB /* MTPreferencesView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		C607044217C5CE0F0076E919 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C607041D17C5CE0F0076E919 /* Sources */ = {
@@ -405,46 +347,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				C607043117C5CE0F0076E919 /* main.m in Sources */,
-				C607043817C5CE0F0076E919 /* CBAppDelegate.m in Sources */,
+				C607043817C5CE0F0076E919 /* MTAppDelegate.m in Sources */,
 				C607043E17C5CE0F0076E919 /* MacTwee.xcdatamodeld in Sources */,
-				C607045D17C5CEFC0076E919 /* CBCoreDataManager.m in Sources */,
-				C6E90DC217C8143C0049ED37 /* CBPrimaryWindowController.m in Sources */,
-				C6E90DC817C82A370049ED37 /* CBHomeViewController.m in Sources */,
-				C69DA20617C83B730007BD17 /* CBProjectEditor.m in Sources */,
-				C69DA21017C851CE0007BD17 /* CBProjectViewController.m in Sources */,
-				C69DA21417C855AD0007BD17 /* CBTweeFileTools.m in Sources */,
-				C69DA21717C863520007BD17 /* CBConstants.m in Sources */,
+				C607045D17C5CEFC0076E919 /* MTCoreDataManager.m in Sources */,
+				C6E90DC217C8143C0049ED37 /* MTPrimaryWindowController.m in Sources */,
+				C6E90DC817C82A370049ED37 /* MTHomeViewController.m in Sources */,
+				C69DA20617C83B730007BD17 /* MTProjectEditor.m in Sources */,
+				C69DA21017C851CE0007BD17 /* MTProjectViewController.m in Sources */,
+				C69DA21417C855AD0007BD17 /* MTTweeFileTools.m in Sources */,
+				C69DA21717C863520007BD17 /* MTConstants.m in Sources */,
 				C69DA21F17C87BA70007BD17 /* NSString+PDRegex.m in Sources */,
-				C6746FA917C977B00054BCD6 /* CBPreferencesManager.m in Sources */,
-				C62A03FD17CA8C7E00B89A34 /* CBTweeImportUtility.m in Sources */,
-				C62A040017CA8C8E00B89A34 /* CBTweeExportUtility.m in Sources */,
-				C62A040317CA8C9E00B89A34 /* CBTweeBuildUtility.m in Sources */,
-				C60AFBB217CBABF100C6CA29 /* CBTextViewController.m in Sources */,
-				C6B7923F17CC598300C0ADD3 /* CBTextView.m in Sources */,
-				C6B94A5B17CDBD4B00FC53E6 /* CBSnippet.m in Sources */,
-				C6B94A5E17CDBDDC00FC53E6 /* CBPassage.m in Sources */,
-				C63E6C6C17CF046200FCEDEB /* CBPreferencesWindowController.m in Sources */,
-				C643DDD217D0F72800F84002 /* CBProject.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C607043F17C5CE0F0076E919 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C607045217C5CE0F0076E919 /* MacTweeTests.m in Sources */,
+				C6746FA917C977B00054BCD6 /* MTPreferencesManager.m in Sources */,
+				C62A03FD17CA8C7E00B89A34 /* MTTweeImportUtility.m in Sources */,
+				C62A040017CA8C8E00B89A34 /* MTTweeExportUtility.m in Sources */,
+				C62A040317CA8C9E00B89A34 /* MTTweeBuildUtility.m in Sources */,
+				C60AFBB217CBABF100C6CA29 /* MTTextViewController.m in Sources */,
+				C6B7923F17CC598300C0ADD3 /* MTTextView.m in Sources */,
+				C6B94A5B17CDBD4B00FC53E6 /* MTSnippet.m in Sources */,
+				C6B94A5E17CDBDDC00FC53E6 /* MTPassage.m in Sources */,
+				C63E6C6C17CF046200FCEDEB /* MTPreferencesWindowController.m in Sources */,
+				C643DDD217D0F72800F84002 /* MTProject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C607044917C5CE0F0076E919 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C607042017C5CE0F0076E919 /* MacTwee */;
-			targetProxy = C607044817C5CE0F0076E919 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C607042D17C5CE0F0076E919 /* InfoPlist.strings */ = {
@@ -471,14 +397,6 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		C607044D17C5CE0F0076E919 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C607044E17C5CE0F0076E919 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -486,7 +404,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -519,7 +436,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -569,36 +485,6 @@
 			};
 			name = Release;
 		};
-		C607045917C5CE0F0076E919 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MacTwee.app/Contents/MacOS/MacTwee";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MacTwee/MacTwee-Prefix.pch";
-				INFOPLIST_FILE = "MacTweeTests/MacTweeTests-Info.plist";
-				PRODUCT_NAME = MacTweeTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		C607045A17C5CE0F0076E919 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MacTwee.app/Contents/MacOS/MacTwee";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MacTwee/MacTwee-Prefix.pch";
-				INFOPLIST_FILE = "MacTweeTests/MacTweeTests-Info.plist";
-				PRODUCT_NAME = MacTweeTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -616,15 +502,6 @@
 			buildConfigurations = (
 				C607045617C5CE0F0076E919 /* Debug */,
 				C607045717C5CE0F0076E919 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C607045817C5CE0F0076E919 /* Build configuration list for PBXNativeTarget "MacTweeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C607045917C5CE0F0076E919 /* Debug */,
-				C607045A17C5CE0F0076E919 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

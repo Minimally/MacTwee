@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MTPrimaryWindowController">
+            <connections>
+                <outlet property="holderView" destination="16" id="23"/>
+                <outlet property="window" destination="1" id="3"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" wantsToBeColor="NO" animationBehavior="default" id="1">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="750" height="600"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+            <value key="minSize" type="size" width="750" height="600"/>
+            <view key="contentView" id="2">
+                <rect key="frame" x="0.0" y="0.0" width="750" height="600"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="16">
+                        <rect key="frame" x="0.0" y="0.0" width="750" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="16" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="17"/>
+                    <constraint firstItem="16" firstAttribute="top" secondItem="2" secondAttribute="top" id="18"/>
+                    <constraint firstItem="16" firstAttribute="bottom" secondItem="2" secondAttribute="bottom" id="21"/>
+                    <constraint firstItem="16" firstAttribute="trailing" secondItem="2" secondAttribute="trailing" id="22"/>
+                </constraints>
+            </view>
+            <toolbar key="toolbar" implicitIdentifier="442296CC-4F25-4E01-B311-130FB1AF5204" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="labelOnly" sizeMode="regular" id="24">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="26"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="27"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="29"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="25"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="28"/>
+                    <toolbarItem implicitItemIdentifier="4AB3B3BD-02A1-4A69-BF3E-84EE83452F33" label="New Passage" paletteLabel="New Passage" tag="-1" image="NSActionTemplate" id="30">
+                        <connections>
+                            <action selector="newPassage:" target="-2" id="52"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="B5DFE91A-4DAA-4068-8A5F-DF79936841FB" label="Import Source" paletteLabel="Import Source" tag="-1" image="NSActionTemplate" id="37">
+                        <connections>
+                            <action selector="importStory:" target="-2" id="50"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="01422E60-277D-438B-A44C-32CF0D638A59" label="Export Source" paletteLabel="Export Source" tag="-1" image="NSActionTemplate" id="38">
+                        <connections>
+                            <action selector="exportStory:" target="-2" id="51"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="DD71B484-5763-44C7-AB2C-D595F48E76B1" label="Duplicate Passage" paletteLabel="Duplicate Passage" tag="-1" image="NSActionTemplate" id="31"/>
+                    <toolbarItem implicitItemIdentifier="B53EF184-12DE-4F7E-82CC-CB7A5E9C5DFF" label="Snippets" paletteLabel="Snippets" tag="-1" image="NSActionTemplate" id="33"/>
+                    <toolbarItem implicitItemIdentifier="99803699-8E19-42B7-829F-23DA31AA7661" label="Passages" paletteLabel="Passages" tag="-1" image="NSActionTemplate" id="34"/>
+                    <toolbarItem implicitItemIdentifier="3E72E7A7-CF1A-460C-AFE5-75CA1E2608E3" label="Build" paletteLabel="Build" tag="-1" image="NSActionTemplate" id="35">
+                        <connections>
+                            <action selector="buildStory:" target="-2" id="49"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="13EA4581-9EAF-4372-A7EE-8A3A459C6852" label="Build &amp; Run" paletteLabel="Build &amp; Run" tag="-1" image="NSActionTemplate" id="36">
+                        <connections>
+                            <action selector="buildAndRun:" target="-2" id="53"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="F8910B94-9B2C-412D-B378-AA0F72792276" label="Run" paletteLabel="Run" tag="-1" image="NSActionTemplate" id="54">
+                        <connections>
+                            <action selector="buildAndRun:" target="-2" id="55"/>
+                        </connections>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="30"/>
+                    <toolbarItem reference="28"/>
+                    <toolbarItem reference="35"/>
+                    <toolbarItem reference="36"/>
+                    <toolbarItem reference="28"/>
+                    <toolbarItem reference="37"/>
+                    <toolbarItem reference="38"/>
+                </defaultToolbarItems>
+            </toolbar>
+            <connections>
+                <outlet property="delegate" destination="-2" id="4"/>
+            </connections>
+        </window>
+    </objects>
+    <resources>
+        <image name="NSActionTemplate" width="14" height="14"/>
+    </resources>
+</document>
