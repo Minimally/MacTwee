@@ -8,7 +8,7 @@
 #pragma mark - notifications
 
 NSString * const MTPrimaryWindowControllerWillOpenViewNotification = @"MTPrimaryWindowControllerWillOpenViewNotification";
-NSString * const MTTextViewControllerDidGetPotentialPassageClickNotification = @"MTTextViewControllerDidGetPotentialPassageClickNotification";
+NSString * const MTTextViewControllerDidGetPotentialPassageClickNotification = @"altClickLink";
 
 
 #pragma mark - paths

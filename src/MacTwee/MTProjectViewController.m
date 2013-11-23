@@ -24,33 +24,38 @@
 }
 
 
+#pragma mark - NSTableViewDelegate
+
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
+	[self updateSelectedPassage];
+}
+
+
 #pragma mark - Private
 
+- (void)updateSelectedPassage {
+    if ( self.passageArrayController.selectedObjects.count >= 1 ) {
+        id selectedPassage = self.passageArrayController.selectedObjects[0];
+        if (selectedPassage != nil) {
+            [[MTProjectEditor sharedMTProjectEditor] setCurrentPassage:selectedPassage];
+        }
+    }
+    else {
+        [[MTProjectEditor sharedMTProjectEditor] setCurrentPassage:nil];
+    }
+}
+
 - (void)processNotification:(NSNotification *)notification {
-	//NSLog(@"%s:%d:Notification is successfully received! notification.name '%@'", __func__, __LINE__, notification.name);
-	
     if ([notification.name isEqualToString:MTTextViewControllerDidGetPotentialPassageClickNotification]) {
+        // the user alt clicked a link within the text view, we need to try and go to it
 		if ( [notification userInfo][@"index"] ) {
 			NSString * passageName = [notification userInfo][@"index"];
 			//NSLog(@"%s 'Line:%d' - The object for key index is:'%@'", __func__, __LINE__, passageName);
-			[[MTProjectEditor sharedMTProjectEditor] selectCurrentPassageWithName:passageName];
-		}
-	}
-}
-
-- (IBAction)passagesTableClick:(id)sender {
-	if (![sender respondsToSelector:@selector(selectedRow)]) {
-		return;
-	}
-	NSUInteger selectedRow = [sender selectedRow];
-	//NSLog(@"%s 'Line:%d' - selectedRow:%ld", __func__, __LINE__, selectedRow);
-	if ( selectedRow != -1 ) {
-		if ([[self.passageArrayController selectedObjects] count] > 0) {
-			id selectedPassage = self.passageArrayController.selectedObjects[0];
-			if (selectedPassage != nil) {
-				//NSLog(@"%s 'Line:%d' - selection description:'%@'", __func__, __LINE__, selectedPassage);
-				[[MTProjectEditor sharedMTProjectEditor] setCurrentPassage:selectedPassage];
-			}
+			if ( [[MTProjectEditor sharedMTProjectEditor] selectCurrentPassageWithName:passageName] ) {
+                if ([MTProjectEditor sharedMTProjectEditor].currentPassage != nil) {
+                    [self.passageArrayController setSelectedObjects:@[[MTProjectEditor sharedMTProjectEditor].currentPassage]];
+                }
+            }
 		}
 	}
 }

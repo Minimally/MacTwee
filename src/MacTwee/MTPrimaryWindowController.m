@@ -94,6 +94,7 @@ MTTweeFileTools * tweeFileTools;
 				_currentViewController = view;	// keep track of the current view controller
 				_currentViewController.title = @"Projects";
 			}
+            [[MTProjectEditor sharedMTProjectEditor] ResetCurrentValues];
 			break;
 		}
 		

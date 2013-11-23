@@ -38,6 +38,16 @@
                ReferencedContainer = "container:MacTwee.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C65EEE941840321E00CBA70B"
+               BuildableName = "MacTwee Tests.xctest"
+               BlueprintName = "MacTwee Tests"
+               ReferencedContainer = "container:MacTwee.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

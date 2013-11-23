@@ -22,6 +22,9 @@
 		C63E6C6C17CF046200FCEDEB /* MTPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E6C6A17CF046200FCEDEB /* MTPreferencesWindowController.m */; };
 		C63E6C6D17CF046200FCEDEB /* MTPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C63E6C6B17CF046200FCEDEB /* MTPreferencesView.xib */; };
 		C643DDD217D0F72800F84002 /* MTProject.m in Sources */ = {isa = PBXBuildFile; fileRef = C643DDD117D0F72800F84002 /* MTProject.m */; };
+		C65EEE971840321E00CBA70B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65EEE961840321E00CBA70B /* XCTest.framework */; };
+		C65EEE9D1840321E00CBA70B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C65EEE9B1840321E00CBA70B /* InfoPlist.strings */; };
+		C65EEEA81840324E00CBA70B /* MTProjectEditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C65EEEA71840324E00CBA70B /* MTProjectEditorTests.m */; };
 		C6746FA917C977B00054BCD6 /* MTPreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6746FA817C977B00054BCD6 /* MTPreferencesManager.m */; };
 		C69DA20617C83B730007BD17 /* MTProjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA20517C83B730007BD17 /* MTProjectEditor.m */; };
 		C69DA21017C851CE0007BD17 /* MTProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA20E17C851CE0007BD17 /* MTProjectViewController.m */; };
@@ -37,6 +40,16 @@
 		C6E90DC817C82A370049ED37 /* MTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC617C82A370049ED37 /* MTHomeViewController.m */; };
 		C6E90DC917C82A370049ED37 /* MTHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E90DC717C82A370049ED37 /* MTHomeView.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C65EEEA11840321E00CBA70B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C607041917C5CE0F0076E919 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C607042017C5CE0F0076E919;
+			remoteInfo = MacTwee;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C607042117C5CE0F0076E919 /* MacTwee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacTwee.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +83,12 @@
 		C63E6C6B17CF046200FCEDEB /* MTPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTPreferencesView.xib; sourceTree = "<group>"; };
 		C643DDD017D0F72800F84002 /* MTProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProject.h; sourceTree = "<group>"; };
 		C643DDD117D0F72800F84002 /* MTProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProject.m; sourceTree = "<group>"; };
+		C65EEE951840321E00CBA70B /* MacTwee Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MacTwee Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C65EEE961840321E00CBA70B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C65EEE9A1840321E00CBA70B /* MacTwee Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacTwee Tests-Info.plist"; sourceTree = "<group>"; };
+		C65EEE9C1840321E00CBA70B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C65EEEA01840321E00CBA70B /* MacTwee Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacTwee Tests-Prefix.pch"; sourceTree = "<group>"; };
+		C65EEEA71840324E00CBA70B /* MTProjectEditorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProjectEditorTests.m; sourceTree = "<group>"; };
 		C6746FA717C977B00054BCD6 /* MTPreferencesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPreferencesManager.h; sourceTree = "<group>"; };
 		C6746FA817C977B00054BCD6 /* MTPreferencesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPreferencesManager.m; sourceTree = "<group>"; };
 		C69DA20417C83B730007BD17 /* MTProjectEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProjectEditor.h; sourceTree = "<group>"; };
@@ -106,6 +125,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C65EEE921840321E00CBA70B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C65EEE971840321E00CBA70B /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -113,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				C607042A17C5CE0F0076E919 /* MacTwee */,
+				C65EEE981840321E00CBA70B /* MacTwee Tests */,
 				C607042317C5CE0F0076E919 /* Frameworks */,
 				C607042217C5CE0F0076E919 /* Products */,
 				C643DDCC17D0F0A600F84002 /* Tools */,
@@ -123,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				C607042117C5CE0F0076E919 /* MacTwee.app */,
+				C65EEE951840321E00CBA70B /* MacTwee Tests.xctest */,
 			);
 			name = Products;
 			path = MacTwee;
@@ -133,6 +162,7 @@
 			children = (
 				C607042417C5CE0F0076E919 /* Cocoa.framework */,
 				C607044517C5CE0F0076E919 /* SenTestingKit.framework */,
+				C65EEE961840321E00CBA70B /* XCTest.framework */,
 				C607042617C5CE0F0076E919 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -277,6 +307,33 @@
 			name = Extras;
 			sourceTree = "<group>";
 		};
+		C65EEE981840321E00CBA70B /* MacTwee Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C65EEEA61840323A00CBA70B /* Managers */,
+				C65EEE991840321E00CBA70B /* Supporting Files */,
+			);
+			path = "MacTwee Tests";
+			sourceTree = "<group>";
+		};
+		C65EEE991840321E00CBA70B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C65EEE9A1840321E00CBA70B /* MacTwee Tests-Info.plist */,
+				C65EEE9B1840321E00CBA70B /* InfoPlist.strings */,
+				C65EEEA01840321E00CBA70B /* MacTwee Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C65EEEA61840323A00CBA70B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C65EEEA71840324E00CBA70B /* MTProjectEditorTests.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -297,6 +354,24 @@
 			productReference = C607042117C5CE0F0076E919 /* MacTwee.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C65EEE941840321E00CBA70B /* MacTwee Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C65EEEA31840321E00CBA70B /* Build configuration list for PBXNativeTarget "MacTwee Tests" */;
+			buildPhases = (
+				C65EEE911840321E00CBA70B /* Sources */,
+				C65EEE921840321E00CBA70B /* Frameworks */,
+				C65EEE931840321E00CBA70B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C65EEEA21840321E00CBA70B /* PBXTargetDependency */,
+			);
+			name = "MacTwee Tests";
+			productName = "MacTwee Tests";
+			productReference = C65EEE951840321E00CBA70B /* MacTwee Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -306,6 +381,11 @@
 				CLASSPREFIX = MT;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = MacTwee;
+				TargetAttributes = {
+					C65EEE941840321E00CBA70B = {
+						TestTargetID = C607042017C5CE0F0076E919;
+					};
+				};
 			};
 			buildConfigurationList = C607041C17C5CE0F0076E919 /* Build configuration list for PBXProject "MacTwee" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -320,6 +400,7 @@
 			projectRoot = "";
 			targets = (
 				C607042017C5CE0F0076E919 /* MacTwee */,
+				C65EEE941840321E00CBA70B /* MacTwee Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -336,6 +417,14 @@
 				C6E90DC917C82A370049ED37 /* MTHomeView.xib in Resources */,
 				C69DA21117C851CE0007BD17 /* MTProjectView.xib in Resources */,
 				C63E6C6D17CF046200FCEDEB /* MTPreferencesView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C65EEE931840321E00CBA70B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C65EEE9D1840321E00CBA70B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +459,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C65EEE911840321E00CBA70B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C65EEEA81840324E00CBA70B /* MTProjectEditorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C65EEEA21840321E00CBA70B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C607042017C5CE0F0076E919 /* MacTwee */;
+			targetProxy = C65EEEA11840321E00CBA70B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C607042D17C5CE0F0076E919 /* InfoPlist.strings */ = {
@@ -395,6 +500,14 @@
 				C607043A17C5CE0F0076E919 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		C65EEE9B1840321E00CBA70B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C65EEE9C1840321E00CBA70B /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -485,6 +598,59 @@
 			};
 			name = Release;
 		};
+		C65EEEA41840321E00CBA70B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MacTwee.app/Contents/MacOS/MacTwee";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacTwee Tests/MacTwee Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "MacTwee Tests/MacTwee Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C65EEEA51840321E00CBA70B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MacTwee.app/Contents/MacOS/MacTwee";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacTwee Tests/MacTwee Tests-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "MacTwee Tests/MacTwee Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -505,6 +671,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C65EEEA31840321E00CBA70B /* Build configuration list for PBXNativeTarget "MacTwee Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C65EEEA41840321E00CBA70B /* Debug */,
+				C65EEEA51840321E00CBA70B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

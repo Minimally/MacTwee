@@ -192,7 +192,7 @@
                                         <rect key="frame" x="1" y="1" width="178" height="350"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="21">
+                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="21">
                                                 <rect key="frame" x="0.0" y="0.0" width="178" height="350"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -221,9 +221,9 @@
                                                     </tableColumn>
                                                 </tableColumns>
                                                 <connections>
-                                                    <action selector="passagesTableClick:" target="-2" id="576"/>
                                                     <binding destination="35" name="content" keyPath="arrangedObjects" id="40"/>
                                                     <binding destination="35" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="40" id="42"/>
+                                                    <outlet property="delegate" destination="-2" id="nYh-uZ-qVj"/>
                                                 </connections>
                                             </tableView>
                                         </subviews>
@@ -314,7 +314,7 @@
             <connections>
                 <binding destination="17" name="contentSet" keyPath="self.currentProject.passages" id="56"/>
                 <binding destination="15" name="managedObjectContext" keyPath="self.managedObjectContext" id="52"/>
-                <binding destination="-2" name="sortDescriptors" keyPath="self.passagesArrayControllerSortDescriptors" id="567"/>
+                <binding destination="-2" name="sortDescriptors" keyPath="self.passagesArrayControllerSortDescriptors" id="Lg8-13-1PK"/>
             </connections>
         </arrayController>
         <userDefaultsController representsSharedInstance="YES" id="36"/>

@@ -14,6 +14,11 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
 #pragma mark - Public
 
+- (void)newPassage {
+	NSAssert(self.currentProject != nil, @"currentProject is nil");
+	[self createPassageWithTitle:@"New Passage" andTags:@"" andText:@""];
+}
+
 - (void)createPassageWithTitle:(NSString *)title andTags:(NSString *)tags andText:(NSString *)text {
 	NSAssert(self.currentProject != nil, @"currentProject is nil");
 	MTPassage * passage = (MTPassage *)[NSEntityDescription insertNewObjectForEntityForName:@"Passage"
@@ -24,15 +29,13 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 	passage.project = self.currentProject;
 }
 
-- (void)newPassage {
-	[self createPassageWithTitle:@"New Passage" andTags:@"" andText:@""];
-}
-
 - (NSString *)getStoryFormat {
+	NSAssert(self.currentProject != nil, @"currentProject is nil");
 	return self.currentProject.storyFormat;
 }
 
 - (NSArray *)getPassages {
+	NSAssert(self.currentProject != nil, @"currentProject is nil");
 	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"project == %@", self.currentProject];
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Passage"
@@ -45,23 +48,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 }
 
 - (BOOL)checkPassageExistsInCurrentProject:(NSString *)passage {
-	BOOL result = NO;
-	
-	NSArray * passages = [self getPassages];
-	//NSLog(@"%s 'Line:%d' - passages count:'%lu'", __func__, __LINE__, passages.count);
-	NSMutableArray * passageNames = [[NSMutableArray alloc]initWithCapacity:0];
-	
-	for (MTPassage * p in passages) {
-		NSString * passageTitle = p.title;
-		//NSLog(@"%s 'Line:%d' - passage title:'%@'", __func__, __LINE__, passageTitle);
-		[passageNames addObject:passageTitle];
-	}
-
-	//NSLog(@"%s 'Line:%d' - passageNames count:'%lu'", __func__, __LINE__, passageNames.count);
-	
-	result = [passageNames containsObject:passage];
-	
-	return result;
+    return ([self getPassageWithName:passage] == nil) ? NO : YES;
 }
 
 - (BOOL)selectCurrentPassageWithName:(NSString *)passage {
@@ -80,6 +67,10 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 	return result;
 }
 
+- (void)ResetCurrentValues {
+    self.currentProject = nil;
+    self.currentPassage = nil;
+}
 
 #pragma mark - Private
 
@@ -90,13 +81,18 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
 - (void)setCurrentPassage:(MTPassage *)passage {
 	[self willChangeValueForKey:@"currentPassage"];
-	_currentPassage = nil;
-	_currentPassage = passage;
-	_currentPassage.lastModifiedDate = [NSDate date];
+    _currentPassage = nil;
+    if ( passage != nil ) {
+        _currentPassage = passage;
+        _currentPassage.lastModifiedDate = [NSDate date];
+    }
 	[self didChangeValueForKey:@"currentPassage"];
 }
 
+/*! searches for a MTPassage using the sent in string in core data @param passage - title of the passage @returns an MTPassage if successful else nil */
+
 - (MTPassage *)getPassageWithName:(NSString *)passage {
+	NSAssert(self.currentProject != nil, @"currentProject is nil");
 	MTPassage * p;
 	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(title == %@) AND (project == %@)", passage, self.currentProject];
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

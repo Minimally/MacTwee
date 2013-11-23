@@ -57,28 +57,28 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 	NSAssert(matchedString != nil, @"matchedString is nil");
 	//NSLog(@"%s 'Line:%d' - matched string in protocol:'%@'", __func__, __LINE__, matchedString);
 	
-	// we want to find the passage of the clicked link
+	// we want to find the passage of the clicked link, and only the part after the pipe
 	
+    NSArray * shouldBePotentialPassage;
 	if ( [matchedString rangeOfString:@"|"].location == NSNotFound ) {
-		NSArray * shouldBePotentialPassage = [matchedString stringsByExtractingGroupsUsingRegexPattern:@"^\\[\\[(.*)\\]\\]$" caseInsensitive:YES treatAsOneLine:YES];
-		for (NSString * potentialPassage in shouldBePotentialPassage) {
-			//NSLog(@"%s 'Line:%d' - match regex cleaned to:'%@'", __func__, __LINE__, potentialPassage);
-			NSDictionary * d = @{ @"index":potentialPassage };
-			[[NSNotificationCenter defaultCenter] postNotificationName:MTTextViewControllerDidGetPotentialPassageClickNotification
-																object:self
-															  userInfo:d];
-		}
-	} else {
+		shouldBePotentialPassage = [matchedString stringsByExtractingGroupsUsingRegexPattern:@"^\\[\\[(.*)\\]\\]$"
+                                                                                       caseInsensitive:YES
+                                                                                        treatAsOneLine:YES];
+    }
+    else {
 		NSArray * components = [matchedString componentsSeparatedByString:@"|"];
-		NSArray * shouldBePotentialPassage = [components[1] stringsByExtractingGroupsUsingRegexPattern:@"^(.*)\\]\\]$" caseInsensitive:YES treatAsOneLine:YES];
-		for (NSString * potentialPassage in shouldBePotentialPassage) {
-			//NSLog(@"%s 'Line:%d' - match regex cleaned to:'%@'", __func__, __LINE__, potentialPassage);
-			NSDictionary * d = @{ @"index":potentialPassage };
-			[[NSNotificationCenter defaultCenter] postNotificationName:MTTextViewControllerDidGetPotentialPassageClickNotification
-																object:self
-															  userInfo:d];
-		}
+		shouldBePotentialPassage = [components[1] stringsByExtractingGroupsUsingRegexPattern:@"^(.*)\\]\\]$"
+                                                                                       caseInsensitive:YES
+                                                                                        treatAsOneLine:YES];
 	}
+    
+    if (shouldBePotentialPassage.count == 1) {
+        //NSLog(@"%s 'Line:%d' - match regex cleaned to:'%@'", __func__, __LINE__, potentialPassage);
+        NSDictionary * d = @{ @"index":shouldBePotentialPassage[0] };
+        [[NSNotificationCenter defaultCenter] postNotificationName:MTTextViewControllerDidGetPotentialPassageClickNotification
+                                                            object:self
+                                                          userInfo:d];
+    }
 }
 
 

@@ -12,6 +12,8 @@ typedef enum {
 #pragma mark - notifications
 
 extern NSString * const MTPrimaryWindowControllerWillOpenViewNotification;
+
+/// triggered when user alt clicks a link in the text view
 extern NSString * const MTTextViewControllerDidGetPotentialPassageClickNotification;
 
 #pragma mark - paths
