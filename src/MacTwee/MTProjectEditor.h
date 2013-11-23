@@ -1,12 +1,10 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import <Foundation/Foundation.h>
 #import "CWLSynthesizeSingleton.h"
+@class MTPassage, MTProject;
 
-@class MTPassage;
-@class MTProject;
+
+/*! Handles editing the current project */
 
 @interface MTProjectEditor : NSObject
 
@@ -21,4 +19,5 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(MTProjectEditor);
 - (NSArray *)getPassages;
 - (BOOL)checkPassageExistsInCurrentProject:(NSString *)passage;
 - (BOOL)selectCurrentPassageWithName:(NSString *)passage;
+
 @end

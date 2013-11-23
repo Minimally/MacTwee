@@ -1,9 +1,7 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTTextViewController.h"
 #import "NSString+PDRegex.h"
+
 
 @implementation MTTextViewController {
 	NSNumber * textSize;
@@ -17,7 +15,9 @@ NSString * const htmlReg = @"<html>((?:.|\\n)*?)</html>";
 NSString * const commentReg = @"/%((?:.|\\n)*?)%/";
 NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 
+
 #pragma mark - Lifecycle
+
 - (void)awakeFromNib {
 	self.passageTextView.delegate = self;
 	
@@ -40,6 +40,7 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
    withKeyPath:@"values.textSize"
 	   options:@{ @"NSContinuouslyUpdatesValue":@YES }];
 }
+
 - (NSColor *)colorLoadNBind:(NSString *)key {
 	NSColor * c = [self colorForKey:key];
 	[self bind:key
@@ -48,7 +49,10 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 	   options:@{ @"NSContinuouslyUpdatesValue":@YES, NSValueTransformerNameBindingOption:NSUnarchiveFromDataTransformerName}];
 	return c;
 }
-#pragma mark - NSTextStorageDelegate Protocol
+
+
+#pragma mark - MTTextViewDelegate
+
 - (void)linkMatchMade:(MTTextView *)sender matchedString:(NSString *)matchedString {
 	NSAssert(matchedString != nil, @"matchedString is nil");
 	//NSLog(@"%s 'Line:%d' - matched string in protocol:'%@'", __func__, __LINE__, matchedString);
@@ -60,7 +64,7 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 		for (NSString * potentialPassage in shouldBePotentialPassage) {
 			//NSLog(@"%s 'Line:%d' - match regex cleaned to:'%@'", __func__, __LINE__, potentialPassage);
 			NSDictionary * d = @{ @"index":potentialPassage };
-			[[NSNotificationCenter defaultCenter] postNotificationName:mtTextViewControllerDidGetPotentialPassageClickNotification
+			[[NSNotificationCenter defaultCenter] postNotificationName:MTTextViewControllerDidGetPotentialPassageClickNotification
 																object:self
 															  userInfo:d];
 		}
@@ -70,14 +74,16 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 		for (NSString * potentialPassage in shouldBePotentialPassage) {
 			//NSLog(@"%s 'Line:%d' - match regex cleaned to:'%@'", __func__, __LINE__, potentialPassage);
 			NSDictionary * d = @{ @"index":potentialPassage };
-			[[NSNotificationCenter defaultCenter] postNotificationName:mtTextViewControllerDidGetPotentialPassageClickNotification
+			[[NSNotificationCenter defaultCenter] postNotificationName:MTTextViewControllerDidGetPotentialPassageClickNotification
 																object:self
 															  userInfo:d];
 		}
 	}
 }
 
-#pragma mark - MTTextViewDelegate Protocol
+
+#pragma mark - NSTextStorageDelegate
+
 - (void)textStorageDidProcessEditing:(NSNotification *)aNotification {
     
     if (self.passageTextView == nil) { return; }
@@ -110,7 +116,9 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 	[self addHighlights:textStorage regex:displayReg string:string range:range color:displayColor isLink:NO];
 }
 
+
 #pragma mark - Private
+
 - (void)addHighlights:(NSTextStorage *)textStorage regex:(NSString *)expression string:(NSString *)passageString range:(NSRange)passageRange color:(NSColor *)color isLink:(BOOL)linkAttribute {
 	NSRegularExpression * regExpression = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
 	[regExpression enumerateMatchesInString:passageString // The string.
@@ -135,6 +143,7 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 								 }
 	 ];
 }
+
 - (NSColor *)colorForKey:(NSString *)key {
     NSColor * color = nil;
 	NSData * theData = [[NSUserDefaults standardUserDefaults] dataForKey:key];
@@ -142,4 +151,6 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 		color = (NSColor *)[NSUnarchiver unarchiveObjectWithData:theData];
     return color;
 }
+
+
 @end

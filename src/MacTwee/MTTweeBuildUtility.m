@@ -1,6 +1,3 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTTweeBuildUtility.h"
 #import "NSString+PDRegex.h"
@@ -8,15 +5,19 @@
 #import "MTProjectEditor.h"
 #import "MTProject.h"
 
+
 @implementation MTTweeBuildUtility
 
 NSString * const promptBuild = @"Choose build destination";
 NSString * const promptTwee = @"Please select Twee terminal application";
 
+
 #pragma mark - Public
+
 - (void)buildHtmlFileWithSource:(NSURL *)url {
 	[self buildHtmlFileWithSource:url andHeader:@"sugarcane"];
 }
+
 - (void)buildHtmlFileWithSource:(NSURL *)url andHeader:(NSString *)header {
 	NSAssert(url != nil, @"url is nil");
 	NSAssert((header != nil || header.length > 0), @"string is nil or empty");
@@ -34,7 +35,9 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 	[self buildTweeFileAtPath:[url path] andHeader:header];
 }
 
+
 #pragma mark - Private
+
 - (void)buildTweeFileAtPath:(NSString *)path andHeader:(NSString *)header {
 	NSLog(@"%s 'Line:%d' - path:'%@' header:'%@'", __func__, __LINE__, path, header);
 	NSAssert(path != nil, @"url is nil");
@@ -65,6 +68,7 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 	[task launch];
 	[task waitUntilExit];
 }
+
 - (void)buildOperationDone:(NSNotification *)notification {
 	//NSLog(@"%s 'Line:%d' - notification:'%@'", __func__, __LINE__, notification);
 	
@@ -91,6 +95,7 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 													name:NSFileHandleReadToEndOfFileCompletionNotification
 												  object:[notification object]];
 }
+
 - (void)htmlFileWithBuildResult:(NSString *)resultString {
 	NSAssert((resultString != nil || resultString.length > 0), @"string is nil or empty");
 	
@@ -105,7 +110,9 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 	}
 }
 
+
 #pragma mark - User Dialogues & Results
+
 - (NSString *)getTwee {
 	NSString * result;NSURL * urlCheck;
 	
@@ -125,6 +132,7 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 	
 	return result;
 }
+
 - (NSURL *)runPanelForTweeDirectory {// gets the user to specify a directory for twee ? this workflow kinda sucks
 	NSURL * result;
 	
@@ -144,6 +152,7 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 	
 	return result;
 }
+
 - (NSURL *)getSaveDestination {
 	NSURL * result;
 	
@@ -161,6 +170,7 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 	
 	return result;
 }
+
 - (NSString *)getHeader {
 	NSString * result = [[MTProjectEditor sharedMTProjectEditor] getStoryFormat];
 	
@@ -188,6 +198,7 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 	return result;
 	
 }
+
 - (void)operationResultWithTitle:(NSString *)title msgFormat:(NSString *)msgFormat defaultButton:(NSString *)defaultButton {
 	NSLog(@"%s 'Line:%d' - msgFormat:'%@'", __func__, __LINE__, msgFormat);
 	NSAssert(title != nil, @"title is nil");
@@ -197,5 +208,6 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 	//[self operationResultWithTitle:@"Error" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 	//[self operationResultWithTitle:@"Success" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 }
+
 
 @end

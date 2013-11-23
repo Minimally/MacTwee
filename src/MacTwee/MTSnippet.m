@@ -1,6 +1,3 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTSnippet.h"
 

@@ -1,6 +1,3 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTAppDelegate.h"
 #import "MTCoreDataManager.h"
@@ -8,12 +5,14 @@
 #import "MTPrimaryWindowController.h"
 #import "MTPreferencesWindowController.h"
 
+
 @implementation MTAppDelegate {
 	MTPrimaryWindowController * primaryWindwowController;
 	MTPreferencesWindowController * pref;
 }
 
-#pragma mark - Protocol
+
+#pragma mark - NSApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	NSDictionary * dict = @{
@@ -42,7 +41,8 @@
     return [[MTCoreDataManager sharedMTCoreDataManager] runTerminateByCoreDataFirst:sender];
 }
 
-#pragma mark - Public
+
+#pragma mark - IBAction
 
 - (IBAction)newDocument:(id)sender {
 	if (primaryWindwowController == nil)
@@ -51,9 +51,11 @@
 	[primaryWindwowController showWindow:self];
 	[primaryWindwowController selectView:MTPageHome];
 }
+
 - (IBAction)saveDocument:(id)sender {
 	[[MTCoreDataManager sharedMTCoreDataManager] save];
 }
+
 - (IBAction)preferencesMenuItem:(id)sender {
 	if (pref == nil)
 		pref = [[MTPreferencesWindowController alloc] initWithWindowNibName:@"MTPreferencesView"];
@@ -64,4 +66,6 @@
 	
 	[pref showWindow:nil];
 }
+
+
 @end

@@ -1,16 +1,16 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTHomeViewController.h"
 #import "MTProjectEditor.h"
 
+
 @implementation MTHomeViewController
 
 #pragma mark - Lifecycle
+
 - (void)awakeFromNib {
 	self.projectsArrayControllerSortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"lastModifiedDate" ascending:NO] ];
 }
+
 
 #pragma mark - Public
 
@@ -32,5 +32,6 @@
 - (IBAction)doubleClickTableItem:(id)sender {
 	[self openStoryButton:self];
 }
+
 
 @end

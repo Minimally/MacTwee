@@ -1,16 +1,21 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
+
 #import "MTPreferencesWindowController.h"
 
+
 @implementation MTPreferencesWindowController
+
+#pragma mark - IBAction
 
 - (IBAction)setTweeLocation:(id)sender {
 	[self runPanelForTweeDirectory];
 }
 
+
 #pragma mark - Private
-- (NSURL *)runPanelForTweeDirectory {// gets the user to specify a directory for twee ? this workflow kinda sucks
+
+/// gets the user to specify a directory for twee ? this workflow kinda sucks
+
+- (NSURL *)runPanelForTweeDirectory {
 	NSURL * result;
 	
 	NSOpenPanel* openPanel = [NSOpenPanel openPanel];
@@ -28,4 +33,6 @@
 	
 	return result;
 }
+
+
 @end

@@ -1,18 +1,19 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTProjectEditor.h"
 #import "MTCoreDataManager.h"
 #import "MTProject.h"
 #import "MTPassage.h"
 
+
 @implementation MTProjectEditor
 
 #pragma mark - Lifecycle
+
 CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
+
 #pragma mark - Public
+
 - (void)createPassageWithTitle:(NSString *)title andTags:(NSString *)tags andText:(NSString *)text {
 	NSAssert(self.currentProject != nil, @"currentProject is nil");
 	MTPassage * passage = (MTPassage *)[NSEntityDescription insertNewObjectForEntityForName:@"Passage"
@@ -22,12 +23,15 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 	passage.text = text;
 	passage.project = self.currentProject;
 }
+
 - (void)newPassage {
 	[self createPassageWithTitle:@"New Passage" andTags:@"" andText:@""];
 }
+
 - (NSString *)getStoryFormat {
 	return self.currentProject.storyFormat;
 }
+
 - (NSArray *)getPassages {
 	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"project == %@", self.currentProject];
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -39,6 +43,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 	return [MTCoreDataManager.sharedMTCoreDataManager.managedObjectContext executeFetchRequest:fetchRequest
 																						 error:&error];
 }
+
 - (BOOL)checkPassageExistsInCurrentProject:(NSString *)passage {
 	BOOL result = NO;
 	
@@ -58,6 +63,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 	
 	return result;
 }
+
 - (BOOL)selectCurrentPassageWithName:(NSString *)passage {
 	BOOL result = NO;
 	
@@ -73,11 +79,15 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 	
 	return result;
 }
+
+
 #pragma mark - Private
+
 - (void)setCurrentProject:(MTProject *)proj {
 	_currentProject = proj;
 	_currentProject.lastModifiedDate = [NSDate date];
 }
+
 - (void)setCurrentPassage:(MTPassage *)passage {
 	[self willChangeValueForKey:@"currentPassage"];
 	_currentPassage = nil;
@@ -85,6 +95,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 	_currentPassage.lastModifiedDate = [NSDate date];
 	[self didChangeValueForKey:@"currentPassage"];
 }
+
 - (MTPassage *)getPassageWithName:(NSString *)passage {
 	MTPassage * p;
 	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(title == %@) AND (project == %@)", passage, self.currentProject];
@@ -102,4 +113,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 	}
 	return p;
 }
+
+
 @end

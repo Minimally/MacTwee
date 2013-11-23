@@ -1,8 +1,6 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTCoreDataManager.h"
+
 
 @implementation MTCoreDataManager
 
@@ -14,6 +12,7 @@ NSString * const kManagedObjectModelURL = @"MacTwee";// managed object model pat
 NSString * const kManagedObjectModelExtension = @"momd";// managed object model extension
 NSString * const kPersistantStorePath = @"MacTwee.sqlite";// store file path
 NSString * const kErrorDomain = @"com.ChrisBraithwaite.MacTwee";
+
 
 #pragma mark - Lifecycle
 
@@ -29,7 +28,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTCoreDataManager);
 }
 //end hack
 
-#pragma mark - Protocol
 
 #pragma mark - Public
 
@@ -110,6 +108,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTCoreDataManager);
     return _managedObjectContext;
 }
 
+
 #pragma mark - Private
 
 - (NSURL *)applicationFilesDirectory {
@@ -184,5 +183,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTCoreDataManager);
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window {
     return [[self managedObjectContext] undoManager];
 }
+
 
 @end

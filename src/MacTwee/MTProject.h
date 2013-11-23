@@ -1,11 +1,8 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
 @class MTPassage;
+
 
 @interface MTProject : NSManagedObject
 
@@ -18,8 +15,9 @@
 @property (nonatomic, retain) NSString * storyTitle;
 @property (nonatomic, retain) NSString * buildName;
 @property (nonatomic, retain) NSString * sourceName;
-@property (nonatomic, retain) NSSet *passages;
+@property (nonatomic, retain) NSSet * passages;
 @end
+
 
 @interface MTProject (CoreDataGeneratedAccessors)
 

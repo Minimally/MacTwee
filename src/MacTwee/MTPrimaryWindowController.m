@@ -1,6 +1,3 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTPrimaryWindowController.h"
 #import "MTHomeViewController.h"
@@ -8,11 +5,14 @@
 #import "MTTweeFileTools.h"
 #import "MTProjectEditor.h"
 
+
 @implementation MTPrimaryWindowController
 
 MTTweeFileTools * tweeFileTools;
 
+
 #pragma mark - Lifecycle
+
 - (void)awakeFromNib {
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(processNotification:)
@@ -22,7 +22,9 @@ MTTweeFileTools * tweeFileTools;
 	[self selectView:MTPageHome];
 }
 
+
 #pragma mark - Public
+
 - (void)selectView:(NSInteger)whichViewTag {
 	[self changeViewController:whichViewTag];
 }
@@ -55,7 +57,9 @@ MTTweeFileTools * tweeFileTools;
 	[tweeFileTools exportTweeFile];
 }
 
+
 #pragma mark - Private
+
 - (void)processNotification:(NSNotification *) notification {
 	//NSLog(@"%s:%d:Notification is successfully received! %@", __func__, __LINE__, notification);
 	
@@ -137,5 +141,6 @@ MTTweeFileTools * tweeFileTools;
 		view.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 }
+
 
 @end

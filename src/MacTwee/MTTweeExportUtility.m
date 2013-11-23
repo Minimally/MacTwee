@@ -1,6 +1,3 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTTweeExportUtility.h"
 #import "MTPreferencesManager.h"
@@ -9,11 +6,14 @@
 #import "MTProject.h"
 #import "MTPassage.h"
 
+
 @implementation MTTweeExportUtility
 
 NSString * const exportMessage = @"Choose export destination";
 
+
 #pragma mark - Public
+
 - (NSURL *)exportTweeFile {
 	NSURL * result = [self runSavePanelForExport];
 	if (result == nil) {
@@ -41,6 +41,7 @@ NSString * const exportMessage = @"Choose export destination";
 	}
 	return result;
 }
+
 - (NSURL *)exportTempTweeFile {
 	NSArray * fetchedObjects = [[MTProjectEditor sharedMTProjectEditor] getPassages];
 	NSString * sourceString = [self getCombinedPassagesString:fetchedObjects];
@@ -51,7 +52,9 @@ NSString * const exportMessage = @"Choose export destination";
 	return result;
 }
 
+
 #pragma mark - Export - Passages To String
+
 - (NSString *)getCombinedPassagesString:(NSArray *)fetchedObjects {
 	NSMutableString * combinedPassages = [[NSMutableString alloc] init];
 	
@@ -69,6 +72,7 @@ NSString * const exportMessage = @"Choose export destination";
 	//NSLog(@"%s 'Line:%d' - combinedPassages:'%@'", __func__, __LINE__, combinedPassages);
 	return combinedPassages;
 }
+
 - (NSString *)passageToString:(MTPassage *)passage {
 	NSString * string = @":: ";
 	NSString * tags = @"";
@@ -81,7 +85,9 @@ NSString * const exportMessage = @"Choose export destination";
 	return string;
 }
 
+
 #pragma mark - User Dialogues
+
 - (NSURL *)runSavePanelForExport {
 	NSURL * result;
 	
@@ -98,6 +104,7 @@ NSString * const exportMessage = @"Choose export destination";
 	
 	return result;
 }
+
 - (NSURL *) getScratchLocationForExport {
 	NSURL * result;
 	NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -108,9 +115,12 @@ NSString * const exportMessage = @"Choose export destination";
 	//	NSLog(@"%s 'Line:%d' - result:'%@'", __func__, __LINE__, result);
 	return result;
 }
+
 - (void)operationResultWithTitle:(NSString *)title msgFormat:(NSString *)msgFormat defaultButton:(NSString *)defaultButton {
 	NSRunAlertPanel(title, msgFormat, defaultButton, nil, nil);
 	//[self operationResultWithTitle:@"Error" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 	//[self operationResultWithTitle:@"Success" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 }
+
+
 @end

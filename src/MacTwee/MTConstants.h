@@ -1,8 +1,6 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import <Foundation/Foundation.h>
+
 
 @interface MTConstants : NSObject
 
@@ -11,16 +9,19 @@ typedef enum {
     MTPageProject
 } MTPage;
 
-// notifications
-extern NSString * const MTPrimaryWindowControllerWillOpenViewNotification;
-extern NSString * const mtTextViewControllerDidGetPotentialPassageClickNotification;
+#pragma mark - notifications
 
-// paths
+extern NSString * const MTPrimaryWindowControllerWillOpenViewNotification;
+extern NSString * const MTTextViewControllerDidGetPotentialPassageClickNotification;
+
+#pragma mark - paths
+
 extern NSString * const kOpenPath;
 extern NSString * const kSavePath;
 extern NSString * const kPathToTwee;
 
-// assorted strings
+#pragma mark - assorted strings
+
 extern NSString * const kdefaultBuildName;
 extern NSString * const kdefaultSourceName;
 extern NSString * const kUserApplicationSupportDirectory;

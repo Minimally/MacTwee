@@ -204,14 +204,14 @@
 		C643DDCE17D0F51B00F84002 /* Twee */ = {
 			isa = PBXGroup;
 			children = (
+				C62A040117CA8C9E00B89A34 /* MTTweeBuildUtility.h */,
+				C62A040217CA8C9E00B89A34 /* MTTweeBuildUtility.m */,
+				C62A03FE17CA8C8E00B89A34 /* MTTweeExportUtility.h */,
+				C62A03FF17CA8C8E00B89A34 /* MTTweeExportUtility.m */,
 				C69DA21217C855AD0007BD17 /* MTTweeFileTools.h */,
 				C69DA21317C855AD0007BD17 /* MTTweeFileTools.m */,
 				C62A03FB17CA8C7D00B89A34 /* MTTweeImportUtility.h */,
 				C62A03FC17CA8C7D00B89A34 /* MTTweeImportUtility.m */,
-				C62A03FE17CA8C8E00B89A34 /* MTTweeExportUtility.h */,
-				C62A03FF17CA8C8E00B89A34 /* MTTweeExportUtility.m */,
-				C62A040117CA8C9E00B89A34 /* MTTweeBuildUtility.h */,
-				C62A040217CA8C9E00B89A34 /* MTTweeBuildUtility.m */,
 			);
 			name = Twee;
 			sourceTree = "<group>";
@@ -219,13 +219,13 @@
 		C643DDCF17D0F52300F84002 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				C607043C17C5CE0F0076E919 /* MacTwee.xcdatamodeld */,
 				C607045B17C5CEFC0076E919 /* MTCoreDataManager.h */,
 				C607045C17C5CEFC0076E919 /* MTCoreDataManager.m */,
-				C607043C17C5CE0F0076E919 /* MacTwee.xcdatamodeld */,
-				C643DDD017D0F72800F84002 /* MTProject.h */,
-				C643DDD117D0F72800F84002 /* MTProject.m */,
 				C6B94A5C17CDBDDC00FC53E6 /* MTPassage.h */,
 				C6B94A5D17CDBDDC00FC53E6 /* MTPassage.m */,
+				C643DDD017D0F72800F84002 /* MTProject.h */,
+				C643DDD117D0F72800F84002 /* MTProject.m */,
 				C6B94A5917CDBD4B00FC53E6 /* MTSnippet.h */,
 				C6B94A5A17CDBD4B00FC53E6 /* MTSnippet.m */,
 			);
@@ -303,9 +303,9 @@
 		C607041917C5CE0F0076E919 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = CB;
+				CLASSPREFIX = MT;
 				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = "Chris Braithwaite";
+				ORGANIZATIONNAME = MacTwee;
 			};
 			buildConfigurationList = C607041C17C5CE0F0076E919 /* Build configuration list for PBXProject "MacTwee" */;
 			compatibilityVersion = "Xcode 3.2";

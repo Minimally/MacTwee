@@ -1,11 +1,9 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
 @class MTPassage, MTProject;
+
 
 @interface MTPassage : NSManagedObject
 
@@ -15,10 +13,11 @@
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * tags;
-@property (nonatomic, retain) NSSet *incoming;
-@property (nonatomic, retain) NSSet *outgoing;
-@property (nonatomic, retain) MTProject *project;
+@property (nonatomic, retain) NSSet * incoming;
+@property (nonatomic, retain) NSSet * outgoing;
+@property (nonatomic, retain) MTProject * project;
 @end
+
 
 @interface MTPassage (CoreDataGeneratedAccessors)
 

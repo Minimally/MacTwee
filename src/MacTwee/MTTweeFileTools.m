@@ -1,6 +1,3 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTTweeFileTools.h"
 #import "MTTweeBuildUtility.h"
@@ -9,6 +6,7 @@
 #import "MTPreferencesManager.h"
 #import "MTProjectEditor.h"
 #import "MTProject.h"
+
 
 @implementation MTTweeFileTools
 
@@ -60,10 +58,14 @@ MTTweeBuildUtility * buildUtility;
 	}
 }
 
+
 #pragma mark - Private
+
 - (void)operationResultWithTitle:(NSString *)title msgFormat:(NSString *)msgFormat defaultButton:(NSString *)defaultButton {
 	NSRunAlertPanel(title, msgFormat, defaultButton, nil, nil);
 	//[self operationResultWithTitle:@"Error" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 	//[self operationResultWithTitle:@"Success" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 }
+
+
 @end

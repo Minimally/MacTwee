@@ -1,12 +1,10 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTTweeImportUtility.h"
 #import "NSString+PDRegex.h" // for parsing
 #import "MTProjectEditor.h"
 #import "MTPassage.h"
 #import "MTProject.h"
+
 
 @implementation MTTweeImportUtility
 
@@ -16,7 +14,9 @@ NSString * const regPatternForHeadBodySplit = @":* ([^\n]*)\n(.*)?";
 NSString * const regPatternForTitleTagSplit = @"^:* *(.+) \\[(.+)\\].*$";
 NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 
+
 #pragma mark - Public
+
 - (void)importTweeFile {
 	//open up a source file
 	NSURL * url = [self importFileUrlFromDialogue];
@@ -33,7 +33,9 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 	[self sourceFileSplit:sourceFileString];
 }
 
+
 #pragma mark - Import - String to Passage
+
 - (NSString *)getImportFileAsString:(NSURL *)url {
 	NSString * s;
 	s = [NSString stringWithContentsOfURL:url
@@ -41,6 +43,7 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 									error:nil];
 	return s;
 }
+
 - (void)sourceFileSplit:(NSString *)sourceFileString {
 	NSArray * passages = [sourceFileString componentsSeparatedByString:@"\n::"];
 	//NSLog(@"passages count '%lu'", (unsigned long)passages.count);
@@ -56,6 +59,7 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 		[self operationResultWithTitle:@"Success" msgFormat:@"Import Complete" defaultButton:@"OK"];
 	}
 }
+
 - (void)passageToHeadAndBody:(NSString *)passageString {
 	NSAssert((passageString != nil || passageString.length > 0), @"string is nil or empty");
 	if (passageString == nil || passageString.length == 0)
@@ -83,6 +87,7 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 		default:break;
 	}
 }
+
 - (void)preparePassageWithHead:(NSString *)passageHead body:(NSString *)passageBody {
 	//NSLog(@"%s 'Line:%d' - HEAD:'%@'", __func__, __LINE__, passageHead);
 	NSString * title, * tags, * body;
@@ -120,6 +125,7 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 							 tags:tags
 							 body:body];
 }
+
 - (void)createAPassageWithTitle:(NSString *)passageTitle tags:(NSString *)passageTags body:(NSString *)passageBody {
 	NSAssert(passageTitle != nil, @"passageTitle is nil");
 	if (passageTitle != nil) {
@@ -129,7 +135,9 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 	}
 }
 
+
 #pragma mark - User Dialogues
+
 - (NSURL *)importFileUrlFromDialogue {
 	NSURL * result;
 	
@@ -153,11 +161,14 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 	return result;
 }
 
+
 #pragma mark - Result
+
 - (void)operationResultWithTitle:(NSString *)title msgFormat:(NSString *)msgFormat defaultButton:(NSString *)defaultButton {
 	NSRunAlertPanel(title, msgFormat, defaultButton, nil, nil);
 	//[self operationResultWithTitle:@"Error" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 	//[self operationResultWithTitle:@"Success" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 }
+
 
 @end

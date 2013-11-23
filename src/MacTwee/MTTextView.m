@@ -1,12 +1,12 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTTextView.h"
+
 
 @implementation MTTextView
 
 BOOL holdingAlt = NO;
+
+#pragma mark - NSResponder
 
 - (void)mouseDown:(NSEvent *)theEvent {
 	NSAssert(theEvent != nil, @"theEvent is nil");
@@ -39,5 +39,6 @@ BOOL holdingAlt = NO;
 	//NSLog(@"%s 'Line:%d' - mod flags:'%lu' NSAlternateKeyMask is '%u'", __func__, __LINE__, mod, NSAlternateKeyMask);
 	holdingAlt = (mod & NSAlternateKeyMask) ? YES : NO;
 }
+
 
 @end

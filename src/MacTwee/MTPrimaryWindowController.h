@@ -1,14 +1,11 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import <Cocoa/Cocoa.h>
+
 
 @interface MTPrimaryWindowController : NSWindowController
 
 @property (strong, readonly) NSViewController * currentViewController;
-@property (unsafe_unretained) IBOutlet NSView *holderView;
-
+@property (unsafe_unretained) IBOutlet NSView * holderView;
 
 
 -(void)selectView:(NSInteger)whichViewTag;
@@ -20,4 +17,5 @@
 
 - (IBAction)importStory:(id)sender;
 - (IBAction)exportStory:(id)sender;
+
 @end

@@ -1,8 +1,8 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import <Foundation/Foundation.h>
+
+
+/*! Does Twee operations */
 
 @interface MTTweeFileTools : NSObject
 

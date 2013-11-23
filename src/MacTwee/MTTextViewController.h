@@ -1,9 +1,9 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import <Foundation/Foundation.h>
 #import "MTTextView.h"
+
+
+/*! Controls the main passage editor text view. Does syntax highlights */
 
 @interface MTTextViewController : NSObject <NSTextStorageDelegate, MTTextViewDelegate>
 

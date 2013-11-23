@@ -1,13 +1,14 @@
-/*
- Copyright (c) 2013 Chris Braithwaite. All rights reserved.
- */
 
 #import "MTProjectViewController.h"
 #import "MTCoreDataManager.h"
 #import "MTProjectEditor.h"
 #import "MTProject.h"
 
+
 @implementation MTProjectViewController
+
+
+#pragma mark - Lifecycle
 
 - (void)awakeFromNib {
 	//self.passageTextView.backgroundColor = [NSColor blackColor];
@@ -18,15 +19,17 @@
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(processNotification:)
-												 name:mtTextViewControllerDidGetPotentialPassageClickNotification
+												 name:MTTextViewControllerDidGetPotentialPassageClickNotification
 											   object:nil];
 }
 
+
 #pragma mark - Private
+
 - (void)processNotification:(NSNotification *)notification {
 	//NSLog(@"%s:%d:Notification is successfully received! notification.name '%@'", __func__, __LINE__, notification.name);
 	
-    if ([notification.name isEqualToString:mtTextViewControllerDidGetPotentialPassageClickNotification]) {
+    if ([notification.name isEqualToString:MTTextViewControllerDidGetPotentialPassageClickNotification]) {
 		if ( [notification userInfo][@"index"] ) {
 			NSString * passageName = [notification userInfo][@"index"];
 			//NSLog(@"%s 'Line:%d' - The object for key index is:'%@'", __func__, __LINE__, passageName);
@@ -34,6 +37,7 @@
 		}
 	}
 }
+
 - (IBAction)passagesTableClick:(id)sender {
 	if (![sender respondsToSelector:@selector(selectedRow)]) {
 		return;
@@ -50,4 +54,6 @@
 		}
 	}
 }
+
+
 @end
