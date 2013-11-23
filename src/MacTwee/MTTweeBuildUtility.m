@@ -1,3 +1,9 @@
+//
+//  MacTwee
+//
+//  Created by Chris Braithwaite on 11/23/13.
+//  Copyright 2013 Chris Braithwaite. Released under MIT License.
+//
 
 #import "MTTweeBuildUtility.h"
 #import "NSString+PDRegex.h"
