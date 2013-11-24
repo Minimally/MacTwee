@@ -203,6 +203,16 @@ static NSString * const labelString = @"label";
         passage.xPosition = [NSNumber numberWithDouble:selectedNode.position.x];
         passage.yPosition = [NSNumber numberWithDouble:selectedNode.position.y];
     }
+    else if (passages.count > 1) {
+        for (MTPassage * p in passages) {
+            //NSLog(@"%d | %s - passage:'%@'", __LINE__, __func__, p);
+            if (p.isFault) { continue; }
+            // save node positions
+            p.xPosition = [NSNumber numberWithDouble:selectedNode.position.x];
+            p.yPosition = [NSNumber numberWithDouble:selectedNode.position.y];
+            return;
+        }
+    }
 }
 
 
