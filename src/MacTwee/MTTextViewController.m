@@ -7,6 +7,9 @@
 
 #import "MTTextViewController.h"
 #import "NSString+PDRegex.h"
+#import "MTCoreDataManager.h"
+#import "MTProjectEditor.h"
+#import "MTPassage.h"
 
 
 @implementation MTTextViewController {
@@ -113,6 +116,9 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 	NSDictionary * fullAttributes = @{ NSForegroundColorAttributeName:passageColor, NSBackgroundColorAttributeName:backgroundColor, NSFontSizeAttribute:textSize, NSFontAttributeName:font };
 	[textStorage setAttributes:fullAttributes range:range];
 	
+    // remove links from current passage
+    [MTProjectEditor sharedMTProjectEditor].currentPassage.outgoing = [NSSet set];
+    
 	// highlight
 	[self addHighlights:textStorage regex:linkReg string:string range:range color:linkColor isLink:YES];
 	[self addHighlights:textStorage regex:macroReg string:string range:range color:macroColor isLink:NO];
@@ -135,10 +141,27 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 									 NSRange substringRange = result.range;
 									 
 									 if (linkAttribute) {
+                                         NSDictionary * fullAttributes;
 										 NSString * substring = [passageString substringWithRange:substringRange];
 										 //NSLog(@"%s 'Line:%d' - substring:'%@'", __func__, __LINE__, substring);
 										 
-										 NSDictionary *fullAttributes = @{ NSForegroundColorAttributeName:color, kLinkMatch:substring };
+                                         // perform a search by passage name from the substring
+                                         NSMutableString * searchString = [NSMutableString stringWithString:substring];
+                                         [searchString deleteCharactersInRange:NSMakeRange(0, 2)];
+                                         [searchString deleteCharactersInRange:NSMakeRange(searchString.length - 2, 2)];
+                                         
+                                         NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(title == %@) AND (project == %@)", searchString, [MTProjectEditor sharedMTProjectEditor].currentProject];
+                                         NSArray * searchResult = [[MTCoreDataManager sharedMTCoreDataManager] executeFetchWithPredicate:predicate entity:@"Passage"];
+                                         
+                                         // color and apply link properties for working links vs non working
+                                         if (searchResult.count == 1 && [MTProjectEditor sharedMTProjectEditor].currentPassage != nil) {
+                                             [[MTProjectEditor sharedMTProjectEditor].currentPassage addOutgoingObject:searchResult[0]];
+                                             fullAttributes = @{ NSForegroundColorAttributeName:color, kLinkMatch:substring };
+                                         }
+                                         else {
+                                             fullAttributes = @{ NSForegroundColorAttributeName:[self colorForKey:@"brokenLinkColor"]};
+                                         }
+										 
 										 [textStorage addAttributes:fullAttributes range:substringRange];
 										 
 									 } else {

@@ -22,5 +22,6 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(MTCoreDataManager);
 - (void)save;
 - (NSApplicationTerminateReply)runTerminateByCoreDataFirst:(NSApplication *)sender;
 - (NSManagedObjectContext *)managedObjectContext;
+- (NSArray *)executeFetchWithPredicate:(NSPredicate *)predicate entity:(NSString *)entityString;
 
 @end

@@ -188,7 +188,7 @@
 				C643DDCF17D0F52300F84002 /* Core Data */,
 				C65EEE8D1840231100CBA70B /* Managers */,
 				C65EEE8E1840232000CBA70B /* Primary Views */,
-				C65EEE8F1840233000CBA70B /* Text Views */,
+				C65EEE8F1840233000CBA70B /* Sub Views */,
 				C643DDCD17D0F51100F84002 /* Preferences */,
 				C65EEE901840234500CBA70B /* Extras */,
 				C607042B17C5CE0F0076E919 /* Supporting Files */,
@@ -287,7 +287,7 @@
 			name = "Primary Views";
 			sourceTree = "<group>";
 		};
-		C65EEE8F1840233000CBA70B /* Text Views */ = {
+		C65EEE8F1840233000CBA70B /* Sub Views */ = {
 			isa = PBXGroup;
 			children = (
 				C60AFBB017CBABF100C6CA29 /* MTTextViewController.h */,
@@ -295,7 +295,7 @@
 				C6B7923D17CC598300C0ADD3 /* MTTextView.h */,
 				C6B7923E17CC598300C0ADD3 /* MTTextView.m */,
 			);
-			name = "Text Views";
+			name = "Sub Views";
 			sourceTree = "<group>";
 		};
 		C65EEE901840234500CBA70B /* Extras */ = {
@@ -310,6 +310,7 @@
 		C65EEE981840321E00CBA70B /* MacTwee Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C6E2055318414B0F00E97B04 /* Twee */,
 				C65EEEA61840323A00CBA70B /* Managers */,
 				C65EEE991840321E00CBA70B /* Supporting Files */,
 			);
@@ -332,6 +333,13 @@
 				C65EEEA71840324E00CBA70B /* MTProjectEditorTests.m */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		C6E2055318414B0F00E97B04 /* Twee */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Twee;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -679,6 +687,7 @@
 				C65EEEA51840321E00CBA70B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

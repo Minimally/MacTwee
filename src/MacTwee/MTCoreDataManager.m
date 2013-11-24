@@ -114,6 +114,30 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTCoreDataManager);
     return _managedObjectContext;
 }
 
+- (NSArray *)executeFetchWithPredicate:(NSPredicate *)predicate entity:(NSString *)entityString {
+    NSArray * result;
+    
+    NSAssert(predicate != nil, @"predicate is nil");
+    NSAssert(entityString != nil, @"entityString is nil");
+    
+    // assemble the fetch
+    
+    NSEntityDescription * entity = [NSEntityDescription entityForName:entityString inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entity];
+    
+    // run the fetch
+    
+    NSError * error = nil;
+    result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (result == nil) {
+        NSLog(@"%d | %s '%@'", __LINE__, __func__, error.localizedDescription);
+    }
+    
+    return result;
+}
+
 
 #pragma mark - Private
 
