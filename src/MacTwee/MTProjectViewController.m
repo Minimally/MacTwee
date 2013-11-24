@@ -9,6 +9,7 @@
 #import "MTCoreDataManager.h"
 #import "MTProjectEditor.h"
 #import "MTProject.h"
+#import "MTVisualEditorScene.h"
 
 
 @implementation MTProjectViewController
@@ -22,7 +23,15 @@
 	//self.passageTextView.textColor = [NSColor whiteColor];
 	self.passageTextView.font = [NSFont userFontOfSize:16];
 	self.passagesArrayControllerSortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(caseInsensitiveCompare:)] ];
-	
+    
+    NSAssert(self.visualEditorSKView != nil, @"self.visualEditorSKView is nil");
+    [self.visualEditorSKView addTrackingRect:self.visualEditorSKView.bounds owner:self.visualEditorSKView userData:nil assumeInside:NO]; // hack for mouse events
+	SKScene * scene = [MTVisualEditorScene sceneWithSize:CGSizeMake(1024, 768)];
+    self.visualEditorSKView.showsFPS = YES;
+    self.visualEditorSKView.showsNodeCount = YES;
+    self.visualEditorSKView.showsDrawCount = YES;
+    [self.visualEditorSKView presentScene:scene];
+    
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(processNotification:)
 												 name:MTTextViewControllerDidGetPotentialPassageClickNotification

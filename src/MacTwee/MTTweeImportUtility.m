@@ -105,7 +105,7 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 		NSArray * headBits = [passageHead stringsByExtractingGroupsUsingRegexPattern:regPatternForTitleTagSplit
 																	 caseInsensitive:YES
 																	  treatAsOneLine:YES];
-		NSAssert(headBits.count > 0, @"headBits is less than zero");
+		//TODO: NSAssert1(headBits.count > 0, @"headBits count is zero. some sort of issue with a passage:'%@'", passageHead);
 		if (headBits.count > 1) {
 			title = headBits[0];
 			tags = headBits[1];
@@ -133,7 +133,7 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 }
 
 - (void)createAPassageWithTitle:(NSString *)passageTitle tags:(NSString *)passageTags body:(NSString *)passageBody {
-	NSAssert(passageTitle != nil, @"passageTitle is nil");
+	//TODO: NSAssert(passageTitle != nil, @"passageTitle is nil");
 	if (passageTitle != nil) {
 		[[MTProjectEditor sharedMTProjectEditor] createPassageWithTitle:passageTitle
 																andTags:passageTags

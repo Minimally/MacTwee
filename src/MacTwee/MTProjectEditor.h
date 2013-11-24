@@ -48,5 +48,9 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
 - (void)ResetCurrentValues;
 
+/// setup current project
+
+- (void)setupCurrentProject:(MTProject *)project;
+
 
 @end

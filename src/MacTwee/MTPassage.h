@@ -1,8 +1,9 @@
 //
+//  MTPassage.h
 //  MacTwee
 //
-//  Created by Chris Braithwaite on 11/23/13.
-//  Copyright 2013 Chris Braithwaite. Released under MIT License.
+//  Created by Chris Braithwaite on 11/24/13.
+//  Copyright (c) 2013 MacTwee. Released under MIT License.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,12 +17,18 @@
 @property (nonatomic, retain) NSNumber * buildable;
 @property (nonatomic, retain) NSDate * lastModifiedDate;
 @property (nonatomic, retain) NSNumber * locked;
+@property (nonatomic, retain) NSString * tags;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * tags;
+@property (nonatomic, retain) NSNumber * xPosition;
+@property (nonatomic, retain) NSNumber * yPosition;
 @property (nonatomic, retain) NSSet * incoming;
 @property (nonatomic, retain) NSSet * outgoing;
 @property (nonatomic, retain) MTProject * project;
+
+/// uses regex to create links within passage text
+- (void)populateLinks;
+
 @end
 
 

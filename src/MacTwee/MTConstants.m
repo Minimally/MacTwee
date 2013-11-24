@@ -28,7 +28,7 @@ NSString * const kPathToTwee = @"kPathToTwee";
 
 NSString * const kdefaultBuildName = @"build.html";
 NSString * const kdefaultSourceName = @"source.twee";
-NSString * const kUserApplicationSupportDirectory = @"com.ChrisBraithwaite.MacTwee";
+NSString * const kUserApplicationSupportDirectory = @"MacTwee";
 NSString * const kLinkMatch = @"kLinkMatch";
 
 

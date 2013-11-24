@@ -24,7 +24,7 @@
 	//NSLog(@"%s 'Line:%d' - sender:'%@'", __func__, __LINE__, sender);
 	if ( (long)self.projectsArrayController.selectionIndex > -1 ) {
 		if ( self.projectsArrayController.selectedObjects.count > 0 ) {
-			[MTProjectEditor sharedMTProjectEditor].currentProject = [self.projectsArrayController selectedObjects][0];
+			[[MTProjectEditor sharedMTProjectEditor] setupCurrentProject:[self.projectsArrayController selectedObjects][0] ];
 			NSDictionary * dict = @{ @"index" : [NSNumber numberWithLong:MTPageProject] };
 			[[NSNotificationCenter defaultCenter] postNotificationName:MTPrimaryWindowControllerWillOpenViewNotification
 																object:self

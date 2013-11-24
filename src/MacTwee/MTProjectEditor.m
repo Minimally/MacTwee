@@ -78,6 +78,16 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
     self.currentPassage = nil;
 }
 
+- (void)setupCurrentProject:(MTProject *)project {
+    if (project!=nil) {
+        self.currentProject = project;
+    }
+    for (MTPassage * passage in self.currentProject.passages) {
+        [passage populateLinks];
+    }
+}
+
+
 #pragma mark - Private
 
 - (void)setCurrentProject:(MTProject *)proj {

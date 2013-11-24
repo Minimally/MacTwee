@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment version="1070" defaultVersion="1070" identifier="macosx"/>
+        <deployment version="1070" defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
@@ -10,6 +10,7 @@
                 <outlet property="passageArrayController" destination="35" id="572"/>
                 <outlet property="passageTextView" destination="4" id="90"/>
                 <outlet property="view" destination="1" id="2"/>
+                <outlet property="visualEditorSKView" destination="WHS-iX-OAh" id="SoJ-to-N03"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -18,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="750" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <splitView dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="232" userLabel="Horizontal Split View">
+                <splitView autosaveName="projEditorSplitView" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="232" userLabel="Horizontal Split View">
                     <rect key="frame" x="0.0" y="0.0" width="750" height="600"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
@@ -246,6 +247,24 @@
                                                     <constraint firstItem="20" firstAttribute="leading" secondItem="4o1-hx-V1h" secondAttribute="leading" constant="17" id="lmL-Rl-JY8"/>
                                                     <constraint firstItem="nPf-kK-tfy" firstAttribute="trailing" secondItem="64" secondAttribute="trailing" id="ozj-Jb-DjW"/>
                                                     <constraint firstItem="113" firstAttribute="top" secondItem="160" secondAttribute="bottom" constant="8" symbolic="YES" id="pTJ-6g-ciG"/>
+                                                </constraints>
+                                            </view>
+                                        </tabViewItem>
+                                        <tabViewItem label="Visual" identifier="" id="oej-aq-tzd">
+                                            <view key="view" id="4w3-fA-gas" userLabel="View">
+                                                <rect key="frame" x="10" y="33" width="213" height="550"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="WHS-iX-OAh" customClass="MTMouseSKView">
+                                                        <rect key="frame" x="-3" y="-23" width="221" height="570"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    </customView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="WHS-iX-OAh" firstAttribute="top" secondItem="4w3-fA-gas" secondAttribute="top" constant="3" id="Jgd-kz-Vzh"/>
+                                                    <constraint firstAttribute="bottom" secondItem="WHS-iX-OAh" secondAttribute="bottom" constant="-3" id="Tfh-Hj-0ZN"/>
+                                                    <constraint firstAttribute="trailing" secondItem="WHS-iX-OAh" secondAttribute="trailing" constant="-3" id="ZHJ-bS-hbl"/>
+                                                    <constraint firstItem="WHS-iX-OAh" firstAttribute="leading" secondItem="4w3-fA-gas" secondAttribute="leading" constant="-3" id="v8O-t3-KoG"/>
                                                 </constraints>
                                             </view>
                                         </tabViewItem>

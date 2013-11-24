@@ -7,6 +7,8 @@
         <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" defaultValueString="Enter passage text here" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" defaultValueString="NEW PASSAGE" syncable="YES"/>
+        <attribute name="xPosition" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="yPosition" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="incoming" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Passage" inverseName="outgoing" inverseEntity="Passage" syncable="YES"/>
         <relationship name="outgoing" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Passage" inverseName="incoming" inverseEntity="Passage" syncable="YES"/>
         <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="passages" inverseEntity="Project" syncable="YES"/>
