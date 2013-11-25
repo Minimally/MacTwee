@@ -120,18 +120,19 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
     [MTProjectEditor sharedMTProjectEditor].currentPassage.outgoing = [NSSet set];
     
 	// highlight
-	[self addHighlights:textStorage regex:linkReg string:string range:range color:linkColor isLink:YES];
-	[self addHighlights:textStorage regex:macroReg string:string range:range color:macroColor isLink:NO];
-	[self addHighlights:textStorage regex:imageReg string:string range:range color:imageColor isLink:NO];
-	[self addHighlights:textStorage regex:htmlReg string:string range:range color:htmlColor isLink:NO];
-	[self addHighlights:textStorage regex:commentReg string:string range:range color:commentColor isLink:NO];
-	[self addHighlights:textStorage regex:displayReg string:string range:range color:displayColor isLink:NO];
+	[self addHighlights:textStorage string:string range:range color:macroColor regex:macroReg];
+	[self addHighlights:textStorage string:string range:range color:imageColor regex:imageReg];
+	[self addHighlights:textStorage string:string range:range color:htmlColor regex:htmlReg];
+	[self addHighlights:textStorage string:string range:range color:commentColor regex:commentReg];
+	[self addHighlights:textStorage string:string range:range color:linkColor regex:linkReg isLink:YES];
+	[self addHighlights:textStorage string:string range:range color:displayColor regex:displayReg isLink:NO];
 }
 
 
 #pragma mark - Private
 
-- (void)addHighlights:(NSTextStorage *)textStorage regex:(NSString *)expression string:(NSString *)passageString range:(NSRange)passageRange color:(NSColor *)color isLink:(BOOL)linkAttribute {
+/// simple highlights
+- (void)addHighlights:(NSTextStorage *)textStorage string:(NSString *)passageString range:(NSRange)passageRange color:(NSColor *)color regex:(NSString *)expression  {
 	NSRegularExpression * regExpression = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
 	[regExpression enumerateMatchesInString:passageString // The string.
 									options:0 // The matching options to report. See “NSMatchingOptions” for the supported values.
@@ -140,37 +141,65 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 									 
 									 NSRange substringRange = result.range;
 									 
-									 if (linkAttribute) {
-                                         NSDictionary * fullAttributes;
-										 NSString * substring = [passageString substringWithRange:substringRange];
-										 //NSLog(@"%s 'Line:%d' - substring:'%@'", __func__, __LINE__, substring);
-										 
-                                         // perform a search by passage name from the substring
-                                         NSMutableString * searchString = [NSMutableString stringWithString:substring];
-                                         [searchString deleteCharactersInRange:NSMakeRange(0, 2)];
-                                         [searchString deleteCharactersInRange:NSMakeRange(searchString.length - 2, 2)];
-                                         
-                                         NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(title == %@) AND (project == %@)", searchString, [MTProjectEditor sharedMTProjectEditor].currentProject];
-                                         NSArray * searchResult = [[MTCoreDataManager sharedMTCoreDataManager] executeFetchWithPredicate:predicate entity:@"Passage"];
-                                         
-                                         // color and apply link properties for working links vs non working
-                                         if (searchResult.count == 1 && [MTProjectEditor sharedMTProjectEditor].currentPassage != nil) {
-                                             [[MTProjectEditor sharedMTProjectEditor].currentPassage addOutgoingObject:searchResult[0]];
-                                             fullAttributes = @{ NSForegroundColorAttributeName:color, kLinkMatch:substring };
-                                         }
-                                         else {
-                                             fullAttributes = @{ NSForegroundColorAttributeName:[self colorForKey:@"brokenLinkColor"]};
-                                         }
-										 
-										 [textStorage addAttributes:fullAttributes range:substringRange];
-										 
-									 } else {
-										 [textStorage addAttribute:NSForegroundColorAttributeName
+									 [textStorage addAttribute:NSForegroundColorAttributeName
 															 value:color
 															 range:substringRange];
-									 }
+									 
 								 }
 	 ];
+}
+
+/// complex highlights for links and display links
+- (void)addHighlights:(NSTextStorage *)textStorage string:(NSString *)passageString range:(NSRange)passageRange color:(NSColor *)color regex:(NSString *)expression isLink:(BOOL)linkAttribute {
+	NSRegularExpression * regExpression = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
+	[regExpression enumerateMatchesInString:passageString options:0 range:passageRange usingBlock:^(NSTextCheckingResult * result, NSMatchingFlags flags, BOOL * stop) {
+        
+        NSRange substringRange = result.range;
+        NSString * substring = [passageString substringWithRange:substringRange];
+        NSLog(@"%s 'Line:%d' - substring:'%@'", __func__, __LINE__, substring);
+        
+        // we have to extract title text from the substring, this is different for links vs display
+        NSString * titleInSubstring = [NSString string];
+        if (linkAttribute) {
+            NSMutableString * ms = [NSMutableString stringWithString:substring];
+            [ms deleteCharactersInRange:NSMakeRange(0, 2)];
+            [ms deleteCharactersInRange:NSMakeRange(ms.length - 2, 2)];
+            NSArray * pipeClear = [ms componentsSeparatedByString:@"|"];
+            if (pipeClear.count == 1) {
+                titleInSubstring = pipeClear[0];
+            }
+            else if (pipeClear.count == 2) {
+                titleInSubstring = pipeClear[1];
+            }
+            else {
+                NSLog(@"%d | %s - issue with pipeline in link", __LINE__, __func__);
+            }
+        } else {
+            NSArray * a = [substring stringsByExtractingGroupsUsingRegexPattern:displayReg caseInsensitive:YES treatAsOneLine:YES];
+            if (a.count > 0) {
+                titleInSubstring = a[0];
+            }
+        }
+        
+        NSLog(@"%s 'Line:%d' - titleInSubstring:'%@'", __func__, __LINE__, titleInSubstring);
+        
+        // perform a search by passage name from the titleInSubstring
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(title == %@) AND (project == %@)", titleInSubstring, [MTProjectEditor sharedMTProjectEditor].currentProject];
+        NSArray * searchResult = [[MTCoreDataManager sharedMTCoreDataManager] executeFetchWithPredicate:predicate entity:@"Passage"];
+        
+        // color and apply link properties for working links vs non working
+        NSDictionary * fullAttributes;
+        if (searchResult.count == 1 && [MTProjectEditor sharedMTProjectEditor].currentPassage != nil) {
+            [[MTProjectEditor sharedMTProjectEditor].currentPassage addOutgoingObject:searchResult[0]];
+            fullAttributes = @{ NSForegroundColorAttributeName:color, kLinkMatch:substring };
+        }
+        else {
+            fullAttributes = @{ NSForegroundColorAttributeName:[self colorForKey:@"brokenLinkColor"]};
+        }
+        
+        [textStorage addAttributes:fullAttributes range:substringRange];
+    }
+     ];
 }
 
 - (NSColor *)colorForKey:(NSString *)key {
