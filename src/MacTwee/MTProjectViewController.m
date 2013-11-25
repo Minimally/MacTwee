@@ -9,6 +9,7 @@
 #import "MTCoreDataManager.h"
 #import "MTProjectEditor.h"
 #import "MTProject.h"
+#import "MTPassage.h"
 #import "MTVisualEditorScene.h"
 
 
@@ -17,11 +18,13 @@
 
 #pragma mark - Lifecycle
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)awakeFromNib {
-	//self.passageTextView.backgroundColor = [NSColor blackColor];
-	//self.passageTextView.insertionPointColor = [NSColor whiteColor];
-	//self.passageTextView.textColor = [NSColor whiteColor];
-	self.passageTextView.font = [NSFont userFontOfSize:16];
+    NSAssert(self.passageArrayController != nil, @"self.passageArrayController is nil");
+    self.passageArrayController.selectsInsertedObjects = YES;
 	self.passagesArrayControllerSortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(caseInsensitiveCompare:)] ];
     
     NSAssert(self.visualEditorSKView != nil, @"self.visualEditorSKView is nil");
@@ -32,10 +35,14 @@
     self.visualEditorSKView.showsDrawCount = YES;
     [self.visualEditorSKView presentScene:scene];
     
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(processNotification:)
-												 name:MTTextViewControllerDidGetPotentialPassageClickNotification
-											   object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(processNotification:)
+                                                 name:MTAppDelegateDidGetMenuClickNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(processNotification:)
+                                                 name:MTTextViewControllerDidGetPotentialPassageClickNotification
+                                               object:nil];
 }
 
 
@@ -61,7 +68,8 @@
 }
 
 - (void)processNotification:(NSNotification *)notification {
-    if ([notification.name isEqualToString:MTTextViewControllerDidGetPotentialPassageClickNotification]) {
+    
+    if ( [notification.name isEqualToString:MTTextViewControllerDidGetPotentialPassageClickNotification] ) {
         // the user alt clicked a link within the text view, we need to try and go to it
 		if ( [notification userInfo][@"index"] ) {
 			NSString * passageName = [notification userInfo][@"index"];
@@ -73,6 +81,16 @@
             }
 		}
 	}
+    
+    else if ( [notification.name isEqualToString:MTAppDelegateDidGetMenuClickNotification] ) {
+        NSNumber * index = [notification userInfo][@"index"];
+        if ( [index integerValue] == MTMenuBtnNew ) {
+            MTPassage * passage = [MTPassage passage];
+            passage.project = [MTProjectEditor sharedMTProjectEditor].currentProject;
+            [self.passageArrayController setSelectedObjects:@[passage]];
+            [self updateSelectedPassage];
+        }
+    }
 }
 
 

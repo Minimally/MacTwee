@@ -22,6 +22,9 @@
 @property (nonatomic, retain) NSString * buildName;
 @property (nonatomic, retain) NSString * sourceName;
 @property (nonatomic, retain) NSSet * passages;
+
+//
++ (instancetype)project;
 @end
 
 

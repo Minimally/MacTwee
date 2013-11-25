@@ -7,6 +7,7 @@
 
 #import "MTProject.h"
 #import "MTPassage.h"
+#import "MTCoreDataManager.h"
 
 
 @implementation MTProject
@@ -29,5 +30,12 @@
     self.buildName = kdefaultBuildName;
 	self.sourceName = kdefaultSourceName;
 }
-
++ (instancetype)project {
+    id result;
+	
+	result = [NSEntityDescription insertNewObjectForEntityForName:@"Project"
+                                           inManagedObjectContext:[MTCoreDataManager sharedMTCoreDataManager].managedObjectContext];
+	
+	return result;
+}
 @end

@@ -12,8 +12,13 @@
 
 typedef enum {
     MTPageHome = 0,
-    MTPageProject
+    MTPageProject,
 } MTPage;
+
+typedef enum {
+    MTMenuBtnNew = 0,
+    MTMenuBtnHome,
+} MTMenuBtn;
 
 #pragma mark - notifications
 
@@ -21,6 +26,9 @@ extern NSString * const MTPrimaryWindowControllerWillOpenViewNotification;
 
 /// triggered when user alt clicks a link in the text view
 extern NSString * const MTTextViewControllerDidGetPotentialPassageClickNotification;
+
+/// various menu items selected by user
+extern NSString * const MTAppDelegateDidGetMenuClickNotification;
 
 #pragma mark - paths
 

@@ -105,5 +105,12 @@
                                      }
                                  }];
 }
-
++ (instancetype)passage {
+    id result;
+	
+	result = [NSEntityDescription insertNewObjectForEntityForName:@"Passage"
+                                           inManagedObjectContext:[MTCoreDataManager sharedMTCoreDataManager].managedObjectContext];
+	
+	return result;
+}
 @end

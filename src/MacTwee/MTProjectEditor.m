@@ -22,10 +22,11 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
 - (void)newPassage {
 	NSAssert(self.currentProject != nil, @"currentProject is nil");
-	[self createPassageWithTitle:@"New Passage" andTags:@"" andText:@""];
+	MTPassage * passage = [self createPassageWithTitle:@"New Passage" andTags:@"" andText:@""];
+    self.currentPassage = passage;
 }
 
-- (void)createPassageWithTitle:(NSString *)title andTags:(NSString *)tags andText:(NSString *)text {
+- (MTPassage *)createPassageWithTitle:(NSString *)title andTags:(NSString *)tags andText:(NSString *)text {
 	NSAssert(self.currentProject != nil, @"currentProject is nil");
 	MTPassage * passage = (MTPassage *)[NSEntityDescription insertNewObjectForEntityForName:@"Passage"
 																	 inManagedObjectContext:[MTCoreDataManager sharedMTCoreDataManager].managedObjectContext];
@@ -33,6 +34,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 	passage.tags = tags;
 	passage.text = text;
 	passage.project = self.currentProject;
+    return passage;
 }
 
 - (NSString *)getStoryFormat {

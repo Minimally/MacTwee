@@ -52,11 +52,17 @@
 #pragma mark - IBAction
 
 - (IBAction)newDocument:(id)sender {
-	if (primaryWindwowController == nil)
+	if (primaryWindwowController == nil) {
 		primaryWindwowController = [[MTPrimaryWindowController alloc] initWithWindowNibName:@"MTPrimaryWindow"];
-	
-	[primaryWindwowController showWindow:self];
-	[primaryWindwowController selectView:MTPageHome];
+        [primaryWindwowController showWindow:self];
+        [primaryWindwowController selectView:MTPageHome];
+    }
+    else {
+        NSDictionary * dict = @{ @"index" : [NSNumber numberWithLong:MTMenuBtnNew] };
+        [[NSNotificationCenter defaultCenter] postNotificationName:MTAppDelegateDidGetMenuClickNotification
+                                                            object:self
+                                                          userInfo:dict];
+    }
 }
 
 - (IBAction)saveDocument:(id)sender {
@@ -66,12 +72,16 @@
 - (IBAction)preferencesMenuItem:(id)sender {
 	if (pref == nil)
 		pref = [[MTPreferencesWindowController alloc] initWithWindowNibName:@"MTPreferencesView"];
-	
-	NSLog(@"Is of type: %@", [pref className]);
-	
-	[[pref window] center];
-	
+	[pref.window center];
 	[pref showWindow:nil];
+}
+
+- (IBAction)homeView:(id)sender {
+	if (primaryWindwowController == nil) {
+		primaryWindwowController = [[MTPrimaryWindowController alloc] initWithWindowNibName:@"MTPrimaryWindow"];
+        [primaryWindwowController showWindow:self];
+    }
+    [primaryWindwowController selectView:MTPageHome];
 }
 
 

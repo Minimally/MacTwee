@@ -11,6 +11,8 @@
 
 @interface MTProjectViewController : NSViewController <NSTableViewDelegate>
 
+@property (weak) IBOutlet NSTabView * leftTabView;
+
 @property (strong) IBOutlet NSArrayController * passageArrayController;
 @property (unsafe_unretained) IBOutlet NSTextView * passageTextView;
 @property (strong) NSArray * passagesArrayControllerSortDescriptors;

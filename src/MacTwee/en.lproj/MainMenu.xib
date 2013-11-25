@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
+        <deployment defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
@@ -627,6 +627,14 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="92">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Projects" keyEquivalent="0" id="HZf-o2-fnV">
+                                <connections>
+                                    <action selector="homeView:" target="-1" id="t4x-2a-ODF"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="N4N-nm-w1w">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Bring All to Front" id="5">

@@ -28,6 +28,7 @@
 
 /// uses regex to create links within passage text
 - (void)populateLinks;
++ (instancetype)passage;
 
 @end
 

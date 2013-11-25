@@ -15,7 +15,7 @@
 @implementation MTPrimaryWindowController
 
 MTTweeFileTools * tweeFileTools;
-
+BOOL inProject;
 
 #pragma mark - Lifecycle
 
@@ -29,38 +29,46 @@ MTTweeFileTools * tweeFileTools;
 }
 
 
-#pragma mark - Public
-
-- (void)selectView:(NSInteger)whichViewTag {
-	[self changeViewController:whichViewTag];
-}
+#pragma mark - IBAction
 
 - (IBAction)newPassage:(id)sender {
+    if (!inProject) { return; }
 	[[MTProjectEditor sharedMTProjectEditor] newPassage];
 }
 
 - (IBAction)buildStory:(id)sender {
+    if (!inProject) { return; }
 	if (tweeFileTools == nil)
 		tweeFileTools = [[MTTweeFileTools alloc]init];
 	[tweeFileTools buildStory];
 }
 
 - (IBAction)buildAndRun:(id)sender {
+    if (!inProject) { return; }
 	if (tweeFileTools == nil)
 		tweeFileTools = [[MTTweeFileTools alloc]init];
 	[tweeFileTools buildAndRunStory];
 }
 
 - (IBAction)importStory:(id)sender {
+    if (!inProject) { return; }
 	if (tweeFileTools == nil)
 		tweeFileTools = [[MTTweeFileTools alloc]init];
 	[tweeFileTools importTweeFile];
 }
 
 - (IBAction)exportStory:(id)sender {
+    if (!inProject) { return; }
 	if (tweeFileTools == nil)
 		tweeFileTools = [[MTTweeFileTools alloc]init];
 	[tweeFileTools exportTweeFile];
+}
+
+
+#pragma mark - Public
+
+- (void)selectView:(NSInteger)whichViewTag {
+	[self changeViewController:whichViewTag];
 }
 
 
@@ -93,7 +101,7 @@ MTTweeFileTools * tweeFileTools;
 		{
 			[self.window.toolbar setVisible:NO];
 			self.window.title = @"MacTwee - Story Manager";
-			MTHomeViewController* view = [[MTHomeViewController alloc] initWithNibName:@"MTHomeView" bundle:nil];
+			MTHomeViewController * view = [[MTHomeViewController alloc] initWithNibName:@"MTHomeView" bundle:nil];
 			NSAssert(view != nil, @"MTHomeView is nil");
 			if (view != nil)
 			{
@@ -101,6 +109,7 @@ MTTweeFileTools * tweeFileTools;
 				_currentViewController.title = @"Projects";
 			}
             [[MTProjectEditor sharedMTProjectEditor] ResetCurrentValues];
+            inProject=NO;
 			break;
 		}
 		
@@ -115,6 +124,7 @@ MTTweeFileTools * tweeFileTools;
 				_currentViewController = view;	// keep track of the current view controller
 				_currentViewController.title = @"Project";
 			}
+            inProject=YES;
 			break;
 		}
 			

@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MTProjectViewController">
             <connections>
+                <outlet property="leftTabView" destination="faJ-e1-G7G" id="W6F-Qt-ril"/>
                 <outlet property="passageArrayController" destination="35" id="572"/>
                 <outlet property="passageTextView" destination="4" id="90"/>
                 <outlet property="view" destination="1" id="2"/>
@@ -255,7 +256,7 @@
                                                 <rect key="frame" x="10" y="33" width="213" height="550"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="WHS-iX-OAh" customClass="MTMouseSKView">
+                                                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WHS-iX-OAh" customClass="MTMouseSKView">
                                                         <rect key="frame" x="-3" y="-23" width="221" height="570"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     </customView>
@@ -299,7 +300,13 @@
                                                 <size key="minSize" width="504" height="598"/>
                                                 <size key="maxSize" width="733" height="10000000"/>
                                                 <connections>
-                                                    <binding destination="17" name="value" keyPath="self.currentPassage.text" id="586"/>
+                                                    <binding destination="17" name="value" keyPath="self.currentPassage.text" id="zEY-PY-3WQ">
+                                                        <dictionary key="options">
+                                                            <string key="NSNullPlaceholder">Select a passage to edit</string>
+                                                            <string key="NSNoSelectionPlaceholder">Select a passage to edit</string>
+                                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                        </dictionary>
+                                                    </binding>
                                                 </connections>
                                             </textView>
                                         </subviews>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment version="1070" defaultVersion="1070" identifier="macosx"/>
+        <deployment version="1070" defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
@@ -69,12 +69,12 @@
                                 </tableColumns>
                                 <connections>
                                     <binding destination="65" name="content" keyPath="arrangedObjects" id="73"/>
+                                    <binding destination="65" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="73" id="79"/>
                                     <binding destination="-2" name="doubleClickTarget" keyPath="self" id="117">
                                         <dictionary key="options">
                                             <string key="NSSelectorName">doubleClickTableItem:</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="65" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="73" id="79"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -100,7 +100,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="add:" target="65" id="70"/>
+                        <action selector="newStoryButton:" target="-2" id="0Zf-Yw-Tut"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="31">
@@ -114,7 +114,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="remove:" target="65" id="71"/>
+                        <action selector="deleteStoryButton:" target="-2" id="gbh-QA-EdJ"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="35">
@@ -148,8 +148,8 @@
         <customObject id="64" customClass="MTCoreDataManager"/>
         <arrayController mode="entity" entityName="Project" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="65" userLabel="Projects Array Controller">
             <connections>
-                <binding destination="64" name="managedObjectContext" keyPath="self.managedObjectContext" id="69"/>
                 <binding destination="-2" name="sortDescriptors" keyPath="projectsArrayControllerSortDescriptors" id="110"/>
+                <binding destination="64" name="managedObjectContext" keyPath="self.managedObjectContext" id="69"/>
             </connections>
         </arrayController>
         <userDefaultsController representsSharedInstance="YES" id="66"/>

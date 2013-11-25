@@ -15,5 +15,7 @@
 @property (strong) NSArray * projectsArrayControllerSortDescriptors;
 
 - (IBAction)openStoryButton:(id)sender;
+- (IBAction)newStoryButton:(id)sender;
+- (IBAction)deleteStoryButton:(id)sender;
 
 @end
