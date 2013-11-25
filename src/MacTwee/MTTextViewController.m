@@ -105,6 +105,11 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 	
 	NSFont * font = [[NSFontManager sharedFontManager] fontWithFamily:@"Arial" traits:0 weight:5 size:textSize.floatValue];
 	
+    // remove fancy quotes
+    
+    string = [string stringByReplacingOccurrencesOfString:@"“" withString:@"\""];
+    string = [string stringByReplacingOccurrencesOfString:@"”" withString:@"\""];
+    
     // remove previous attributes
     
     [textStorage removeAttribute:NSForegroundColorAttributeName range:range];

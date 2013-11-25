@@ -79,10 +79,7 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 	//NSLog(@"%s 'Line:%d' - sub passages count:'%lu'", __func__, __LINE__, (unsigned long)passageBits.count);
 	
 	switch (passageBits.count) {
-		case 0: {
-			break;
-		}
-		case 1: {
+        case 1: {
 			[self preparePassageWithHead:passageBits[0] body:nil];
 			break;
 		}
@@ -135,6 +132,7 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 - (void)createAPassageWithTitle:(NSString *)passageTitle tags:(NSString *)passageTags body:(NSString *)passageBody {
 	//TODO: NSAssert(passageTitle != nil, @"passageTitle is nil");
 	if (passageTitle != nil) {
+        passageTitle = [passageTitle stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
 		[[MTProjectEditor sharedMTProjectEditor] createPassageWithTitle:passageTitle
 																andTags:passageTags
 																andText:passageBody];
