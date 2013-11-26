@@ -38,6 +38,7 @@
 		C69DA21F17C87BA70007BD17 /* NSString+PDRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */; };
 		C6B7923F17CC598300C0ADD3 /* MTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7923E17CC598300C0ADD3 /* MTTextView.m */; };
 		C6B94A5B17CDBD4B00FC53E6 /* MTSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B94A5A17CDBD4B00FC53E6 /* MTSnippet.m */; };
+		C6DF46081844247D00DD9297 /* mactwee.icns in Resources */ = {isa = PBXBuildFile; fileRef = C6DF46071844247D00DD9297 /* mactwee.icns */; };
 		C6E90DC217C8143C0049ED37 /* MTPrimaryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC017C8143C0049ED37 /* MTPrimaryWindowController.m */; };
 		C6E90DC317C8143C0049ED37 /* MTPrimaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E90DC117C8143C0049ED37 /* MTPrimaryWindow.xib */; };
 		C6E90DC817C82A370049ED37 /* MTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC617C82A370049ED37 /* MTHomeViewController.m */; };
@@ -116,6 +117,7 @@
 		C6B7923E17CC598300C0ADD3 /* MTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTextView.m; sourceTree = "<group>"; };
 		C6B94A5917CDBD4B00FC53E6 /* MTSnippet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSnippet.h; sourceTree = "<group>"; };
 		C6B94A5A17CDBD4B00FC53E6 /* MTSnippet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSnippet.m; sourceTree = "<group>"; };
+		C6DF46071844247D00DD9297 /* mactwee.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = mactwee.icns; path = ../mactwee.icns; sourceTree = "<group>"; };
 		C6E90DBF17C8143C0049ED37 /* MTPrimaryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPrimaryWindowController.h; sourceTree = "<group>"; };
 		C6E90DC017C8143C0049ED37 /* MTPrimaryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPrimaryWindowController.m; sourceTree = "<group>"; };
 		C6E90DC117C8143C0049ED37 /* MTPrimaryWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTPrimaryWindow.xib; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				C607043017C5CE0F0076E919 /* main.m */,
 				C607043217C5CE0F0076E919 /* MacTwee-Prefix.pch */,
 				C607043317C5CE0F0076E919 /* Credits.rtf */,
+				C6DF46071844247D00DD9297 /* mactwee.icns */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				C607043B17C5CE0F0076E919 /* MainMenu.xib in Resources */,
 				C6E90DC317C8143C0049ED37 /* MTPrimaryWindow.xib in Resources */,
 				C6E90DC917C82A370049ED37 /* MTHomeView.xib in Resources */,
+				C6DF46081844247D00DD9297 /* mactwee.icns in Resources */,
 				C69DA21117C851CE0007BD17 /* MTProjectView.xib in Resources */,
 				C63E6C6D17CF046200FCEDEB /* MTPreferencesView.xib in Resources */,
 			);
