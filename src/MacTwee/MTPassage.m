@@ -29,6 +29,7 @@
 
 
 - (void)populateLinks {
+    if (self.text.length == 0) { return; }
     NSString * linkPattern = @"\\[\\[([^\\|\\]]*?)(?:(\\]\\])|(\\|(.*?)\\]\\]))";
     NSRegularExpression * regExpression = [NSRegularExpression regularExpressionWithPattern:linkPattern options:0 error:nil];
     [regExpression enumerateMatchesInString:self.text
@@ -41,12 +42,10 @@
                                      //NSLog(@"%s 'Line:%d' - substring:'%@'", __func__, __LINE__, substring);
                                      
                                      // we have to extract title text from the substring, this is different for links vs display
-                                     NSString * titleInSubstring = [NSString string];
-                                     
-                                     NSMutableString * ms = [NSMutableString stringWithString:substring];
-                                     [ms deleteCharactersInRange:NSMakeRange(0, 2)];
-                                     [ms deleteCharactersInRange:NSMakeRange(ms.length - 2, 2)];
-                                     NSArray * pipeClear = [ms componentsSeparatedByString:@"|"];
+                                     NSMutableString * titleInSubstring = [NSMutableString stringWithString:substring];
+                                     [titleInSubstring deleteCharactersInRange:NSMakeRange(0, 2)];
+                                     [titleInSubstring deleteCharactersInRange:NSMakeRange(titleInSubstring.length - 2, 2)];
+                                     NSArray * pipeClear = [titleInSubstring componentsSeparatedByString:@"|"];
                                      if (pipeClear.count == 1) {
                                          titleInSubstring = pipeClear[0];
                                      }
@@ -57,7 +56,6 @@
                                          NSLog(@"%d | %s - issue with pipeline in link", __LINE__, __func__);
                                      }
                                      
-                                     titleInSubstring = ms;
                                      //NSLog(@"%s 'Line:%d' - titleInSubstring:'%@'", __func__, __LINE__, titleInSubstring);
                                      
                                      // perform a search by passage name from the titleInSubstring

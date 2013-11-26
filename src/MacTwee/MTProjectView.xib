@@ -28,7 +28,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="219" height="600"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <tabView translatesAutoresizingMaskIntoConstraints="NO" id="faJ-e1-G7G">
+                                <tabView initialItem="oej-aq-tzd" translatesAutoresizingMaskIntoConstraints="NO" id="faJ-e1-G7G">
                                     <rect key="frame" x="-7" y="-10" width="233" height="596"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <font key="font" metaFont="system"/>
