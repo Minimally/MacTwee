@@ -15,7 +15,6 @@
 
 @implementation MTVisualEditorScene {
     BOOL contentCreated;
-    BOOL needsUpdate;
     BOOL draggingActive;
     SKNode * selectedNode;
     SKNode * rootNode;
@@ -34,8 +33,8 @@ static NSString * const labelString = @"label";
     self.scaleMode = SKSceneScaleModeResizeFill;
     
     rootNode = [[SKNode alloc]init];
-    linkRootNode = [[SKNode alloc]init];
     [self addChild:rootNode];
+    linkRootNode = [[SKNode alloc]init];
     [rootNode addChild:linkRootNode];
     
     [self applyPassagesToScene];
@@ -47,9 +46,18 @@ static NSString * const labelString = @"label";
 #pragma mark - Sprite Kit Callbacks
 
 -(void)update:(CFTimeInterval)currentTime {
-    if (!needsUpdate) { return; }
+    if (!self.needsUpdate) { return; }
+    
+    selectedNode = nil;
+    
+    [rootNode removeAllChildren];
+    
+    linkRootNode = [[SKNode alloc]init];
+    [rootNode addChild:linkRootNode];
+    
     [self applyPassagesToScene];
-    needsUpdate = NO;
+    
+    self.needsUpdate = NO;
 }
 
 
@@ -82,15 +90,15 @@ static NSString * const labelString = @"label";
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
-    [self applyPositionFromNode];
+    [self saveSelectedNodePosition];
     selectedNode = nil;
     draggingActive = NO;
-    needsUpdate = YES;
+    self.needsUpdate = YES;
 }
 
 - (void)rightMouseDown:(NSEvent *)theEvent {
     [super rightMouseDown:theEvent];
-    NSLog(@"%d | %s - ", __LINE__, __func__);
+    //NSLog(@"%d | %s - ", __LINE__, __func__);
 }
 
 - (void)scrollWheel:(NSEvent *)event {
@@ -108,7 +116,7 @@ static NSString * const labelString = @"label";
 }
 
 - (void)otherMouseDragged:(NSEvent *)theEvent {
-    NSLog(@"%d | %s - ", __LINE__, __func__);
+    //NSLog(@"%d | %s - ", __LINE__, __func__);
 }
 
 
@@ -119,22 +127,34 @@ static NSString * const labelString = @"label";
     NSArray * passages = [[MTProjectEditor sharedMTProjectEditor].currentProject.passages allObjects];
     
     // draw passages
-    
+    double nextY = 15;
+    double nextX = 50;
     for (MTPassage * passage in passages) {
         SKNode * node = [rootNode childNodeWithName:passage.title];
         
         if ( node == nil ) {
             node = [self buildANode:passage.title];
+            NSAssert(node != nil, @"node is nil");
             [rootNode addChild:node];
         }
         
-        NSAssert(node != nil, @"node is nil");
-        node.position = CGPointMake([passage.xPosition doubleValue], [passage.yPosition doubleValue]);
+        if ([passage.xPosition isEqualToNumber:@0] || [passage.yPosition isEqualToNumber:@0]) {
+            node.position = CGPointMake(nextX, nextY);
+            nextX += 150;
+            if (nextX > 900) {
+                nextX = 50;
+                nextY += 35;
+            }
+            passage.xPosition = [NSNumber numberWithDouble:nextX];
+            passage.yPosition = [NSNumber numberWithDouble:nextY];
+        } else {
+            node.position = CGPointMake(passage.xPosition.doubleValue, passage.yPosition.doubleValue);
+        }
     }
     
     // draw links
     
-    [linkRootNode removeAllChildren]; // redraw links
+    //[linkRootNode removeAllChildren]; // redraw links
     
     for (MTPassage * passage in passages) {
         if (passage.outgoing.count == 0) { continue; }
@@ -193,7 +213,7 @@ static NSString * const labelString = @"label";
 #pragma mark - Private
 
 /*! saves position of a moved node to the passage for that node */
-- (void)applyPositionFromNode {
+- (void)saveSelectedNodePosition {
     NSString * name = selectedNode.name;
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"title == %@", name];
     NSArray * passages = [[MTCoreDataManager sharedMTCoreDataManager]executeFetchWithPredicate:predicate entity:@"Passage"];

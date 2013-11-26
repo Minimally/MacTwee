@@ -29,6 +29,7 @@ extern NSString * const MTTextViewControllerDidGetPotentialPassageClickNotificat
 
 /// various menu items selected by user
 extern NSString * const MTAppDelegateDidGetMenuClickNotification;
+extern NSString * const MTTweeImporUtilityDidImportFile;
 
 #pragma mark - paths
 

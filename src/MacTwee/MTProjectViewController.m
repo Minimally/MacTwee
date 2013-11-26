@@ -37,6 +37,10 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(processNotification:)
+                                                 name:MTTweeImporUtilityDidImportFile
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(processNotification:)
                                                  name:MTAppDelegateDidGetMenuClickNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -69,7 +73,12 @@
 
 - (void)processNotification:(NSNotification *)notification {
     
-    if ( [notification.name isEqualToString:MTTextViewControllerDidGetPotentialPassageClickNotification] ) {
+    if ( [notification.name isEqualToString:MTTweeImporUtilityDidImportFile] ) {
+        MTVisualEditorScene * scene = (MTVisualEditorScene *)self.visualEditorSKView.scene;
+        [[MTProjectEditor sharedMTProjectEditor] updateCurrentProject];
+        scene.needsUpdate = YES;
+    }
+    else if ( [notification.name isEqualToString:MTTextViewControllerDidGetPotentialPassageClickNotification] ) {
         // the user alt clicked a link within the text view, we need to try and go to it
 		if ( [notification userInfo][@"index"] ) {
 			NSString * passageName = [notification userInfo][@"index"];

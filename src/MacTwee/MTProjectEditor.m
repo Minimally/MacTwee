@@ -89,6 +89,12 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
     }
 }
 
+- (void)updateCurrentProject {
+    if (self.currentProject == nil) { return; }
+    for (MTPassage * passage in self.currentProject.passages) {
+        [passage populateLinks];
+    }
+}
 
 #pragma mark - Private
 

@@ -161,7 +161,7 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
         
         NSRange substringRange = result.range;
         NSString * substring = [passageString substringWithRange:substringRange];
-        NSLog(@"%s 'Line:%d' - substring:'%@'", __func__, __LINE__, substring);
+        //NSLog(@"%s 'Line:%d' - substring:'%@'", __func__, __LINE__, substring);
         
         // we have to extract title text from the substring, this is different for links vs display
         NSString * titleInSubstring = [NSString string];
@@ -186,7 +186,7 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
             }
         }
         
-        NSLog(@"%s 'Line:%d' - titleInSubstring:'%@'", __func__, __LINE__, titleInSubstring);
+        //NSLog(@"%s 'Line:%d' - titleInSubstring:'%@'", __func__, __LINE__, titleInSubstring);
         
         // perform a search by passage name from the titleInSubstring
         NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(title == %@) AND (project == %@)", titleInSubstring, [MTProjectEditor sharedMTProjectEditor].currentProject];

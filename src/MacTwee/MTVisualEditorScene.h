@@ -10,4 +10,6 @@
 
 @interface MTVisualEditorScene : SKScene
 
+@property BOOL needsUpdate;
+
 @end

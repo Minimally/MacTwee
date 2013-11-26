@@ -52,5 +52,8 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
 - (void)setupCurrentProject:(MTProject *)project;
 
+/// updates the passage links in the current project
+
+- (void)updateCurrentProject;
 
 @end

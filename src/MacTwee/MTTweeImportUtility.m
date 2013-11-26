@@ -172,6 +172,9 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 	NSRunAlertPanel(title, msgFormat, defaultButton, nil, nil);
 	//[self operationResultWithTitle:@"Error" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
 	//[self operationResultWithTitle:@"Success" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
+    if ([title isEqualToString:@"Success"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:MTTweeImporUtilityDidImportFile object:self];
+    }
 }
 
 

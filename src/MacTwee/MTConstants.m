@@ -16,7 +16,7 @@
 NSString * const MTPrimaryWindowControllerWillOpenViewNotification = @"MTPrimaryWindowControllerWillOpenViewNotification";
 NSString * const MTTextViewControllerDidGetPotentialPassageClickNotification = @"altClickLink";
 NSString * const MTAppDelegateDidGetMenuClickNotification = @"menuButtonClick";
-
+NSString * const MTTweeImporUtilityDidImportFile = @"importTweeFile";
 
 #pragma mark - paths
 
