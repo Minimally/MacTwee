@@ -83,8 +83,8 @@ NSString * const exportMessage = @"Choose export destination";
 	NSString * string = @":: ";
 	NSString * tags = @"";
 	
-	if (passage.tags != nil && passage.tags.length > 0)
-		tags = [NSString stringWithFormat:@"[%@]", passage.tags];
+	if (passage.passageTags != nil && passage.passageTags.length > 0)
+		tags = [NSString stringWithFormat:@"[%@]", passage.passageTags];
 	
 	string = [string stringByAppendingFormat:@"%@ %@\n%@\n\n", passage.title, tags, passage.text];
 	

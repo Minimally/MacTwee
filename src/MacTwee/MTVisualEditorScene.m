@@ -285,7 +285,7 @@ static double kLabelDepth = 11;
                                   );
              */
             
-            //[rootNode addChild:[self debugSpriteNode:CGPointMake(startPointX, startPointY) color:[NSColor blueColor]]];
+            [rootNode addChild:[self debugSpriteNode:CGPointMake(startPointX, startPointY) color:[NSColor greenColor]]];
             [rootNode addChild:[self debugSpriteNode:CGPointMake(endPointX, endPointY) color:[NSColor blueColor]]];
             
             line.path = path;

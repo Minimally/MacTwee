@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="passages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Passage" inverseName="groups" inverseEntity="Passage" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="groups" inverseEntity="Project" syncable="YES"/>
+    </entity>
     <entity name="Passage" representedClassName="MTPassage" syncable="YES">
         <attribute name="buildable" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="locked" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="passageTags" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" defaultValueString="New Passage" syncable="YES"/>
         <attribute name="xPosition" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="yPosition" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="passages" inverseEntity="Group" syncable="YES"/>
         <relationship name="incoming" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Passage" inverseName="outgoing" inverseEntity="Passage" syncable="YES"/>
         <relationship name="outgoing" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Passage" inverseName="incoming" inverseEntity="Passage" syncable="YES"/>
         <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="passages" inverseEntity="Project" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="passages" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Project" representedClassName="MTProject" syncable="YES">
         <attribute name="buildDirectory" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,16 +31,26 @@
         <attribute name="storyAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="storyFormat" optional="YES" attributeType="String" defaultValueString="sugarcane" syncable="YES"/>
         <attribute name="storyTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="project" inverseEntity="Group" syncable="YES"/>
         <relationship name="passages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Passage" inverseName="project" inverseEntity="Passage" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="project" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Snippet" representedClassName="MTSnippet" syncable="YES">
         <attribute name="owner" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="passages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Passage" inverseName="tags" inverseEntity="Passage" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="tags" inverseEntity="Project" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Passage" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Project" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Snippet" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Group" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Tag" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

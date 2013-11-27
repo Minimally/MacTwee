@@ -31,7 +31,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 	MTPassage * passage = (MTPassage *)[NSEntityDescription insertNewObjectForEntityForName:@"Passage"
 																	 inManagedObjectContext:[MTCoreDataManager sharedMTCoreDataManager].managedObjectContext];
 	passage.title = title;
-	passage.tags = tags;
+	passage.passageTags = tags;
 	passage.text = text;
 	passage.project = self.currentProject;
     return passage;

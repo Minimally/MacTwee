@@ -22,14 +22,17 @@
 		C62A040317CA8C9E00B89A34 /* MTTweeBuildUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A040217CA8C9E00B89A34 /* MTTweeBuildUtility.m */; };
 		C63E6C6C17CF046200FCEDEB /* MTPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E6C6A17CF046200FCEDEB /* MTPreferencesWindowController.m */; };
 		C63E6C6D17CF046200FCEDEB /* MTPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C63E6C6B17CF046200FCEDEB /* MTPreferencesView.xib */; };
-		C643DDD217D0F72800F84002 /* MTProject.m in Sources */ = {isa = PBXBuildFile; fileRef = C643DDD117D0F72800F84002 /* MTProject.m */; };
 		C65EEE971840321E00CBA70B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65EEE961840321E00CBA70B /* XCTest.framework */; };
 		C65EEE9D1840321E00CBA70B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C65EEE9B1840321E00CBA70B /* InfoPlist.strings */; };
 		C65EEEA81840324E00CBA70B /* MTProjectEditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C65EEEA71840324E00CBA70B /* MTProjectEditorTests.m */; };
 		C6746FA917C977B00054BCD6 /* MTPreferencesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6746FA817C977B00054BCD6 /* MTPreferencesManager.m */; };
 		C68A8A531841CF2900DD94B7 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68A8A521841CF2900DD94B7 /* SpriteKit.framework */; };
 		C68A8A561841CF8900DD94B7 /* MTVisualEditorScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C68A8A551841CF8900DD94B7 /* MTVisualEditorScene.m */; };
-		C68A8A5D1841D97500DD94B7 /* MTPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = C68A8A5C1841D97500DD94B7 /* MTPassage.m */; };
+		C68D4909184565C500F18EF4 /* MTSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = C68D4908184565C500F18EF4 /* MTSnippet.m */; };
+		C68D490C184565C600F18EF4 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = C68D490B184565C600F18EF4 /* Group.m */; };
+		C68D490F184565C600F18EF4 /* MTProject.m in Sources */ = {isa = PBXBuildFile; fileRef = C68D490E184565C600F18EF4 /* MTProject.m */; };
+		C68D4912184565C600F18EF4 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = C68D4911184565C600F18EF4 /* Tag.m */; };
+		C68D4915184565C600F18EF4 /* MTPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = C68D4914184565C600F18EF4 /* MTPassage.m */; };
 		C69DA20617C83B730007BD17 /* MTProjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA20517C83B730007BD17 /* MTProjectEditor.m */; };
 		C69DA21017C851CE0007BD17 /* MTProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA20E17C851CE0007BD17 /* MTProjectViewController.m */; };
 		C69DA21117C851CE0007BD17 /* MTProjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C69DA20F17C851CE0007BD17 /* MTProjectView.xib */; };
@@ -37,7 +40,6 @@
 		C69DA21717C863520007BD17 /* MTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21617C863520007BD17 /* MTConstants.m */; };
 		C69DA21F17C87BA70007BD17 /* NSString+PDRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */; };
 		C6B7923F17CC598300C0ADD3 /* MTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7923E17CC598300C0ADD3 /* MTTextView.m */; };
-		C6B94A5B17CDBD4B00FC53E6 /* MTSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B94A5A17CDBD4B00FC53E6 /* MTSnippet.m */; };
 		C6DF46081844247D00DD9297 /* mactwee.icns in Resources */ = {isa = PBXBuildFile; fileRef = C6DF46071844247D00DD9297 /* mactwee.icns */; };
 		C6E90DC217C8143C0049ED37 /* MTPrimaryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC017C8143C0049ED37 /* MTPrimaryWindowController.m */; };
 		C6E90DC317C8143C0049ED37 /* MTPrimaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E90DC117C8143C0049ED37 /* MTPrimaryWindow.xib */; };
@@ -87,8 +89,6 @@
 		C63E6C6917CF046200FCEDEB /* MTPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPreferencesWindowController.h; sourceTree = "<group>"; };
 		C63E6C6A17CF046200FCEDEB /* MTPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPreferencesWindowController.m; sourceTree = "<group>"; };
 		C63E6C6B17CF046200FCEDEB /* MTPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTPreferencesView.xib; sourceTree = "<group>"; };
-		C643DDD017D0F72800F84002 /* MTProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProject.h; sourceTree = "<group>"; };
-		C643DDD117D0F72800F84002 /* MTProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProject.m; sourceTree = "<group>"; };
 		C65EEE951840321E00CBA70B /* MacTwee Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MacTwee Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C65EEE961840321E00CBA70B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C65EEE9A1840321E00CBA70B /* MacTwee Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacTwee Tests-Info.plist"; sourceTree = "<group>"; };
@@ -100,8 +100,16 @@
 		C68A8A521841CF2900DD94B7 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		C68A8A541841CF8900DD94B7 /* MTVisualEditorScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTVisualEditorScene.h; sourceTree = "<group>"; };
 		C68A8A551841CF8900DD94B7 /* MTVisualEditorScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTVisualEditorScene.m; sourceTree = "<group>"; };
-		C68A8A5B1841D97400DD94B7 /* MTPassage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPassage.h; sourceTree = "<group>"; };
-		C68A8A5C1841D97500DD94B7 /* MTPassage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPassage.m; sourceTree = "<group>"; };
+		C68D4907184565C500F18EF4 /* MTSnippet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSnippet.h; sourceTree = "<group>"; };
+		C68D4908184565C500F18EF4 /* MTSnippet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSnippet.m; sourceTree = "<group>"; };
+		C68D490A184565C600F18EF4 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		C68D490B184565C600F18EF4 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		C68D490D184565C600F18EF4 /* MTProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProject.h; sourceTree = "<group>"; };
+		C68D490E184565C600F18EF4 /* MTProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProject.m; sourceTree = "<group>"; };
+		C68D4910184565C600F18EF4 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		C68D4911184565C600F18EF4 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		C68D4913184565C600F18EF4 /* MTPassage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPassage.h; sourceTree = "<group>"; };
+		C68D4914184565C600F18EF4 /* MTPassage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPassage.m; sourceTree = "<group>"; };
 		C69DA20417C83B730007BD17 /* MTProjectEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProjectEditor.h; sourceTree = "<group>"; };
 		C69DA20517C83B730007BD17 /* MTProjectEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProjectEditor.m; sourceTree = "<group>"; };
 		C69DA20D17C851CE0007BD17 /* MTProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProjectViewController.h; sourceTree = "<group>"; };
@@ -115,8 +123,6 @@
 		C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PDRegex.m"; path = "RegexOnNSString/NSString+PDRegex.m"; sourceTree = "<group>"; };
 		C6B7923D17CC598300C0ADD3 /* MTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTextView.h; sourceTree = "<group>"; };
 		C6B7923E17CC598300C0ADD3 /* MTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTextView.m; sourceTree = "<group>"; };
-		C6B94A5917CDBD4B00FC53E6 /* MTSnippet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSnippet.h; sourceTree = "<group>"; };
-		C6B94A5A17CDBD4B00FC53E6 /* MTSnippet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSnippet.m; sourceTree = "<group>"; };
 		C6DF46071844247D00DD9297 /* mactwee.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = mactwee.icns; path = ../mactwee.icns; sourceTree = "<group>"; };
 		C6E90DBF17C8143C0049ED37 /* MTPrimaryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPrimaryWindowController.h; sourceTree = "<group>"; };
 		C6E90DC017C8143C0049ED37 /* MTPrimaryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPrimaryWindowController.m; sourceTree = "<group>"; };
@@ -264,14 +270,18 @@
 			isa = PBXGroup;
 			children = (
 				C607043C17C5CE0F0076E919 /* MacTwee.xcdatamodeld */,
+				C68D4913184565C600F18EF4 /* MTPassage.h */,
+				C68D4914184565C600F18EF4 /* MTPassage.m */,
+				C68D4910184565C600F18EF4 /* Tag.h */,
+				C68D4911184565C600F18EF4 /* Tag.m */,
+				C68D490D184565C600F18EF4 /* MTProject.h */,
+				C68D490E184565C600F18EF4 /* MTProject.m */,
+				C68D490A184565C600F18EF4 /* Group.h */,
+				C68D490B184565C600F18EF4 /* Group.m */,
+				C68D4907184565C500F18EF4 /* MTSnippet.h */,
+				C68D4908184565C500F18EF4 /* MTSnippet.m */,
 				C607045B17C5CEFC0076E919 /* MTCoreDataManager.h */,
 				C607045C17C5CEFC0076E919 /* MTCoreDataManager.m */,
-				C68A8A5B1841D97400DD94B7 /* MTPassage.h */,
-				C68A8A5C1841D97500DD94B7 /* MTPassage.m */,
-				C643DDD017D0F72800F84002 /* MTProject.h */,
-				C643DDD117D0F72800F84002 /* MTProject.m */,
-				C6B94A5917CDBD4B00FC53E6 /* MTSnippet.h */,
-				C6B94A5A17CDBD4B00FC53E6 /* MTSnippet.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -476,22 +486,24 @@
 				C6E90DC217C8143C0049ED37 /* MTPrimaryWindowController.m in Sources */,
 				C6E90DC817C82A370049ED37 /* MTHomeViewController.m in Sources */,
 				C69DA20617C83B730007BD17 /* MTProjectEditor.m in Sources */,
+				C68D4909184565C500F18EF4 /* MTSnippet.m in Sources */,
 				C69DA21017C851CE0007BD17 /* MTProjectViewController.m in Sources */,
 				C69DA21417C855AD0007BD17 /* MTTweeFileTools.m in Sources */,
 				C69DA21717C863520007BD17 /* MTConstants.m in Sources */,
 				C69DA21F17C87BA70007BD17 /* NSString+PDRegex.m in Sources */,
 				C6746FA917C977B00054BCD6 /* MTPreferencesManager.m in Sources */,
+				C68D4915184565C600F18EF4 /* MTPassage.m in Sources */,
 				C62A03FD17CA8C7E00B89A34 /* MTTweeImportUtility.m in Sources */,
+				C68D4912184565C600F18EF4 /* Tag.m in Sources */,
 				C62A040017CA8C8E00B89A34 /* MTTweeExportUtility.m in Sources */,
+				C68D490C184565C600F18EF4 /* Group.m in Sources */,
 				C68A8A561841CF8900DD94B7 /* MTVisualEditorScene.m in Sources */,
 				C62A040317CA8C9E00B89A34 /* MTTweeBuildUtility.m in Sources */,
 				C60AFBB217CBABF100C6CA29 /* MTTextViewController.m in Sources */,
-				C68A8A5D1841D97500DD94B7 /* MTPassage.m in Sources */,
 				C6B7923F17CC598300C0ADD3 /* MTTextView.m in Sources */,
 				C61B68021842741A004C7E9C /* MTMouseSKView.m in Sources */,
-				C6B94A5B17CDBD4B00FC53E6 /* MTSnippet.m in Sources */,
+				C68D490F184565C600F18EF4 /* MTProject.m in Sources */,
 				C63E6C6C17CF046200FCEDEB /* MTPreferencesWindowController.m in Sources */,
-				C643DDD217D0F72800F84002 /* MTProject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

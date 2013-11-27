@@ -1,8 +1,9 @@
 //
+//  MTSnippet.h
 //  MacTwee
 //
-//  Created by Chris Braithwaite on 11/23/13.
-//  Copyright 2013 Chris Braithwaite. Released under MIT License.
+//  Created by Chris Braithwaite on 11/26/13.
+//  Copyright (c) 2013 MacTwee. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

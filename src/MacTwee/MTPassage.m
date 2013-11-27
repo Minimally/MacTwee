@@ -2,13 +2,15 @@
 //  MTPassage.m
 //  MacTwee
 //
-//  Created by Chris Braithwaite on 11/24/13.
+//  Created by Chris Braithwaite on 11/26/13.
 //  Copyright (c) 2013 MacTwee. All rights reserved.
 //
 
 #import "MTPassage.h"
+#import "Group.h"
 #import "MTPassage.h"
 #import "MTProject.h"
+#import "Tag.h"
 #import "MTCoreDataManager.h"
 #import "NSString+PDRegex.h"
 
@@ -18,7 +20,7 @@
 @dynamic buildable;
 @dynamic lastModifiedDate;
 @dynamic locked;
-@dynamic tags;
+@dynamic passageTags;
 @dynamic text;
 @dynamic title;
 @dynamic xPosition;
@@ -26,7 +28,8 @@
 @dynamic incoming;
 @dynamic outgoing;
 @dynamic project;
-
+@dynamic groups;
+@dynamic tags;
 
 - (void)populateLinks {
     if (self.text.length == 0) { return; }
