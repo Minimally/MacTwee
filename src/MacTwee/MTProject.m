@@ -3,7 +3,7 @@
 //  MacTwee
 //
 //  Created by Chris Braithwaite on 11/26/13.
-//  Copyright (c) 2013 MacTwee. All rights reserved.
+//  Copyright (c) 2013 MacTwee. Released under MIT License.
 //
 
 #import "MTProject.h"

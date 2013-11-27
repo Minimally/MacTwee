@@ -22,6 +22,10 @@ typedef enum {
 
 #pragma mark - notifications
 
+/// user selected a name for the build
+extern NSString * const MTTweeBuildUtilityDidGetProjectBuildName;
+/// user selected a place to save a built file
+extern NSString * const MTTweeBuildUtilityDidGetProjectBuildDestination;
 extern NSString * const MTPrimaryWindowControllerWillOpenViewNotification;
 
 /// triggered when user alt clicks a link in the text view

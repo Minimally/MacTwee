@@ -23,43 +23,29 @@ MTTweeBuildUtility * buildUtility;
 #pragma mark - Public
 
 - (void)importTweeFile {
-	if (importUtility == nil)
-		importUtility = [[MTTweeImportUtility alloc]init];
-	
+	if (importUtility == nil) importUtility = [[MTTweeImportUtility alloc]init];
 	[importUtility importTweeFile];
 }
 
 - (NSURL *)exportTweeFile {
-	if (exportUtility == nil)
-		exportUtility = [[MTTweeExportUtility alloc]init];
-	
+	if (exportUtility == nil) exportUtility = [[MTTweeExportUtility alloc]init];
 	return [exportUtility exportTweeFile];
 }
 
 - (void)buildStory {
-	//NSLog(@"%s 'Line:%d' ''", __func__, __LINE__);
-	if (exportUtility == nil)
-		exportUtility = [[MTTweeExportUtility alloc] init];
-	if (buildUtility == nil)
-		buildUtility = [[MTTweeBuildUtility alloc] init];
-	
-	NSURL * url = [exportUtility exportTempTweeFile];	
-	[buildUtility buildHtmlFileWithSource:url];
+	[self buildStory:NO];
 }
 
 - (void)buildAndRunStory {
-	//NSLog(@"%s 'Line:%d' ''", __func__, __LINE__);
-	[self buildStory];
+	[self buildStory:YES];
+    
+	NSString * buildDirectory = [MTProjectEditor sharedMTProjectEditor].currentProject.buildDirectory;
 	
-	NSString * last = [MTProjectEditor sharedMTProjectEditor].currentProject.buildDirectory;
-	
-	NSAssert(last != nil, @"last path should not be nil");
-	
-	if (last != nil) {
-		NSFileManager * manager = [[NSFileManager alloc] init];
-		if ( [manager fileExistsAtPath:last] ) {
-			NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-			[workspace openFile:last];
+    if (buildDirectory != nil) {
+		NSFileManager * manager = [[NSFileManager alloc]init];
+		if ( [manager fileExistsAtPath:buildDirectory] ) {
+			NSWorkspace * workspace = [NSWorkspace sharedWorkspace];
+			[workspace openFile:buildDirectory];
 		}
 	}
 }
@@ -67,10 +53,17 @@ MTTweeBuildUtility * buildUtility;
 
 #pragma mark - Private
 
-- (void)operationResultWithTitle:(NSString *)title msgFormat:(NSString *)msgFormat defaultButton:(NSString *)defaultButton {
-	NSRunAlertPanel(title, msgFormat, defaultButton, nil, nil);
-	//[self operationResultWithTitle:@"Error" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
-	//[self operationResultWithTitle:@"Success" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
+/// does the actual build call with values save in MTProjectEditor @param quick YES=no user prompts if possible
+- (void)buildStory:(BOOL)quick {
+	if (exportUtility == nil) exportUtility = [[MTTweeExportUtility alloc]init];
+	NSURL * url = [exportUtility exportTempTweeFile];
+    
+	if (buildUtility == nil) buildUtility = [[MTTweeBuildUtility alloc]init];
+	[buildUtility buildHtmlFileWithSource:url
+                           buildDirectory:[MTProjectEditor sharedMTProjectEditor].currentProject.buildDirectory
+                            buildFileName:[MTProjectEditor sharedMTProjectEditor].currentProject.buildName
+                              storyFormat:[MTProjectEditor sharedMTProjectEditor].currentProject.storyFormat
+                               quickBuild:quick];
 }
 
 

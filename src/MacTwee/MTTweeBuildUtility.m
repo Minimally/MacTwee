@@ -8,8 +8,25 @@
 #import "MTTweeBuildUtility.h"
 #import "NSString+PDRegex.h"
 #import "MTPreferencesManager.h"
-#import "MTProjectEditor.h"
 #import "MTProject.h"
+#import "MTDialogues.h"
+
+
+@interface MTTweeBuildUtility ()
+
+/// allows a forcing prompt for save destination after build if set to true & should we display a success modal
+@property BOOL quickBuild;
+
+/// build destination
+@property (strong) NSString * buildDirectory;
+
+/// build destination
+@property (strong) NSString * buildFileName;
+
+/// build destination
+@property (strong) NSString * storyFormat;
+
+@end
 
 
 @implementation MTTweeBuildUtility
@@ -20,34 +37,50 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 
 #pragma mark - Public
 
-- (void)buildHtmlFileWithSource:(NSURL *)url {
-	[self buildHtmlFileWithSource:url andHeader:@"sugarcane"];
-}
-
-- (void)buildHtmlFileWithSource:(NSURL *)url andHeader:(NSString *)header {
-	NSAssert(url != nil, @"url is nil");
-	NSAssert((header != nil || header.length > 0), @"string is nil or empty");
+- (BOOL)buildHtmlFileWithSource:(NSURL *)sourceFileURL
+                 buildDirectory:(NSString *)buildDirectory
+                  buildFileName:(NSString *)buildFileName
+                    storyFormat:(NSString *)storyFormat
+                     quickBuild:(BOOL)quickBuild {
+    BOOL result = YES;
 	
-	if (url == nil) {
-		[self operationResultWithTitle:@"Error" msgFormat:@"Issue with html build destination" defaultButton:@"OK"];
-		return;
+	if (sourceFileURL.path.length == 0) {
+		[self operationResultWithTitle:@"Error" msgFormat:@"Empty Source File" defaultButton:@"OK"];
+		result = NO;
 	}
 	
-	if (header == nil || header.length == 0) {
-		[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"Issue with story format"] defaultButton:@"OK"];
-		return;
+	if (buildDirectory.length == 0) {
+		[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"Empty Build destination"] defaultButton:@"OK"];
+		result = NO;
+	} else {
+        self.buildDirectory = buildDirectory;
+    }
+	
+	if (buildFileName.length == 0) {
+		[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"Empty build filename"] defaultButton:@"OK"];
+		result = NO;
+	} else {
+        self.buildFileName = buildFileName;
+    }
+	
+	if (result) {
+		self.storyFormat = storyFormat;
+        [self checkStoryFormat];
+        
+        self.quickBuild = quickBuild;
+        
+        [self buildTweeFileAtPath:sourceFileURL.path];
 	}
 	
-	[self buildTweeFileAtPath:[url path] andHeader:header];
+    return result;
 }
 
 
 #pragma mark - Private
 
-- (void)buildTweeFileAtPath:(NSString *)path andHeader:(NSString *)header {
-	NSLog(@"%s 'Line:%d' - path:'%@' header:'%@'", __func__, __LINE__, path, header);
+- (void)buildTweeFileAtPath:(NSString *)path {
+	NSLog(@"%s 'Line:%d' - path:'%@' header:'%@'", __func__, __LINE__, path, self.storyFormat);
 	NSAssert(path != nil, @"url is nil");
-	NSAssert((header != nil || header.length > 0), @"string is nil or empty");
 	
 	NSString * locationOfTwee = [self getTwee];
 	NSAssert((locationOfTwee != nil || locationOfTwee.length > 0), @"locationOfTwee is nil or empty");
@@ -63,7 +96,7 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 	NSTask *task;
 	task = [[NSTask alloc] init];
 	task.launchPath = locationOfTwee; // where the process exists
-	task.arguments =  @[ @"-t", header, path, @">", @"irrelevant.html" ];
+	task.arguments =  @[ @"-t", self.storyFormat, path, @">", @"irrelevant.html" ];
 	task.standardOutput = outputPipe;
 	task.standardInput = [NSPipe pipe];
 	
@@ -76,14 +109,9 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 }
 
 - (void)buildOperationDone:(NSNotification *)notification {
-	//NSLog(@"%s 'Line:%d' - notification:'%@'", __func__, __LINE__, notification);
-	
 	NSAssert(notification != nil, @"notification is nil");
 	
-	NSString *compiledHTMLString = [[NSString alloc] initWithData:[notification userInfo][NSFileHandleNotificationDataItem] encoding:NSUTF8StringEncoding];
-	
-	//NSAssert((compiledHTMLString != nil), @"compiledHTMLString is nil");
-	//NSAssert((compiledHTMLString.length > 0), @"compiledHTMLString is empty");
+	NSString * compiledHTMLString = [[NSString alloc] initWithData:[notification userInfo][NSFileHandleNotificationDataItem] encoding:NSUTF8StringEncoding];
 	
 	if ( compiledHTMLString == nil || compiledHTMLString.length == 0 ) {
 		[self operationResultWithTitle:@"Error" msgFormat:@"Build operation returned nil" defaultButton:@"OK"];
@@ -95,81 +123,95 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 		}
 	}
 	
-	
-	
 	[[NSNotificationCenter defaultCenter] removeObserver:self
 													name:NSFileHandleReadToEndOfFileCompletionNotification
 												  object:[notification object]];
 }
 
-- (void)htmlFileWithBuildResult:(NSString *)resultString {
-	NSAssert((resultString != nil || resultString.length > 0), @"string is nil or empty");
+- (void)htmlFileWithBuildResult:(NSString *)compiledHTMLString {
+	NSAssert((compiledHTMLString != nil || compiledHTMLString.length > 0), @"string is nil or empty");
+	NSURL * fileURL;
+    
+    if (!self.quickBuild) { // user must select save destination
+        fileURL = [self getSaveDestination];
+    }
+    else { // try to get the saved project build destination
+        fileURL = [NSURL fileURLWithPath:self.buildDirectory];
+        
+        if (fileURL == nil) {
+            fileURL = [self getSaveDestination];
+        }
+    }
 	
-	NSURL *fileURL = [self getSaveDestination];
 	
 	if( fileURL != nil) {
-		if ([resultString writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
-			[MTProjectEditor sharedMTProjectEditor].currentProject.buildDirectory = fileURL.path;
-		} else {
+		if ([compiledHTMLString writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
+			//TODO:[MTProjectEditor sharedMTProjectEditor].currentProject.buildDirectory = fileURL.path;
+            NSDictionary * dict = @{ @"index":fileURL.path };
+            [[NSNotificationCenter defaultCenter] postNotificationName:MTTweeBuildUtilityDidGetProjectBuildDestination
+                                                                object:self
+                                                              userInfo:dict];
+		}
+        else {
 			[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"issue writing html file string to url '%@'", fileURL] defaultButton:@"OK"];
 		}
 	}
+    else {
+        [self operationResultWithTitle:@"Error"
+                             msgFormat:[NSString stringWithFormat:@"issue with save destination '%@'", self.buildDirectory]
+                         defaultButton:@"OK"];
+    }
 }
 
 
 #pragma mark - User Dialogues & Results
 
 - (NSString *)getTwee {
-	NSString * result;NSURL * urlCheck;
+	NSString * result;
+    NSURL * urlToCheck;
 	
 	// try user defaults
-	result = [[NSUserDefaults standardUserDefaults] stringForKey:kPathToTwee]; //NSLog(@"%s 'Line:%d' - result:'%@'", __func__, __LINE__, result);
-	urlCheck = [NSURL fileURLWithPath:result isDirectory:NO];
+	result = [[NSUserDefaults standardUserDefaults] stringForKey:kPathToTwee];
+	urlToCheck = [NSURL fileURLWithPath:result isDirectory:NO];
 	
-	if ( ! [[urlCheck lastPathComponent] isEqualToString:@"twee"] ) {
-		// ask user
-		urlCheck = [self runPanelForTweeDirectory];
-		if ( ! [[urlCheck lastPathComponent] isEqualToString:@"twee"] ) {
+	if ( ![[urlToCheck lastPathComponent] isEqualToString:@"twee"] ) {
+		// prompt user
+		urlToCheck = [self runPanelForTweeDirectory];
+		if ( ![[urlToCheck lastPathComponent] isEqualToString:@"twee"] ) {
+            // user failed us
 			result = nil;
-		} else {
-			result = [urlCheck path]; //NSLog(@"%s 'Line:%d' - result:'%@'", __func__, __LINE__, result);
+		}
+        else {
+            // user got it
+			result = [urlToCheck path];
 		}
 	}
 	
 	return result;
 }
 
-- (NSURL *)runPanelForTweeDirectory {// gets the user to specify a directory for twee ? this workflow kinda sucks
-	NSURL * result;
+// gets the user to specify a directory for twee
+- (NSURL *)runPanelForTweeDirectory {
+	NSURL * result = [MTDialogues openPanelForFileWithMessage:promptTwee];
 	
-	NSOpenPanel* openPanel = [NSOpenPanel openPanel];
-	openPanel.allowsMultipleSelection = NO;
-	openPanel.message = promptTwee;
-	openPanel.canChooseFiles = YES;
-	openPanel.canChooseDirectories = NO;
-	openPanel.resolvesAliases = YES;
-	
-	if ( ([openPanel runModal] == NSOKButton) && ([[openPanel URL] isFileURL]) ) {
-		result = openPanel.URLs[0];
+	if ( result != nil ) {
 		[[NSUserDefaults standardUserDefaults] setValue:[result path] forKey:kPathToTwee];
 	} else {
-		NSLog(@"%s 'Line:%d' - Operation Cancled by user", __func__, __LINE__);
+		NSLog(@"%s 'Line:%d' - Operation Cancled by user or failed", __func__, __LINE__);
 	}
 	
 	return result;
 }
 
 - (NSURL *)getSaveDestination {
-	NSURL * result;
-	
-	NSSavePanel *savepanel = [NSSavePanel savePanel];
-	savepanel.canCreateDirectories = YES;
-	savepanel.nameFieldStringValue = [MTProjectEditor sharedMTProjectEditor].currentProject.buildName;
-	savepanel.message = promptBuild;
-	
-	if( [savepanel runModal] == NSFileHandlingPanelOKButton) {
-		result = savepanel.URL;
-		[MTProjectEditor sharedMTProjectEditor].currentProject.buildName = [result lastPathComponent];
+	NSURL * result = [MTDialogues savePanelForDirectory:promptBuild fileName:self.buildFileName];
+    
+	if( result != nil ) {
+		//TODO:[MTProjectEditor sharedMTProjectEditor].currentProject.buildName = [result lastPathComponent];
+        NSDictionary * dict = @{ @"index":result.lastPathComponent };
+        [[NSNotificationCenter defaultCenter] postNotificationName:MTTweeBuildUtilityDidGetProjectBuildName
+                                                            object:self
+                                                          userInfo:dict];
 	} else {
 		[self operationResultWithTitle:@"Error" msgFormat:@"Build Operation Canceled" defaultButton:@"OK"];
 	}
@@ -177,12 +219,11 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 	return result;
 }
 
-- (NSString *)getHeader {
-	NSString * result = [[MTProjectEditor sharedMTProjectEditor] getStoryFormat];
-	
-	if (result == nil || result.length == 0) {
-		result = @"sugarcane";
-	} else { // not checking the validity of header strings for now
+- (void)checkStoryFormat {
+	if (self.storyFormat == nil || self.storyFormat.length == 0) {
+		self.storyFormat = @"sugarcane";
+	}
+    else { // not checking the validity of header strings for now
 		/*
 		 NSURL * headerDirectory = [[MTPreferencesManager tweeDirectory] URLByDeletingLastPathComponent];
 		headerDirectory = [headerDirectory URLByAppendingPathComponent:@"targets"];
@@ -200,19 +241,31 @@ NSString * const promptTwee = @"Please select Twee terminal application";
 		}
 		 */
 	}
-	
-	return result;
-	
 }
 
+/*! Called when the operation is complete
+ Example: [self operationResultWithTitle:@"Error" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
+ Example: [self operationResultWithTitle:@"Success" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
+ */
 - (void)operationResultWithTitle:(NSString *)title msgFormat:(NSString *)msgFormat defaultButton:(NSString *)defaultButton {
 	NSLog(@"%s 'Line:%d' - msgFormat:'%@'", __func__, __LINE__, msgFormat);
 	NSAssert(title != nil, @"title is nil");
 	NSAssert(msgFormat != nil, @"msgFormat is nil");
 	NSAssert(defaultButton != nil, @"defaultButton is nil");
-	NSRunAlertPanel(title, msgFormat, defaultButton, nil, nil);
-	//[self operationResultWithTitle:@"Error" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
-	//[self operationResultWithTitle:@"Success" msgFormat:@"EXAMPLE" defaultButton:@"OK"];
+    
+    if ( [title isEqualToString:@"Success"] && !self.quickBuild ) {
+        
+    }
+    else {
+        NSRunAlertPanel(title, msgFormat, defaultButton, nil, nil);
+    }
+    
+    // clear values
+    self.quickBuild = YES;
+    self.quickBuild = YES;
+    self.buildDirectory = nil;
+    self.buildFileName = nil;
+    self.storyFormat = nil;
 }
 
 

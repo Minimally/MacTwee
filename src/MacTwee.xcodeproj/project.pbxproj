@@ -20,6 +20,7 @@
 		C62A03FD17CA8C7E00B89A34 /* MTTweeImportUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A03FC17CA8C7D00B89A34 /* MTTweeImportUtility.m */; };
 		C62A040017CA8C8E00B89A34 /* MTTweeExportUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A03FF17CA8C8E00B89A34 /* MTTweeExportUtility.m */; };
 		C62A040317CA8C9E00B89A34 /* MTTweeBuildUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A040217CA8C9E00B89A34 /* MTTweeBuildUtility.m */; };
+		C637F0A0184667D500051AB3 /* MTTweeBuildUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C637F09F184667D500051AB3 /* MTTweeBuildUtilityTests.m */; };
 		C63E6C6C17CF046200FCEDEB /* MTPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E6C6A17CF046200FCEDEB /* MTPreferencesWindowController.m */; };
 		C63E6C6D17CF046200FCEDEB /* MTPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C63E6C6B17CF046200FCEDEB /* MTPreferencesView.xib */; };
 		C65EEE971840321E00CBA70B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65EEE961840321E00CBA70B /* XCTest.framework */; };
@@ -40,6 +41,9 @@
 		C69DA21717C863520007BD17 /* MTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21617C863520007BD17 /* MTConstants.m */; };
 		C69DA21F17C87BA70007BD17 /* NSString+PDRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */; };
 		C6B7923F17CC598300C0ADD3 /* MTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7923E17CC598300C0ADD3 /* MTTextView.m */; };
+		C6BEB60718466B1A00DD6986 /* MTDialogues.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BEB60618466B1A00DD6986 /* MTDialogues.m */; };
+		C6BEB60A1846953900DD6986 /* sample.twee in Resources */ = {isa = PBXBuildFile; fileRef = C6BEB6091846953900DD6986 /* sample.twee */; };
+		C6BEB60B1846953900DD6986 /* sample.twee in Resources */ = {isa = PBXBuildFile; fileRef = C6BEB6091846953900DD6986 /* sample.twee */; };
 		C6DF46081844247D00DD9297 /* mactwee.icns in Resources */ = {isa = PBXBuildFile; fileRef = C6DF46071844247D00DD9297 /* mactwee.icns */; };
 		C6E90DC217C8143C0049ED37 /* MTPrimaryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E90DC017C8143C0049ED37 /* MTPrimaryWindowController.m */; };
 		C6E90DC317C8143C0049ED37 /* MTPrimaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E90DC117C8143C0049ED37 /* MTPrimaryWindow.xib */; };
@@ -86,6 +90,7 @@
 		C62A03FF17CA8C8E00B89A34 /* MTTweeExportUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTweeExportUtility.m; sourceTree = "<group>"; };
 		C62A040117CA8C9E00B89A34 /* MTTweeBuildUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTweeBuildUtility.h; sourceTree = "<group>"; };
 		C62A040217CA8C9E00B89A34 /* MTTweeBuildUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTweeBuildUtility.m; sourceTree = "<group>"; };
+		C637F09F184667D500051AB3 /* MTTweeBuildUtilityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTweeBuildUtilityTests.m; sourceTree = "<group>"; };
 		C63E6C6917CF046200FCEDEB /* MTPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPreferencesWindowController.h; sourceTree = "<group>"; };
 		C63E6C6A17CF046200FCEDEB /* MTPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPreferencesWindowController.m; sourceTree = "<group>"; };
 		C63E6C6B17CF046200FCEDEB /* MTPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTPreferencesView.xib; sourceTree = "<group>"; };
@@ -123,6 +128,9 @@
 		C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PDRegex.m"; path = "RegexOnNSString/NSString+PDRegex.m"; sourceTree = "<group>"; };
 		C6B7923D17CC598300C0ADD3 /* MTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTextView.h; sourceTree = "<group>"; };
 		C6B7923E17CC598300C0ADD3 /* MTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTextView.m; sourceTree = "<group>"; };
+		C6BEB60518466B1A00DD6986 /* MTDialogues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTDialogues.h; sourceTree = "<group>"; };
+		C6BEB60618466B1A00DD6986 /* MTDialogues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTDialogues.m; sourceTree = "<group>"; };
+		C6BEB6091846953900DD6986 /* sample.twee */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.twee; sourceTree = "<group>"; };
 		C6DF46071844247D00DD9297 /* mactwee.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = mactwee.icns; path = ../mactwee.icns; sourceTree = "<group>"; };
 		C6E90DBF17C8143C0049ED37 /* MTPrimaryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPrimaryWindowController.h; sourceTree = "<group>"; };
 		C6E90DC017C8143C0049ED37 /* MTPrimaryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPrimaryWindowController.m; sourceTree = "<group>"; };
@@ -327,6 +335,8 @@
 			children = (
 				C69DA21817C865270007BD17 /* MTConstants.h */,
 				C69DA21617C863520007BD17 /* MTConstants.m */,
+				C6BEB60518466B1A00DD6986 /* MTDialogues.h */,
+				C6BEB60618466B1A00DD6986 /* MTDialogues.m */,
 			);
 			name = Extras;
 			sourceTree = "<group>";
@@ -344,6 +354,7 @@
 		C65EEE991840321E00CBA70B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C6BEB6091846953900DD6986 /* sample.twee */,
 				C65EEE9A1840321E00CBA70B /* MacTwee Tests-Info.plist */,
 				C65EEE9B1840321E00CBA70B /* InfoPlist.strings */,
 				C65EEEA01840321E00CBA70B /* MacTwee Tests-Prefix.pch */,
@@ -373,6 +384,7 @@
 		C6E2055318414B0F00E97B04 /* Twee */ = {
 			isa = PBXGroup;
 			children = (
+				C637F09F184667D500051AB3 /* MTTweeBuildUtilityTests.m */,
 			);
 			name = Twee;
 			sourceTree = "<group>";
@@ -461,6 +473,7 @@
 				C6DF46081844247D00DD9297 /* mactwee.icns in Resources */,
 				C69DA21117C851CE0007BD17 /* MTProjectView.xib in Resources */,
 				C63E6C6D17CF046200FCEDEB /* MTPreferencesView.xib in Resources */,
+				C6BEB60A1846953900DD6986 /* sample.twee in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +481,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6BEB60B1846953900DD6986 /* sample.twee in Resources */,
 				C65EEE9D1840321E00CBA70B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +495,7 @@
 			files = (
 				C607043117C5CE0F0076E919 /* main.m in Sources */,
 				C607043817C5CE0F0076E919 /* MTAppDelegate.m in Sources */,
+				C6BEB60718466B1A00DD6986 /* MTDialogues.m in Sources */,
 				C607043E17C5CE0F0076E919 /* MacTwee.xcdatamodeld in Sources */,
 				C607045D17C5CEFC0076E919 /* MTCoreDataManager.m in Sources */,
 				C6E90DC217C8143C0049ED37 /* MTPrimaryWindowController.m in Sources */,
@@ -511,6 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C637F0A0184667D500051AB3 /* MTTweeBuildUtilityTests.m in Sources */,
 				C65EEEA81840324E00CBA70B /* MTProjectEditorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

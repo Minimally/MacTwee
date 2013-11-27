@@ -13,6 +13,8 @@
 
 #pragma mark - notifications
 
+NSString * const MTTweeBuildUtilityDidGetProjectBuildName = @"buildNameSet";
+NSString * const MTTweeBuildUtilityDidGetProjectBuildDestination = @"buildDestinationSet";
 NSString * const MTPrimaryWindowControllerWillOpenViewNotification = @"MTPrimaryWindowControllerWillOpenViewNotification";
 NSString * const MTTextViewControllerDidGetPotentialPassageClickNotification = @"altClickLink";
 NSString * const MTAppDelegateDidGetMenuClickNotification = @"menuButtonClick";
