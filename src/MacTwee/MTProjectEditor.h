@@ -28,6 +28,10 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
 - (MTPassage *)createPassageWithTitle:(NSString *)title andTags:(NSString *)tags andText:(NSString *)text;
 
+/// adds a new customized passage to the currentProject
+
+- (MTPassage *)createPassageAtXPos:(NSNumber *)xPos yPos:(NSNumber *)yPos;
+
 /// @return the saved story format of the currentProject if any
 
 - (NSString *)getStoryFormat;

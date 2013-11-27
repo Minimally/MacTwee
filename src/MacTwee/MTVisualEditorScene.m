@@ -141,6 +141,22 @@ static double kLabelDepth = 11;
 - (void)rightMouseDown:(NSEvent *)theEvent {
     [super rightMouseDown:theEvent];
     //NSLog(@"%d | %s - ", __LINE__, __func__);
+    
+    CGPoint location = [theEvent locationInNode:rootNode];
+    SKNode * hitNode = [self nodeAtPoint:location];
+    
+    if ([hitNode isKindOfClass:[SKSpriteNode class]] ||
+        [hitNode isKindOfClass:[SKLabelNode class]] ||
+        [hitNode isKindOfClass:[SKShapeNode class]] ) {
+        NSLog(@"%d | %s - hitnode:'%@'", __LINE__, __func__, hitNode);
+        return;
+    }
+    
+    //NSLog(@"%d | %s - create passage at this point", __LINE__, __func__);
+    
+    [MTProjectEditor sharedMTProjectEditor].currentPassage = [[MTProjectEditor sharedMTProjectEditor] createPassageAtXPos:[NSNumber numberWithDouble:location.x] yPos:[NSNumber numberWithDouble:location.y]];
+    
+    self.needsUpdate = YES;    
 }
 
 - (void)scrollWheel:(NSEvent *)event {

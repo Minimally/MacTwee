@@ -28,7 +28,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="243" height="600"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <tabView initialItem="oej-aq-tzd" translatesAutoresizingMaskIntoConstraints="NO" id="faJ-e1-G7G">
+                                <tabView initialItem="mAB-xP-4Nb" translatesAutoresizingMaskIntoConstraints="NO" id="faJ-e1-G7G">
                                     <rect key="frame" x="5" y="0.0" width="233" height="596"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -213,7 +213,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="remove:" target="35" id="73"/>
+                                                            <action selector="deletePassage:" target="-2" id="seM-XU-pTU"/>
                                                         </connections>
                                                     </button>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nPf-kK-tfy">
@@ -299,7 +299,7 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LtP-KA-O3E">
                                             <rect key="frame" x="18" y="563" width="542" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="cio-CT-sbw">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Label" id="cio-CT-sbw">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

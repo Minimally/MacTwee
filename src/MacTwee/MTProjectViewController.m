@@ -57,6 +57,17 @@
 }
 
 
+#pragma mark - IBAction
+
+- (IBAction)deletePassage:(id)sender {
+    MTPassage * passage = [MTProjectEditor sharedMTProjectEditor].currentPassage;
+    if ( passage != nil ) {
+        [[MTCoreDataManager sharedMTCoreDataManager].managedObjectContext deleteObject:passage];
+        [MTProjectEditor sharedMTProjectEditor].currentPassage = nil;
+    }
+}
+
+
 #pragma mark - Private
 
 - (void)updateSelectedPassage {
@@ -101,6 +112,4 @@
         }
     }
 }
-
-
 @end

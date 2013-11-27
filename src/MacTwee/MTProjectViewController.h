@@ -18,4 +18,6 @@
 @property (strong) NSArray * passagesArrayControllerSortDescriptors;
 @property (weak) IBOutlet SKView * visualEditorSKView;
 
+- (IBAction)deletePassage:(id)sender;
+
 @end

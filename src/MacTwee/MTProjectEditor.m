@@ -28,13 +28,32 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
 - (MTPassage *)createPassageWithTitle:(NSString *)title andTags:(NSString *)tags andText:(NSString *)text {
 	NSAssert(self.currentProject != nil, @"currentProject is nil");
-	MTPassage * passage = (MTPassage *)[NSEntityDescription insertNewObjectForEntityForName:@"Passage"
-																	 inManagedObjectContext:[MTCoreDataManager sharedMTCoreDataManager].managedObjectContext];
+	MTPassage * passage = [MTPassage passage];
 	passage.title = title;
 	passage.passageTags = tags;
 	passage.text = text;
 	passage.project = self.currentProject;
     return passage;
+}
+
+- (MTPassage *)createPassageAtXPos:(NSNumber *)xPos yPos:(NSNumber *)yPos {
+	MTPassage * passage = [MTPassage passage];
+    passage.xPosition = xPos;
+    passage.yPosition = yPos;
+    
+    passage.title = (passage.title == nil || passage.title.length == 0) ? @"New Passage": passage.title;
+    while ( [self checkPassageExistsInCurrentProject:passage.title] ) {
+        passage.title = [self uniquePassageName:passage.title];
+    }
+    
+	passage.project = self.currentProject;
+    return passage;
+    
+}
+///returns a string with one attached to it
+- (NSString *)uniquePassageName:(NSString *)baseString {
+    NSString * result = [NSString stringWithFormat:@"%@ 2",baseString];
+    return result;
 }
 
 - (NSString *)getStoryFormat {
@@ -56,7 +75,9 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 }
 
 - (BOOL)checkPassageExistsInCurrentProject:(NSString *)passage {
-    return ([self getPassageWithName:passage] == nil) ? NO : YES;
+    BOOL result = ( [self getPassageWithName:passage] == nil ) ? NO : YES;
+	//NSLog(@"%d | %s - passage:'%@' exists", __LINE__, __func__, passage);
+	return result;
 }
 
 - (BOOL)selectCurrentPassageWithName:(NSString *)passage {
@@ -115,23 +136,16 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
 /*! searches for a MTPassage using the sent in string in core data @param passage - title of the passage @returns an MTPassage if successful else nil */
 
-- (MTPassage *)getPassageWithName:(NSString *)passage {
+- (MTPassage *)getPassageWithName:(NSString *)passageTitle {
 	NSAssert(self.currentProject != nil, @"currentProject is nil");
-	MTPassage * p;
-	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(title == %@) AND (project == %@)", passage, self.currentProject];
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Passage"
-											  inManagedObjectContext:MTCoreDataManager.sharedMTCoreDataManager.managedObjectContext];
-	[fetchRequest setEntity:entity];
-	[fetchRequest setPredicate:predicate];
-	NSError *error = nil;
-	NSArray * foundPassages = [MTCoreDataManager.sharedMTCoreDataManager.managedObjectContext executeFetchRequest:fetchRequest
-																											error:&error];
+	MTPassage * result;
+	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(title == %@) AND (project == %@)", passageTitle, self.currentProject];
+	NSArray * foundPassages = [MTCoreDataManager.sharedMTCoreDataManager executeFetchWithPredicate:predicate entity:@"Passage"];
 	//NSLog(@"%s 'Line:%d' - found:'%lu'", __func__, __LINE__, foundPassages.count);
-	if (foundPassages.count >= 1) {
-		p = foundPassages[0];
+	if (foundPassages.count > 0) {
+		result = foundPassages[0];
 	}
-	return p;
+	return result;
 }
 
 
