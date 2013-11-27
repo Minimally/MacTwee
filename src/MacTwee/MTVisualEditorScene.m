@@ -19,6 +19,12 @@
     SKNode * selectedNode;
     SKNode * rootNode;
     SKNode * linkRootNode;
+    int smartLevel;
+    double smartX;
+    double smartY;
+    BOOL smartYFlipper;
+    NSMutableArray * smartPassages;
+    NSMutableSet * smartCheckedPassages;
 }
 
 // scrolling speed (NSTimeInterval for action)
@@ -165,6 +171,13 @@ static double kLabelDepth = 11;
 }
 
 - (void)drawPassages:(NSArray *)passages {
+    // initial draw check
+    if ( passages.count > 0 && ( [[passages[0] xPosition] isEqualToNumber:@0] || [[passages[0] yPosition] isEqualToNumber:@0]) ) {
+        if ( ![self smartDraw:passages] ) {
+            return;
+        }
+    }
+    
     double nextX = kBaseX;
     double nextY = kBaseY;
     for (MTPassage * passage in passages) {
@@ -188,6 +201,87 @@ static double kLabelDepth = 11;
         } else {
             node.position = CGPointMake(passage.xPosition.doubleValue, passage.yPosition.doubleValue);
         }
+    }
+}
+
+- (BOOL)smartDraw:(NSArray *)passages {
+    BOOL result = NO;
+    // find Start passage
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(title == %@) and (project == %@)", @"Start", [MTProjectEditor sharedMTProjectEditor].currentProject];
+    NSArray * foundStart = [[MTCoreDataManager sharedMTCoreDataManager]executeFetchWithPredicate:predicate entity:@"Passage"];
+    if (foundStart.count == 1) {
+        smartPassages = [NSMutableArray array];
+        smartCheckedPassages = [NSMutableSet set];
+        MTPassage * start = foundStart[0];
+        // build, position & get links
+        smartY = 0.1;
+        [smartPassages addObjectsFromArray:[self smartBuildAndPosition:start]];
+        
+        if ( smartPassages.count == 0 ) { // this means start has no outgoing links
+            
+        }
+        else {
+            // repeat
+            [self smartRepeat:smartPassages];
+        }
+    }
+    
+    return result;
+}
+
+/*! builds a node if needed, and returns all outgoing links from the passage sent in */
+- (NSArray *)smartBuildAndPosition:(MTPassage *)passage {
+    if ([rootNode childNodeWithName:passage.title] == nil) {
+        // build
+        SKNode * node = [self buildPassageNode:passage.title body:passage.text]; NSAssert(node != nil, @"node is nil"); [rootNode addChild:node];
+        // position
+        node.position = CGPointMake(smartX, [self smartYMake]);
+        // save position in passage
+        passage.xPosition = [NSNumber numberWithDouble:node.position.x];
+        passage.yPosition = [NSNumber numberWithDouble:node.position.y];
+    }
+    [smartCheckedPassages addObject:passage];
+    // return links if any
+    return (passage.outgoing.count > 0) ? [passage.outgoing allObjects] : nil;
+}
+
+- (double)smartYMake {
+    double result = smartY;
+    if (smartYFlipper) {
+        result *= -1;
+    }
+    smartY += kIncrementY;
+    smartYFlipper = !smartYFlipper;
+    return result;
+}
+
+- (void)smartRepeat:(NSArray *)passagesToCheck {
+    // update smart stuff
+    smartX += kIncrementX;
+    smartY = kIncrementY;
+    smartYFlipper = NO;
+    smartLevel++;
+    
+    smartPassages = [NSMutableArray array];
+    // position links
+    for (MTPassage * passage in passagesToCheck) {
+        if ( ![smartCheckedPassages containsObject:passage] ) {
+            [smartPassages addObjectsFromArray:[self smartBuildAndPosition:passage]];
+        }
+    }
+    if (smartPassages.count == 0) { // we are done
+        // but iterate passages to ensure they all have a position
+        [self drawPassages:[[MTProjectEditor sharedMTProjectEditor].currentProject.passages allObjects]];
+        // clear all smart values
+        smartLevel = 0;
+        smartX = 0;
+        smartY = 0;
+        smartYFlipper = 0;
+        smartPassages = nil;
+        smartCheckedPassages = nil;
+    }
+    else { // we need to repeat
+        [self smartRepeat:smartPassages];
     }
 }
 
