@@ -11,17 +11,15 @@
 @interface MTTweeBuildUtility : NSObject
 
 /*! Builds out an html file from tweecode source
- @param sourceFileURL NSURL source file
- @param buildDirectory NSString full path for the output file
- @param buildFileName NSString name of the output file
+ @param sourceFileURL NSURL location of the source file
+ @param buildDirectory NSURL location for the output file
  @param storyFormat NSString name of the story format in the twee directory
  @param quickBuild BOOL skip prompts if possible
  */
 
 - (BOOL)buildHtmlFileWithSource:(NSURL *)sourceFileURL
-                      buildDirectory:(NSString *)buildDirectory
-                  buildFileName:(NSString *)buildFileName
+                 buildDirectory:(NSURL *)buildDirectory
                     storyFormat:(NSString *)storyFormat
-                    quickBuild:(BOOL)quickBuild;
+                     quickBuild:(BOOL)quickBuild;
 
 @end

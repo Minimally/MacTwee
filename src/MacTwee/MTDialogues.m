@@ -29,11 +29,11 @@
 }
 
 
-+ (NSURL *)savePanelForDirectory:(NSString *)message fileName:(NSString *)fileName {
++ (NSURL *)savePanelForFile:(NSString *)message fileName:(NSString *)fileName {
     NSURL * result;
 	
     NSSavePanel * savepanel = [NSSavePanel savePanel];
-	savepanel.message = message;
+	//savepanel.message = message;
 	//savepanel.title = @"title";
 	//savepanel.prompt = @"prompt";
 	savepanel.nameFieldStringValue = fileName;

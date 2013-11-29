@@ -305,10 +305,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="17" name="value" keyPath="self.currentPassage.title" id="KzI-Ue-hAf">
+                                                <binding destination="17" name="value" keyPath="self.currentPassage.title" id="VAe-j7-7GJ">
                                                     <dictionary key="options">
-                                                        <string key="NSNullPlaceholder">-</string>
-                                                        <string key="NSNoSelectionPlaceholder">no passage selected</string>
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                     </dictionary>
                                                 </binding>
@@ -331,10 +329,12 @@
                                                         <size key="minSize" width="561" height="544"/>
                                                         <size key="maxSize" width="733" height="10000000"/>
                                                         <connections>
-                                                            <binding destination="17" name="value" keyPath="self.currentPassage.text" id="zEY-PY-3WQ">
+                                                            <binding destination="17" name="value" keyPath="self.currentPassage.text" id="pea-Hj-9N2">
                                                                 <dictionary key="options">
-                                                                    <string key="NSNullPlaceholder">Select a passage to edit</string>
+                                                                    <string key="NSNullPlaceholder">Enter Passage Text</string>
+                                                                    <string key="NSNotApplicablePlaceholder">-</string>
                                                                     <string key="NSNoSelectionPlaceholder">Select a passage to edit</string>
+                                                                    <string key="NSMultipleValuesPlaceholder">-</string>
                                                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                                 </dictionary>
                                                             </binding>

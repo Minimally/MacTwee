@@ -29,68 +29,133 @@
     builder = nil;
 }
 
-- (void)test_buildHtmlFileWithSource_NoDestination {
-    NSURL * sampleTweeFile = [[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"twee"];
-    
-    BOOL result = [builder buildHtmlFileWithSource:sampleTweeFile
-                                    buildDirectory:@""
-                                     buildFileName:@"testFile.html"
-                                       storyFormat:@"sugarcane"
-                                        quickBuild:YES];
-    
-    XCTAssertFalse(result, @"fail");
-}
-
-- (void)test_buildHtmlFileWithSource_NoFile {
-    NSURL * sampleTweeFile = [[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"twee"];
-    
-    BOOL result = [builder buildHtmlFileWithSource:sampleTweeFile
-                                    buildDirectory:@"some directory that shouldn't ever exist I think"
-                                     buildFileName:@""
-                                       storyFormat:@"sugarcane"
-                                        quickBuild:YES];
-    
-    XCTAssertFalse(result, @"fail");
-}
-
-- (void)test_buildHtmlFileWithSource_NoHeader {
-    NSURL * sampleTweeFile = [[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"twee"];
-    
-    NSString * buildfileName = @"testFile.html";
-    NSString * buildDirectory = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] bundlePath], buildfileName];
-    
-    BOOL result = [builder buildHtmlFileWithSource:sampleTweeFile
-                                    buildDirectory:buildDirectory
-                                     buildFileName:buildfileName
-                                       storyFormat:@""
-                                        quickBuild:YES];
-    
-    if ( [[NSFileManager defaultManager] fileExistsAtPath:buildDirectory isDirectory:NO] ) {
-        [[NSFileManager defaultManager] removeItemAtPath:buildDirectory error:nil];
-    }
-    
-    XCTAssertTrue(result, @"fail");
-}
-
 - (void)test_buildHtmlFileWithSource {
-    NSURL * sampleTweeFile = [[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"twee"];
+    NSURL * sourceDir = [[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"twee"];
     
     NSString * buildfileName = @"testFile.html";
-    NSString * buildDirectory = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] bundlePath], buildfileName];
+    NSString * buildDirPath = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] bundlePath], buildfileName];
+    NSURL * buildDir = [NSURL fileURLWithPath:buildDirPath];
     
-    [builder buildHtmlFileWithSource:sampleTweeFile
-                                    buildDirectory:buildDirectory
-                                     buildFileName:buildfileName
-                                       storyFormat:@"sugarcane"
-                                        quickBuild:YES];
+    NSString * format = @"sugarcane";
     
-    BOOL result = [[NSFileManager defaultManager] fileExistsAtPath:buildDirectory isDirectory:NO];
-    if (result) {
-        [[NSFileManager defaultManager] removeItemAtPath:buildDirectory error:nil];
+    BOOL quickBuild = YES;
+    
+    [builder buildHtmlFileWithSource:sourceDir
+                                    buildDirectory:buildDir
+                                       storyFormat:format
+                                        quickBuild:quickBuild];
+    
+    BOOL result = [[NSFileManager defaultManager] fileExistsAtPath:buildDirPath isDirectory:NO];
+    
+    if ( result ) {
+        NSLog(@"%d | %s - build directory:'%@'", __LINE__, __func__, buildDirPath);
+        [[NSFileManager defaultManager] removeItemAtPath:buildDirPath error:nil];
     }
-    XCTAssertTrue(result, @"fail");
+    
+    XCTAssertTrue(result, @"FILE DID NOT EXIST");
 }
 
+- (void)test_buildHtmlFileWithSource_NoSourceAlert {
+    NSURL * sourceDir;
+    
+    NSString * buildfileName = @"testFile.html";
+    NSString * buildDirPath = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] bundlePath], buildfileName];
+    NSURL * buildDir = [NSURL fileURLWithPath:buildDirPath];
+    
+    NSString * format = @"sugarcane";
+    
+    BOOL quickBuild = YES;
+    
+    [builder buildHtmlFileWithSource:sourceDir
+                      buildDirectory:buildDir
+                         storyFormat:format
+                          quickBuild:quickBuild];
+    
+    BOOL result = [[NSFileManager defaultManager] fileExistsAtPath:buildDirPath isDirectory:NO];
+    
+    if ( result ) {
+        [[NSFileManager defaultManager] removeItemAtPath:buildDirPath error:nil];
+    }
+    
+    XCTAssertFalse(result, @"FILE DID EXIST");
+}
+
+- (void)test_buildHtmlFileWithSource_NoDestinationPrompt {
+    NSURL * sourceDir = [[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"twee"];
+    
+    NSString * buildfileName = @"testFile.html";
+    NSString * buildDirPath = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] bundlePath], buildfileName];
+    NSURL * buildDir;
+    
+    NSString * format = @"sugarcane";
+    
+    BOOL quickBuild = YES;
+    
+    [builder buildHtmlFileWithSource:sourceDir
+                      buildDirectory:buildDir
+                         storyFormat:format
+                          quickBuild:quickBuild];
+    
+    BOOL result = [[NSFileManager defaultManager] fileExistsAtPath:buildDirPath isDirectory:NO];
+    
+    if ( result ) {
+        [[NSFileManager defaultManager] removeItemAtPath:buildDirPath error:nil];
+    }
+    
+    XCTAssertFalse(result, @"FILE DID EXIST");
+}
+
+- (void)test_buildHtmlFileWithSource_NoFormat {
+    NSURL * sourceDir = [[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"twee"];
+    
+    NSString * buildfileName = @"testFile.html";
+    NSString * buildDirPath = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] bundlePath], buildfileName];
+    NSURL * buildDir = [NSURL fileURLWithPath:buildDirPath];
+    
+    NSString * format;
+    
+    BOOL quickBuild = YES;
+    
+    [builder buildHtmlFileWithSource:sourceDir
+                      buildDirectory:buildDir
+                         storyFormat:format
+                          quickBuild:quickBuild];
+    
+    BOOL result = [[NSFileManager defaultManager] fileExistsAtPath:buildDirPath isDirectory:NO];
+    
+    if ( result ) {
+        NSLog(@"%d | %s - build directory:'%@'", __LINE__, __func__, buildDirPath);
+        [[NSFileManager defaultManager] removeItemAtPath:buildDirPath error:nil];
+    }
+    
+    XCTAssertTrue(result, @"FILE DID NOT EXIST");
+}
+
+- (void)test_buildHtmlFileWithSource_QuickBuildOff {
+    NSURL * sourceDir = [[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"twee"];
+    
+    NSString * buildfileName = @"testFile.html";
+    NSString * buildDirPath = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] bundlePath], buildfileName];
+    NSURL * buildDir = [NSURL fileURLWithPath:buildDirPath];
+    
+    NSString * format = @"sugarcane";
+    
+    BOOL quickBuild = NO;
+    
+    [builder buildHtmlFileWithSource:sourceDir
+                      buildDirectory:buildDir
+                         storyFormat:format
+                          quickBuild:quickBuild];
+    
+    BOOL result = [[NSFileManager defaultManager] fileExistsAtPath:buildDirPath isDirectory:NO];
+    
+    if ( result ) {
+        NSLog(@"%d | %s - build directory:'%@'", __LINE__, __func__, buildDirPath);
+        [[NSFileManager defaultManager] removeItemAtPath:buildDirPath error:nil];
+    }
+    
+    XCTAssertFalse(result, @"FILE DID NOT EXIST");
+}
 
 
 @end

@@ -17,6 +17,28 @@
 
 CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(processNotification:)
+                                                     name:MTTweeBuildUtilityDidGetProjectBuildDestination
+                                                   object:nil];
+    }
+    return self;
+}
+
+- (void)dealloc { [[NSNotificationCenter defaultCenter] removeObserver:self]; }
+
+- (void)processNotification:(NSNotification *)notification {
+    if ( [notification.name isEqualToString:MTTweeBuildUtilityDidGetProjectBuildDestination] ) {
+        NSURL * url = notification.userInfo[@"index"];
+        if (url != nil) {
+            self.currentProject.buildDirectory = url.path;
+            self.currentProject.buildName = url.lastPathComponent;
+        }
+    }
+}
 
 #pragma mark - Public
 

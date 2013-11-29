@@ -25,11 +25,15 @@ MTTweeBuildUtility * buildUtility;
 - (void)importTweeFile {
 	if (importUtility == nil) importUtility = [[MTTweeImportUtility alloc]init];
 	[importUtility importTweeFile];
+    importUtility = nil;
 }
 
 - (NSURL *)exportTweeFile {
+    NSURL * result;
 	if (exportUtility == nil) exportUtility = [[MTTweeExportUtility alloc]init];
-	return [exportUtility exportTweeFile];
+    result = [exportUtility exportTweeFile];
+    exportUtility = nil;
+	return result;;
 }
 
 - (void)buildStory {
@@ -37,7 +41,8 @@ MTTweeBuildUtility * buildUtility;
 }
 
 - (void)buildAndRunStory {
-	[self buildStory:YES];
+	BOOL success = [self buildStory:YES];
+    if (!success) { return; }
     
 	NSString * buildDirectory = [MTProjectEditor sharedMTProjectEditor].currentProject.buildDirectory;
 	
@@ -54,16 +59,26 @@ MTTweeBuildUtility * buildUtility;
 #pragma mark - Private
 
 /// does the actual build call with values save in MTProjectEditor @param quick YES=no user prompts if possible
-- (void)buildStory:(BOOL)quick {
+- (BOOL)buildStory:(BOOL)quick {
+    BOOL result;
+    
 	if (exportUtility == nil) exportUtility = [[MTTweeExportUtility alloc]init];
 	NSURL * url = [exportUtility exportTempTweeFile];
+    exportUtility = nil;
     
 	if (buildUtility == nil) buildUtility = [[MTTweeBuildUtility alloc]init];
-	[buildUtility buildHtmlFileWithSource:url
-                           buildDirectory:[MTProjectEditor sharedMTProjectEditor].currentProject.buildDirectory
-                            buildFileName:[MTProjectEditor sharedMTProjectEditor].currentProject.buildName
+    
+    NSURL * buildDirectory;
+    NSString * projectBuildDirectory = [MTProjectEditor sharedMTProjectEditor].currentProject.buildDirectory;
+    if (projectBuildDirectory != nil && projectBuildDirectory.length != 0) {
+        buildDirectory = [NSURL fileURLWithPath:projectBuildDirectory];
+    }
+    
+    result = [buildUtility buildHtmlFileWithSource:url
+                           buildDirectory:buildDirectory
                               storyFormat:[MTProjectEditor sharedMTProjectEditor].currentProject.storyFormat
                                quickBuild:quick];
+    return result;
 }
 
 

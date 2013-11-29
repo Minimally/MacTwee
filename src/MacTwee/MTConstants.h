@@ -22,9 +22,7 @@ typedef enum {
 
 #pragma mark - notifications
 
-/// user selected a name for the build
-extern NSString * const MTTweeBuildUtilityDidGetProjectBuildName;
-/// user selected a place to save a built file
+/// index includes NSURL with the build directory that was used
 extern NSString * const MTTweeBuildUtilityDidGetProjectBuildDestination;
 extern NSString * const MTPrimaryWindowControllerWillOpenViewNotification;
 

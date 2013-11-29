@@ -13,12 +13,11 @@
 
 #pragma mark - notifications
 
-NSString * const MTTweeBuildUtilityDidGetProjectBuildName = @"buildNameSet";
 NSString * const MTTweeBuildUtilityDidGetProjectBuildDestination = @"buildDestinationSet";
 NSString * const MTPrimaryWindowControllerWillOpenViewNotification = @"MTPrimaryWindowControllerWillOpenViewNotification";
 NSString * const MTTextViewControllerDidGetPotentialPassageClickNotification = @"altClickLink";
 NSString * const MTAppDelegateDidGetMenuClickNotification = @"menuButtonClick";
-NSString * const MTTweeImporUtilityDidImportFile = @"importTweeFile";
+NSString * const MTTweeImporUtilityDidImportFile = @"didImportTweeFile";
 
 #pragma mark - paths
 
