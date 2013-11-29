@@ -21,6 +21,6 @@
  @param message message displayed in panel
  @param nameField name for the file being saved
  @returns the absolute pathname of the file currently shown in the panel as a URL or nil if operation failed */
-+ (NSURL *)savePanelForFile:(NSString *)message fileName:(NSString *)fileName;
++ (NSURL *)savePanelForFileWithMessage:(NSString *)message fileName:(NSString *)fileName;
 
 @end

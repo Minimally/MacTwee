@@ -170,7 +170,7 @@ NSString * const kBuildFileName = @"Story.html";
     }
     
     if (ask) { // prompt user
-        self.buildDirectory = [MTDialogues savePanelForFile:promptBuild fileName:kBuildFileName];
+        self.buildDirectory = [MTDialogues savePanelForFileWithMessage:promptBuild fileName:kBuildFileName];
     }
 }
 

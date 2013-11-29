@@ -12,6 +12,7 @@
 #import "MTPreferencesManager.h"
 #import "MTProjectEditor.h"
 #import "MTProject.h"
+#import "MTDialogues.h"
 
 
 @implementation MTTweeFileTools
@@ -19,6 +20,10 @@
 MTTweeImportUtility * importUtility;
 MTTweeExportUtility * exportUtility;
 MTTweeBuildUtility * buildUtility;
+
+
+NSString * const exportMessage = @"Choose export destination";
+
 
 #pragma mark - Public
 
@@ -34,9 +39,19 @@ MTTweeBuildUtility * buildUtility;
     [[MTProjectEditor sharedMTProjectEditor] applyExportRules];
     
 	if (exportUtility == nil) exportUtility = [[MTTweeExportUtility alloc]init];
-    result = [exportUtility exportTweeFile];
+    
+    NSString * saveName = [MTProjectEditor sharedMTProjectEditor].currentProject.sourceName;
+    NSURL * destination = [MTDialogues savePanelForFileWithMessage:exportMessage fileName:saveName];
+    
+    result = [exportUtility exportTweeFileFromProject:[MTProjectEditor sharedMTProjectEditor].currentProject toDestination:destination];
+    
+    if (result != nil) {
+        [MTProjectEditor sharedMTProjectEditor].currentProject.sourceName = result.lastPathComponent;
+    }
+    
     exportUtility = nil;
-	return result;;
+    
+	return result;
 }
 
 - (void)buildStory {
@@ -63,26 +78,33 @@ MTTweeBuildUtility * buildUtility;
 
 /// does the actual build call with values save in MTProjectEditor @param quick YES=no user prompts if possible
 - (BOOL)buildStory:(BOOL)quick {
-    BOOL result;
+    BOOL result = YES;
     
     [[MTProjectEditor sharedMTProjectEditor] applyExportRules];
     
 	if (exportUtility == nil) exportUtility = [[MTTweeExportUtility alloc]init];
-	NSURL * url = [exportUtility exportTempTweeFile];
+	NSURL * url = [exportUtility exportScratchTweeFileFromProject:[MTProjectEditor sharedMTProjectEditor].currentProject];
     exportUtility = nil;
     
-	if (buildUtility == nil) buildUtility = [[MTTweeBuildUtility alloc]init];
-    
-    NSURL * buildDirectory;
-    NSString * projectBuildDirectory = [MTProjectEditor sharedMTProjectEditor].currentProject.buildDirectory;
-    if (projectBuildDirectory != nil && projectBuildDirectory.length != 0) {
-        buildDirectory = [NSURL fileURLWithPath:projectBuildDirectory];
+    if (url == nil) {
+        result = NO;
     }
     
-    result = [buildUtility buildHtmlFileWithSource:url
-                           buildDirectory:buildDirectory
-                              storyFormat:[MTProjectEditor sharedMTProjectEditor].currentProject.storyFormat
-                               quickBuild:quick];
+    if (result) {
+        if (buildUtility == nil) buildUtility = [[MTTweeBuildUtility alloc]init];
+        
+        NSURL * buildDirectory;
+        NSString * projectBuildDirectory = [MTProjectEditor sharedMTProjectEditor].currentProject.buildDirectory;
+        if (projectBuildDirectory != nil && projectBuildDirectory.length != 0) {
+            buildDirectory = [NSURL fileURLWithPath:projectBuildDirectory];
+        }
+        
+        result = [buildUtility buildHtmlFileWithSource:url
+                                        buildDirectory:buildDirectory
+                                           storyFormat:[MTProjectEditor sharedMTProjectEditor].currentProject.storyFormat
+                                            quickBuild:quick];
+    }
+	
     return result;
 }
 

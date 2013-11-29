@@ -6,85 +6,89 @@
 //
 
 #import "MTTweeExportUtility.h"
-#import "MTPreferencesManager.h"
-#import "MTCoreDataManager.h"
-#import "MTProjectEditor.h"
 #import "MTProject.h"
 #import "MTPassage.h"
 
 
 @implementation MTTweeExportUtility
 
-NSString * const exportMessage = @"Choose export destination";
-
 
 #pragma mark - Public
 
-- (NSURL *)exportTweeFile {
-	NSURL * result = [self runSavePanelForExport];
-	if (result == nil) {
-		[self operationResultWithTitle:@"Error" msgFormat:@"Export operation canceled" defaultButton:@"OK"];
-	} else {
-		
-		NSArray * fetchedObjects = [[MTProjectEditor sharedMTProjectEditor] getPassages];
-		if (fetchedObjects == nil || fetchedObjects.count < 1) {
-			[self operationResultWithTitle:@"Error" msgFormat:@"Couldn't find any passages to export" defaultButton:@"OK"];
-		} else {
-			
-			NSString * sourceString = [self getCombinedPassagesString:fetchedObjects];
-			if (sourceString == nil || sourceString.length < 1) {
-				[self operationResultWithTitle:@"Error" msgFormat:@"Issue turning passages into a single string" defaultButton:@"OK"];
-			} else {
-				
-				NSError * error;
-				if ( ! [sourceString writeToURL:result atomically:YES encoding:NSUTF8StringEncoding error:&error] ) {
-					[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"%@", error.localizedDescription] defaultButton:@"OK"];
-				} else {
-					[self operationResultWithTitle:@"Success" msgFormat:@"Export operation successful" defaultButton:@"OK"];
-				}
-			}
-		}
-	}
-	return result;
+- (NSURL *)exportTweeFileFromProject:(MTProject *)project toDestination:(NSURL *)destination {
+    NSAssert(project != nil, @"project is nil");
+    NSAssert(destination != nil, @"destination is nil");
+    
+    NSURL * result;
+    result = [self extractMethod:destination project:project silently:NO];
+    return result;
 }
 
-- (NSURL *)exportTempTweeFile {
-	NSArray * fetchedObjects = [[MTProjectEditor sharedMTProjectEditor] getPassages];
-	NSString * sourceString = [self getCombinedPassagesString:fetchedObjects];
-	
-	NSURL * result = [self getScratchLocationForExport];
-	if (result != nil)
-		[sourceString writeToURL:result atomically:YES encoding:NSUTF8StringEncoding error:nil];
-	return result;
+- (NSURL *)exportScratchTweeFileFromProject:(MTProject *)project {
+    NSAssert(project != nil, @"project is nil");
+    NSURL * result;
+    NSURL * destination = [self getScratchLocationForExport];
+    result = [self extractMethod:destination project:project silently:YES];
+    return result;
 }
 
 
 #pragma mark - Export - Passages To String
 
-- (NSString *)getCombinedPassagesString:(NSArray *)fetchedObjects {
-	NSMutableString * combinedPassages = [[NSMutableString alloc] init];
+- (NSURL *)extractMethod:(NSURL *)destination project:(MTProject *)project silently:(BOOL)silently {
+    NSURL * result = destination;
+    NSString * sourceString;
+    NSArray * passages = [project.passages allObjects];
+    
+    if (passages.count == 0) {
+        [self operationResultWithTitle:@"Error" msgFormat:@"Couldn't find any passages to export" defaultButton:@"OK"];
+        result = nil;
+    }
+    
+    if (result != nil) {
+        sourceString = [self passagesToString:passages];
+    }
+    
+    if (sourceString == nil || sourceString.length == 0) {
+        [self operationResultWithTitle:@"Error" msgFormat:@"Issue turning passages into a single string" defaultButton:@"OK"];
+        result = nil;
+    }
+    
+    if (result != nil) {
+        NSError * error;
+        if ( ![sourceString writeToURL:result atomically:YES encoding:NSUTF8StringEncoding error:&error] ) {
+            [self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"%@", error.localizedDescription] defaultButton:@"OK"];
+            result = nil;
+        } else {
+            if ( !silently ) {
+                [self operationResultWithTitle:@"Success" msgFormat:@"Export operation successful" defaultButton:@"OK"];
+            }
+        }
+    }
+    return result;
+}
+
+- (NSString *)passagesToString:(NSArray *)passages {
+    NSAssert(passages != nil, @"passages NSArray is nil");
+    NSAssert(passages.count > 0, @"passages count is 0");
+    
+	NSMutableString * result = [[NSMutableString alloc] init];
 	
-	if (fetchedObjects == nil) {
-		//NSLog(@"%s 'Line:%d' 'nothing back from fetch'", __func__, __LINE__);
-	} else {
-		//NSLog(@"%s 'Line:%d' - fetchedObjects count:'%lu'", __func__, __LINE__, fetchedObjects.count);
-		for (MTPassage * passage  in fetchedObjects) {
-			//NSLog(@"%s 'Line:%d' - passage.title:'%@'", __func__, __LINE__, passage.title);
-			NSString * stringPassage = [self passageToString:passage];
-			[combinedPassages appendString:stringPassage];
-		}
-	}
-	
-	//NSLog(@"%s 'Line:%d' - combinedPassages:'%@'", __func__, __LINE__, combinedPassages);
-	return combinedPassages;
+	for (MTPassage * passage  in passages) {
+        NSString * stringPassage = [self passageToString:passage];
+        [result appendString:stringPassage];
+    }
+    
+	return result;
 }
 
 - (NSString *)passageToString:(MTPassage *)passage {
 	NSString * string = @":: ";
 	NSString * tags = @"";
 	
-	if (passage.passageTags != nil && passage.passageTags.length > 0)
+	if (passage.passageTags != nil && passage.passageTags.length > 0) {
 		tags = [NSString stringWithFormat:@"[%@]", passage.passageTags];
+    }
 	
 	string = [string stringByAppendingFormat:@"%@ %@\n%@\n\n", passage.title, tags, passage.text];
 	
@@ -92,11 +96,11 @@ NSString * const exportMessage = @"Choose export destination";
 }
 
 
-#pragma mark - User Dialogues
+#pragma mark - Etc
 
 - (NSURL *)runSavePanelForExport {
 	NSURL * result;
-	
+	/*
 	NSSavePanel *savepanel = [NSSavePanel savePanel];
 	savepanel.canCreateDirectories = YES;
 	savepanel.nameFieldStringValue = [MTProjectEditor sharedMTProjectEditor].currentProject.sourceName;
@@ -107,18 +111,16 @@ NSString * const exportMessage = @"Choose export destination";
 		NSLog(@"%s 'Line:%d' - resultURL:'%@'", __func__, __LINE__, result);
 		[MTProjectEditor sharedMTProjectEditor].currentProject.sourceName = [result lastPathComponent];
 	}
-	
+	*/
 	return result;
 }
 
-- (NSURL *) getScratchLocationForExport {
+- (NSURL *)getScratchLocationForExport {
 	NSURL * result;
-	NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
+	NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSURL * appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
 	NSString * tempPath = [NSString stringWithFormat:@"%@/temp.tw", kUserApplicationSupportDirectory];
     result = [appSupportURL URLByAppendingPathComponent:tempPath];
-	//	result = [[MTPreferencesManager documentDirectory] URLByAppendingPathComponent:@"temp.tw"];
-	//	NSLog(@"%s 'Line:%d' - result:'%@'", __func__, __LINE__, result);
 	return result;
 }
 

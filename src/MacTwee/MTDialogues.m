@@ -29,7 +29,7 @@
 }
 
 
-+ (NSURL *)savePanelForFile:(NSString *)message fileName:(NSString *)fileName {
++ (NSURL *)savePanelForFileWithMessage:(NSString *)message fileName:(NSString *)fileName {
     NSURL * result;
 	
     NSSavePanel * savepanel = [NSSavePanel savePanel];

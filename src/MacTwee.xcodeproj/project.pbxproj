@@ -21,6 +21,7 @@
 		C62A040017CA8C8E00B89A34 /* MTTweeExportUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A03FF17CA8C8E00B89A34 /* MTTweeExportUtility.m */; };
 		C62A040317CA8C9E00B89A34 /* MTTweeBuildUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C62A040217CA8C9E00B89A34 /* MTTweeBuildUtility.m */; };
 		C637F0A0184667D500051AB3 /* MTTweeBuildUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C637F09F184667D500051AB3 /* MTTweeBuildUtilityTests.m */; };
+		C638D5B018492378008AD177 /* MTTweeExportUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C638D5AF18492378008AD177 /* MTTweeExportUtilityTests.m */; };
 		C63E6C6C17CF046200FCEDEB /* MTPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E6C6A17CF046200FCEDEB /* MTPreferencesWindowController.m */; };
 		C63E6C6D17CF046200FCEDEB /* MTPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C63E6C6B17CF046200FCEDEB /* MTPreferencesView.xib */; };
 		C65EEE971840321E00CBA70B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65EEE961840321E00CBA70B /* XCTest.framework */; };
@@ -91,6 +92,7 @@
 		C62A040117CA8C9E00B89A34 /* MTTweeBuildUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTweeBuildUtility.h; sourceTree = "<group>"; };
 		C62A040217CA8C9E00B89A34 /* MTTweeBuildUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTweeBuildUtility.m; sourceTree = "<group>"; };
 		C637F09F184667D500051AB3 /* MTTweeBuildUtilityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTweeBuildUtilityTests.m; sourceTree = "<group>"; };
+		C638D5AF18492378008AD177 /* MTTweeExportUtilityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTweeExportUtilityTests.m; sourceTree = "<group>"; };
 		C63E6C6917CF046200FCEDEB /* MTPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPreferencesWindowController.h; sourceTree = "<group>"; };
 		C63E6C6A17CF046200FCEDEB /* MTPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPreferencesWindowController.m; sourceTree = "<group>"; };
 		C63E6C6B17CF046200FCEDEB /* MTPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTPreferencesView.xib; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				C637F09F184667D500051AB3 /* MTTweeBuildUtilityTests.m */,
+				C638D5AF18492378008AD177 /* MTTweeExportUtilityTests.m */,
 			);
 			name = Twee;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C638D5B018492378008AD177 /* MTTweeExportUtilityTests.m in Sources */,
 				C637F0A0184667D500051AB3 /* MTTweeBuildUtilityTests.m in Sources */,
 				C65EEEA81840324E00CBA70B /* MTProjectEditorTests.m in Sources */,
 			);
