@@ -17,6 +17,12 @@
  @returns the absolute pathname of the file currently shown in the panel as a URL or nil if operation failed */
 + (NSURL *)openPanelForFileWithMessage:(NSString *)message;
 
+/*! Presents an open panel for a file
+ @param message user displayed message
+ @param fileTypes NSArray of file types to filter for
+ @returns the absolute pathname of the file currently shown in the panel as a URL or nil if operation failed */
++ (NSURL *)openPanelForFileWithMessage:(NSString *)message fileTypes:(NSArray *)fileTypes;
+
 /*! Presents a save panel for a file
  @param message message displayed in panel
  @param nameField name for the file being saved

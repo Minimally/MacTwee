@@ -6,10 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class MTProject;
 
 @interface MTTweeImportUtility : NSObject
 
-- (void)importTweeFile;
+/*! imports .twee/.txt/.tw file to project.
+ @param project MTProject project
+ @returns the number of passages imported
+ */
+
+- (int)importTweeFile:(NSURL *)file toProject:(MTProject *)project;
 
 @end

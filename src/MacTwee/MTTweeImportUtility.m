@@ -14,8 +14,6 @@
 
 @implementation MTTweeImportUtility
 
-NSString * const kOpenMessage = @"Choose a twee source file to import";
-
 NSString * const regPatternForHeadBodySplit = @":* ([^\n]*)\n(.*)?";
 NSString * const regPatternForTitleTagSplit = @"^:* *(.+) \\[(.+)\\].*$";
 NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
@@ -23,26 +21,29 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 
 #pragma mark - Public
 
-- (void)importTweeFile {
-	//open up a source file
-	NSURL * url = [self importFileUrlFromDialogue];
-	if (url == nil) {
-		[self operationResultWithTitle:@"Error" msgFormat:@"Import Operation Canceled" defaultButton:@"OK"];
-		return;
-	}
-	NSString * sourceFileString = [self getImportFileAsString:url];
-	if (sourceFileString == nil || sourceFileString.length == 0 ) {
-		[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"Couldn't create string from file at '%@'", url] defaultButton:@"OK"];
-		return;
-	}
-	
-	[self sourceFileSplit:sourceFileString];
+- (int)importTweeFile:(NSURL *)file toProject:(MTProject *)project {
+    NSAssert(file != nil, @"file is nil");
+    NSAssert(project != nil, @"project is nil");
+    
+    int result = 0;
+    
+    NSString * string = [self stringFromFileAtURL:file];
+    if (string == nil || string.length == 0 ) {
+		[self operationResultWithTitle:@"Error" msgFormat:[NSString stringWithFormat:@"Couldn't create string from file at '%@'", file] defaultButton:@"OK"];
+    }
+    else {
+        result = [self buildPassagesFromString:string toProject:project];
+        [self operationResultWithTitle:@"Success" msgFormat:[NSString stringWithFormat:@"Imported %i Passages", result] defaultButton:@"OK"];
+    }
+    
+    return result;
 }
 
 
-#pragma mark - Import - String to Passage
+#pragma mark - Prepare File
 
-- (NSString *)getImportFileAsString:(NSURL *)url {
+/// create a NSString from the contents of a file @param url the NSURL for the file
+- (NSString *)stringFromFileAtURL:(NSURL *)url {
 	NSString * s;
 	s = [NSString stringWithContentsOfURL:url
 								 encoding:NSUTF8StringEncoding
@@ -50,119 +51,112 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
 	return s;
 }
 
-- (void)sourceFileSplit:(NSString *)sourceFileString {
-	NSArray * passages = [sourceFileString componentsSeparatedByString:@"\n::"];
-	//NSLog(@"passages count '%lu'", (unsigned long)passages.count);
-	
-	for (NSString * passage in passages) {
-		//NSLog(@"%s 'Line:%d' - split passage text:'%@'", __func__, __LINE__, passage);
-		[self passageToHeadAndBody:passage];
-	}
-	
-	if (passages.count == 0) {
+
+#pragma mark - Parse File
+
+/// gets all MTPassage from sent in NSString, and adds them to sent in MTProject @returns successfully created passages count
+- (int)buildPassagesFromString:(NSString *)string toProject:(MTProject *)project {
+    NSAssert(string != nil, @"string is nil");
+    NSAssert(project != nil, @"project is nil");
+    int result = 0;
+    NSArray * separatedStrings = [string componentsSeparatedByString:@"\n::"];
+    
+    if (separatedStrings.count == 0) {
 		[self operationResultWithTitle:@"Error" msgFormat:@"Zero passages found from file" defaultButton:@"OK"];
-	} else {
-		[self operationResultWithTitle:@"Success" msgFormat:@"Import Complete" defaultButton:@"OK"];
 	}
+    
+    else {
+        for (NSString * separatedString in separatedStrings) {
+            MTPassage * passage = [self passageFromString:separatedString];
+            
+            if (passage != nil) { result++; }
+            
+            [project addPassagesObject:passage];
+        }
+	}
+    
+    return result;
 }
 
-- (void)passageToHeadAndBody:(NSString *)passageString {
-	NSAssert((passageString != nil || passageString.length > 0), @"string is nil or empty");
-	if (passageString == nil || passageString.length == 0)
-		return;
-	
-	NSArray * passageBits = [passageString stringsByExtractingGroupsUsingRegexPattern:regPatternForHeadBodySplit
-																caseInsensitive:YES
-																 treatAsOneLine:YES];
-	
-	NSAssert((passageBits != nil || passageBits.count > 0), @"passageBits is nil or empty");
-	//NSLog(@"%s 'Line:%d' - sub passages count:'%lu'", __func__, __LINE__, (unsigned long)passageBits.count);
-	
-	switch (passageBits.count) {
-        case 1: {
-			[self preparePassageWithHead:passageBits[0] body:nil];
-			break;
-		}
-		case 2: {
-			[self preparePassageWithHead:passageBits[0] body:passageBits[1]];
-			break;
-		}
-		default:break;
-	}
+/// turns a NSString into a MTPassage @returns created MTPassage or nil if parsing failed
+- (MTPassage *)passageFromString:(NSString *)string {
+    MTPassage * result;
+    
+    NSArray * stringHeadBody = [string stringsByExtractingGroupsUsingRegexPattern:regPatternForHeadBodySplit
+                                                                  caseInsensitive:YES
+                                                                   treatAsOneLine:YES];
+    
+    if (stringHeadBody.count == 1) { // found one piece, could be head or body ?
+        result = [self preparePassageWithHead:stringHeadBody[0] body:nil];
+    }
+    
+    else if (stringHeadBody.count == 2) { // found two pieces, head and body
+        result = [self preparePassageWithHead:stringHeadBody[0] body:stringHeadBody[1]];
+    }
+    
+    else { // there was some error with the regex
+        
+    }
+    
+    return result;
 }
 
-- (void)preparePassageWithHead:(NSString *)passageHead body:(NSString *)passageBody {
-	//NSLog(@"%s 'Line:%d' - HEAD:'%@'", __func__, __LINE__, passageHead);
+- (MTPassage *)preparePassageWithHead:(NSString *)passageHead body:(NSString *)passageBody {
+    MTPassage * result;
 	NSString * title, * tags, * body;
 	
-	//get title and tags from passageHead
-	if ([passageHead rangeOfString:@"["].location != NSNotFound)
-	{
-		// this head contains tags
+	if ( [passageHead rangeOfString:@"["].location != NSNotFound ) { // there are tags in the passage header
+		
 		NSArray * headBits = [passageHead stringsByExtractingGroupsUsingRegexPattern:regPatternForTitleTagSplit
 																	 caseInsensitive:YES
 																	  treatAsOneLine:YES];
-		//TODO: NSAssert1(headBits.count > 0, @"headBits count is zero. some sort of issue with a passage:'%@'", passageHead);
-		if (headBits.count > 1) {
+		
+        if (headBits.count == 2) {
 			title = headBits[0];
+            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 			tags = headBits[1];
+            tags = [tags stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 		}
-		//NSLog(@"%s 'Line:%d' - title:'%@'", __func__, __LINE__, title);
-		//NSLog(@"%s 'Line:%d' - tags:'%@'", __func__, __LINE__, tags);
-	} else {
-		// this head does not contain tags
+        else { // there was some error with the regex
+            
+        }
+	}
+    
+    else { // this header does not contain tags
+        
 		NSArray * headBits = [passageHead stringsByExtractingGroupsUsingRegexPattern:regPatternForTitleGet
 																	 caseInsensitive:YES
 																	  treatAsOneLine:YES];
-		NSAssert(headBits.count > 0, @"headBits is less than zero");
-		if (headBits.count > 0) {
+        
+		if (headBits.count == 1) {
 			title = headBits[0];
+            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 		}
-		//NSLog(@"%s 'Line:%d' - title:'%@'", __func__, __LINE__, title);
+		else { // there was some error with the regex
+            
+        }
 	}
 	
-	//NSLog(@"%s 'Line:%d' - BODY:'%@'", __func__, __LINE__, passageBody);
 	body = passageBody;
+    if ( passageBody != nil && passageBody.length > 0) {
+        body = [body stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    }
 	
-	[self createAPassageWithTitle:title
-							 tags:tags
-							 body:body];
+	result = [self createAPassageWithTitle:title tags:tags body:body];
+    return result;
 }
 
-- (void)createAPassageWithTitle:(NSString *)passageTitle tags:(NSString *)passageTags body:(NSString *)passageBody {
-	//TODO: NSAssert(passageTitle != nil, @"passageTitle is nil");
+- (MTPassage *)createAPassageWithTitle:(NSString *)passageTitle tags:(NSString *)passageTags body:(NSString *)passageBody {
+	MTPassage * result;
+    
 	if (passageTitle != nil) {
-        passageTitle = [passageTitle stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-		[[MTProjectEditor sharedMTProjectEditor] createPassageWithTitle:passageTitle
-																andTags:passageTags
-																andText:passageBody];
+        result = [MTPassage passage];
+        result.title = passageTitle;
+        result.passageTags = passageTags;
+        result.text = passageBody;
 	}
-}
-
-
-#pragma mark - User Dialogues
-
-- (NSURL *)importFileUrlFromDialogue {
-	NSURL * result;
-	
-	NSArray *fileTypesArray = @[ @"txt", @"twee", @"tw" ];
-	
-    NSOpenPanel* openPanel = [NSOpenPanel openPanel];
-	openPanel.allowsMultipleSelection = NO;
-	openPanel.message = kOpenMessage;
-	openPanel.allowedFileTypes = fileTypesArray;
-	openPanel.canChooseFiles = YES;
-	openPanel.canChooseDirectories = NO;
-	openPanel.resolvesAliases = YES;
-	
-	if ( [openPanel runModal] == NSOKButton ) {
-		if ([[openPanel URL] isFileURL]) {
-			NSLog(@"%s 'Line:%d' - Open File path: %@", __func__, __LINE__, [openPanel.URLs[0] path]);
-			result = openPanel.URL;
-		}
-	}
-	
-	return result;
+    
+    return result;
 }
 
 

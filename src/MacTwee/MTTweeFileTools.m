@@ -23,13 +23,16 @@ MTTweeBuildUtility * buildUtility;
 
 
 NSString * const exportMessage = @"Choose export destination";
-
+NSString * const importMessage = @"Choose a twee source file to import";
 
 #pragma mark - Public
 
 - (void)importTweeFile {
 	if (importUtility == nil) importUtility = [[MTTweeImportUtility alloc]init];
-	[importUtility importTweeFile];
+	
+    NSArray * tweeFileTypes = @[ @"txt", @"twee", @"tw" ];
+    NSURL * source = [MTDialogues openPanelForFileWithMessage:importMessage fileTypes:tweeFileTypes];
+    [importUtility importTweeFile:source toProject:[MTProjectEditor sharedMTProjectEditor].currentProject];
     importUtility = nil;
 }
 
