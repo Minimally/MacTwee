@@ -68,10 +68,10 @@ NSString * const regPatternForTitleGet = @"^:* *(.+) *$";
     else {
         for (NSString * separatedString in separatedStrings) {
             MTPassage * passage = [self passageFromString:separatedString];
-            
-            if (passage != nil) { result++; }
-            
-            [project addPassagesObject:passage];
+            if (passage != nil) {
+                result++;
+                [project addPassagesObject:passage];
+            }
         }
 	}
     

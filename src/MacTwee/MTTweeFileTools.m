@@ -32,7 +32,9 @@ NSString * const importMessage = @"Choose a twee source file to import";
 	
     NSArray * tweeFileTypes = @[ @"txt", @"twee", @"tw" ];
     NSURL * source = [MTDialogues openPanelForFileWithMessage:importMessage fileTypes:tweeFileTypes];
-    [importUtility importTweeFile:source toProject:[MTProjectEditor sharedMTProjectEditor].currentProject];
+    if (source != nil) {
+        [importUtility importTweeFile:source toProject:[MTProjectEditor sharedMTProjectEditor].currentProject];
+    }
     importUtility = nil;
 }
 
@@ -46,7 +48,9 @@ NSString * const importMessage = @"Choose a twee source file to import";
     NSString * saveName = [MTProjectEditor sharedMTProjectEditor].currentProject.sourceName;
     NSURL * destination = [MTDialogues savePanelForFileWithMessage:exportMessage fileName:saveName];
     
-    result = [exportUtility exportTweeFileFromProject:[MTProjectEditor sharedMTProjectEditor].currentProject toDestination:destination];
+    if (destination != nil) {
+        result = [exportUtility exportTweeFileFromProject:[MTProjectEditor sharedMTProjectEditor].currentProject toDestination:destination];
+    }
     
     if (result != nil) {
         [MTProjectEditor sharedMTProjectEditor].currentProject.sourceName = result.lastPathComponent;
@@ -89,7 +93,7 @@ NSString * const importMessage = @"Choose a twee source file to import";
 	NSURL * url = [exportUtility exportScratchTweeFileFromProject:[MTProjectEditor sharedMTProjectEditor].currentProject];
     exportUtility = nil;
     
-    if (url == nil) {
+    if (url == nil) { // export failed
         result = NO;
     }
     
