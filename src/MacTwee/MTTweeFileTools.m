@@ -30,6 +30,9 @@ MTTweeBuildUtility * buildUtility;
 
 - (NSURL *)exportTweeFile {
     NSURL * result;
+    
+    [[MTProjectEditor sharedMTProjectEditor] applyExportRules];
+    
 	if (exportUtility == nil) exportUtility = [[MTTweeExportUtility alloc]init];
     result = [exportUtility exportTweeFile];
     exportUtility = nil;
@@ -61,6 +64,8 @@ MTTweeBuildUtility * buildUtility;
 /// does the actual build call with values save in MTProjectEditor @param quick YES=no user prompts if possible
 - (BOOL)buildStory:(BOOL)quick {
     BOOL result;
+    
+    [[MTProjectEditor sharedMTProjectEditor] applyExportRules];
     
 	if (exportUtility == nil) exportUtility = [[MTTweeExportUtility alloc]init];
 	NSURL * url = [exportUtility exportTempTweeFile];

@@ -92,19 +92,7 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 
 
 #pragma mark - NSTextStorageDelegate
-- (void)textStorageWillProcessEditing:(NSNotification *)notification {
-    // remove fancy quotes
-    if (self.passageTextView == nil) { return; }
-    NSRange range = NSMakeRange(0, self.passageTextView.textStorage.string.length);
-    [self.passageTextView.textStorage.mutableString replaceOccurrencesOfString:@"“"
-                                                                    withString:@"\""
-                                                                       options:NSLiteralSearch
-                                                                         range:range];
-    [self.passageTextView.textStorage.mutableString replaceOccurrencesOfString:@"”"
-                                                                    withString:@"\""
-                                                                       options:NSLiteralSearch
-                                                                         range:range];
-}
+
 - (void)textStorageDidProcessEditing:(NSNotification *)aNotification {
     
     if (self.passageTextView == nil) { return; }

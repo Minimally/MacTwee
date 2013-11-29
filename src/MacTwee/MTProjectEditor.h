@@ -60,4 +60,9 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
 - (void)updateCurrentProject;
 
+/// applies any rules to all of the passages prior to export
+
+- (void)applyExportRules;
+
+
 @end

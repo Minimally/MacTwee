@@ -144,6 +144,63 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
     }
 }
 
+- (void)applyExportRules {
+    for (MTPassage * passage in self.currentProject.passages) {        
+        if (passage.text == nil || passage.text.length == 0) { return; }
+        
+        NSMutableString * text = [NSMutableString stringWithString:passage.text];
+        NSRange range = NSMakeRange(0, text.length);
+        
+        // Unicode Character 'LEFT DOUBLE QUOTATION MARK' (U+201C)
+        [text replaceOccurrencesOfString:@"“"
+                              withString:@"\""
+                                 options:NSLiteralSearch
+                                   range:range];
+        // Unicode Character 'RIGHT DOUBLE QUOTATION MARK' (U+201D)
+        [text replaceOccurrencesOfString:@"”"
+                              withString:@"\""
+                                 options:NSLiteralSearch
+                                   range:range];
+        
+        // Unicode Character 'LEFT SINGLE QUOTATION MARK' (U+2018)
+        [text replaceOccurrencesOfString:@"‘"
+                              withString:@"'"
+                                 options:NSLiteralSearch
+                                   range:range];
+        // Unicode Character 'RIGHT SINGLE QUOTATION MARK' (U+2019)
+        [text replaceOccurrencesOfString:@"’"
+                              withString:@"'"
+                                 options:NSLiteralSearch
+                                   range:range];
+        
+        // Unicode Character 'EM SPACE' (U+2003)
+        /*[text replaceOccurrencesOfString:@" " withString:@" " options:NSLiteralSearch range:range]; */
+        
+        
+        // Unicode Character 'HORIZONTAL ELLIPSIS' (U+2026)
+        [text replaceOccurrencesOfString:@"…"
+                              withString:@"..."
+                                 options:NSLiteralSearch
+                                   range:range];
+        
+        // Unicode Character 'EN DASH' (U+2013)
+        [text replaceOccurrencesOfString:@"–"
+                              withString:@"-"
+                                 options:NSLiteralSearch
+                                   range:range];
+        
+        // Unicode Character 'EM DASH' (U+2014)
+        [text replaceOccurrencesOfString:@"—"
+                              withString:@"--"
+                                 options:NSLiteralSearch
+                                   range:range];
+        
+        
+        
+        passage.text = text;
+    }
+}
+
 #pragma mark - Private
 
 - (void)setCurrentProject:(MTProject *)proj {
