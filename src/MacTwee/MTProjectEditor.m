@@ -84,16 +84,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 }
 
 - (NSArray *)getPassages {
-	NSAssert(self.currentProject != nil, @"currentProject is nil");
-	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"project == %@", self.currentProject];
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Passage"
-											  inManagedObjectContext:MTCoreDataManager.sharedMTCoreDataManager.managedObjectContext];
-	[fetchRequest setEntity:entity];
-	[fetchRequest setPredicate:predicate];
-	NSError *error = nil;
-	return [MTCoreDataManager.sharedMTCoreDataManager.managedObjectContext executeFetchRequest:fetchRequest
-																						 error:&error];
+	return [self.currentProject.passages allObjects];
 }
 
 - (BOOL)checkPassageExistsInCurrentProject:(NSString *)passage {

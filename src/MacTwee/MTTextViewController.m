@@ -92,7 +92,19 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
 
 
 #pragma mark - NSTextStorageDelegate
-
+- (void)textStorageWillProcessEditing:(NSNotification *)notification {
+    // remove fancy quotes
+    if (self.passageTextView == nil) { return; }
+    NSRange range = NSMakeRange(0, self.passageTextView.textStorage.string.length);
+    [self.passageTextView.textStorage.mutableString replaceOccurrencesOfString:@"“"
+                                                                    withString:@"\""
+                                                                       options:NSLiteralSearch
+                                                                         range:range];
+    [self.passageTextView.textStorage.mutableString replaceOccurrencesOfString:@"”"
+                                                                    withString:@"\""
+                                                                       options:NSLiteralSearch
+                                                                         range:range];
+}
 - (void)textStorageDidProcessEditing:(NSNotification *)aNotification {
     
     if (self.passageTextView == nil) { return; }
@@ -100,15 +112,7 @@ NSString * const displayReg = @"\\<\\<display\\s+[\'\"](.+?)[\'\"]\\s?\\>\\>";
     NSTextStorage * textStorage = self.passageTextView.textStorage;
     NSString * string = textStorage.string;
 	NSRange range = NSMakeRange(0, [textStorage length]);
-	//NSRange passageRange = NSMakeRange(0, passageString.length);
-	//NSLog(@"%s 'Line:%d' - passageRange range:'%lu' textStorage range:'%lu'", __func__, __LINE__, passageRange.length, range.length);
-	
 	NSFont * font = [[NSFontManager sharedFontManager] fontWithFamily:@"Arial" traits:0 weight:5 size:textSize.floatValue];
-	
-    // remove fancy quotes
-    
-    string = [string stringByReplacingOccurrencesOfString:@"“" withString:@"\""];
-    string = [string stringByReplacingOccurrencesOfString:@"”" withString:@"\""];
     
     // remove previous attributes
     

@@ -41,9 +41,9 @@
     BOOL quickBuild = YES;
     
     [builder buildHtmlFileWithSource:sourceDir
-                                    buildDirectory:buildDir
-                                       storyFormat:format
-                                        quickBuild:quickBuild];
+                      buildDirectory:buildDir
+                         storyFormat:format
+                          quickBuild:quickBuild];
     
     BOOL result = [[NSFileManager defaultManager] fileExistsAtPath:buildDirPath isDirectory:NO];
     
