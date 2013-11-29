@@ -44,14 +44,27 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
 
 - (void)newPassage {
 	NSAssert(self.currentProject != nil, @"currentProject is nil");
-	MTPassage * passage = [self createPassageWithTitle:@"New Passage" andTags:@"" andText:@""];
+    
+    NSString * passageName = @"New Passage";
+    while ( [self checkPassageExistsInCurrentProject:passageName] ) {
+        passageName = [self uniquePassageName:passageName];
+    }
+    
+	MTPassage * passage = [self createPassageWithTitle:passageName andTags:nil andText:nil];
+    
     self.currentPassage = passage;
 }
 
 - (MTPassage *)createPassageWithTitle:(NSString *)title andTags:(NSString *)tags andText:(NSString *)text {
 	NSAssert(self.currentProject != nil, @"currentProject is nil");
-	MTPassage * passage = [MTPassage passage];
-	passage.title = title;
+	
+    NSString * uniqueTitle = title;
+    while ( [self checkPassageExistsInCurrentProject:uniqueTitle] ) {
+        uniqueTitle = [self uniquePassageName:uniqueTitle];
+    }
+    
+    MTPassage * passage = [MTPassage passage];
+	passage.title = uniqueTitle;
 	passage.passageTags = tags;
 	passage.text = text;
 	passage.project = self.currentProject;
@@ -63,11 +76,12 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(MTProjectEditor);
     passage.xPosition = xPos;
     passage.yPosition = yPos;
     
-    passage.title = (passage.title == nil || passage.title.length == 0) ? @"New Passage": passage.title;
-    while ( [self checkPassageExistsInCurrentProject:passage.title] ) {
-        passage.title = [self uniquePassageName:passage.title];
+    NSString * uniqueTitle = @"New Passage";
+    while ( [self checkPassageExistsInCurrentProject:uniqueTitle] ) {
+        uniqueTitle = [self uniquePassageName:uniqueTitle];
     }
     
+    passage.title = uniqueTitle;
 	passage.project = self.currentProject;
     return passage;
     

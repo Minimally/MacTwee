@@ -60,18 +60,17 @@
 #pragma mark - IBAction
 
 - (IBAction)deletePassage:(id)sender {
-    MTPassage * passage = [MTProjectEditor sharedMTProjectEditor].currentPassage;
-    if ( passage != nil ) {
+    for (MTPassage * passage in self.passageArrayController.selectedObjects) {
         [[MTCoreDataManager sharedMTCoreDataManager].managedObjectContext deleteObject:passage];
-        [MTProjectEditor sharedMTProjectEditor].currentPassage = nil;
     }
+    [MTProjectEditor sharedMTProjectEditor].currentPassage = nil;
 }
 
 
 #pragma mark - Private
 
 - (void)updateSelectedPassage {
-    if ( self.passageArrayController.selectedObjects.count >= 1 ) {
+    if ( self.passageArrayController.selectedObjects.count == 1 ) {
         id selectedPassage = self.passageArrayController.selectedObjects[0];
         if (selectedPassage != nil) {
             [[MTProjectEditor sharedMTProjectEditor] setCurrentPassage:selectedPassage];
@@ -105,11 +104,13 @@
     else if ( [notification.name isEqualToString:MTAppDelegateDidGetMenuClickNotification] ) {
         NSNumber * index = [notification userInfo][@"index"];
         if ( [index integerValue] == MTMenuBtnNew ) {
-            MTPassage * passage = [MTPassage passage];
-            passage.project = [MTProjectEditor sharedMTProjectEditor].currentProject;
-            [self.passageArrayController setSelectedObjects:@[passage]];
-            [self updateSelectedPassage];
+            [[MTProjectEditor sharedMTProjectEditor] newPassage];
+            //MTPassage * passage = [MTPassage passage];
+            //passage.project = [MTProjectEditor sharedMTProjectEditor].currentProject;
+            //[self.passageArrayController setSelectedObjects:@[passage]];
+            //[self updateSelectedPassage];
         }
     }
 }
+
 @end
