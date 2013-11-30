@@ -42,9 +42,8 @@ NSString * const kBuildFileName = @"Story.html";
     BOOL result = YES;
     self.quickBuild = quickBuild;
     
-    [self verifyTwee];
-	if (self.tweePath == nil || self.tweePath.length == 0) {
-        [self operationResultWithTitle:@"Error" msgFormat:@"Twee Application Unavailable" defaultButton:@"OK"];
+	if ( ![self verifyTwee] || self.tweePath == nil || self.tweePath.length == 0 ) {
+        [self operationResultWithTitle:@"Error" msgFormat:@"Twee Unavailable" defaultButton:@"OK"];
         result = NO;
     }
     
@@ -82,27 +81,38 @@ NSString * const kBuildFileName = @"Story.html";
 #pragma mark - Verify Twee, Story Format, Source Location, Build Destination
 
 /*! tries to find Twee and sets tweePath. Uses NSUserDefaults first, then prompts user if fails */
-- (void)verifyTwee {
+- (BOOL)verifyTwee {
+    BOOL result = NO;
     NSURL * workURL;
+    BOOL ask = YES;
     
     // check user defaults
     self.tweePath = [[NSUserDefaults standardUserDefaults] stringForKey:kPathToTwee];
-    if (self.tweePath != nil) { workURL = [NSURL fileURLWithPath:self.tweePath isDirectory:NO]; }
+    
+    if (self.tweePath != nil) {
+        workURL = [NSURL fileURLWithPath:self.tweePath isDirectory:NO];
+        if ( [workURL.lastPathComponent isEqualToString:@"twee"] ) {
+            if ( [[NSFileManager defaultManager] fileExistsAtPath:self.tweePath isDirectory:NO] ) {
+                self.tweePath = nil;
+                ask = NO;
+                result = YES;
+            }
+        }
+    }
     
     // prompt user
-	if ( ![workURL.lastPathComponent isEqualToString:@"twee"] ) { // defaults failed us
+	if ( ask ) {
 		workURL = [MTDialogues openPanelForFileWithMessage:promptTwee];
-        
-		if ( ![workURL.lastPathComponent isEqualToString:@"twee"] ) { // user failed us
-			self.tweePath = nil;
-		}
-        
-        else { // user got it
-			self.tweePath = workURL.path;
-            // save the path for next build
-            [[NSUserDefaults standardUserDefaults] setValue:self.tweePath forKey:kPathToTwee];
-		}
+		if ( [workURL.lastPathComponent isEqualToString:@"twee"] ) {
+            if ( [[NSFileManager defaultManager] fileExistsAtPath:workURL.path isDirectory:NO] ) {
+                result = YES;
+                self.tweePath = workURL.path;
+                // save the path for next build
+                [[NSUserDefaults standardUserDefaults] setValue:self.tweePath forKey:kPathToTwee];
+            }
+        }
 	}
+    return result;
 }
 
 /*! tries to verify the storyformat. Checks the string first, then checks the directory */
