@@ -7,6 +7,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <SpriteKit/SpriteKit.h>
+#import <WebKit/WebKit.h>
 
 
 @interface MTProjectViewController : NSViewController <NSTableViewDelegate>
@@ -17,7 +18,12 @@
 @property (unsafe_unretained) IBOutlet NSTextView * passageTextView;
 @property (strong) NSArray * passagesArrayControllerSortDescriptors;
 @property (weak) IBOutlet SKView * visualEditorSKView;
+@property (weak) IBOutlet WebView * webView;
+@property (weak) IBOutlet NSTextField * webViewAddressBar;
 
 - (IBAction)deletePassage:(id)sender;
+
+/// back and forward buttons for webview
+- (IBAction)webViewNavigate:(id)sender;
 
 @end

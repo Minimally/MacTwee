@@ -32,12 +32,13 @@ extern NSString * const MTTextViewControllerDidGetPotentialPassageClickNotificat
 /// various menu items selected by user
 extern NSString * const MTAppDelegateDidGetMenuClickNotification;
 extern NSString * const MTTweeImporUtilityDidImportFile;
+/// build and run completed, index constains NSString build directory
+extern NSString * const MTTweeFileToolsDidGetBuiltFile;
 
 #pragma mark - paths
 
 extern NSString * const kOpenPath;
 extern NSString * const kSavePath;
-extern NSString * const kPathToTwee;
 
 #pragma mark - assorted strings
 
@@ -45,5 +46,13 @@ extern NSString * const kdefaultBuildName;
 extern NSString * const kdefaultSourceName;
 extern NSString * const kUserApplicationSupportDirectory;
 extern NSString * const kLinkMatch;
+
+#pragma mark - Preference Keys
+
+extern NSString * const kPathToTwee;
+extern NSString * const kRunInWebView;
+extern NSString * const kTextSize;
+extern NSString * const kExitOnLastClose;
+
 
 @end

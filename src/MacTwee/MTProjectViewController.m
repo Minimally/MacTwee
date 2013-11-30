@@ -47,6 +47,14 @@
                                              selector:@selector(processNotification:)
                                                  name:MTTextViewControllerDidGetPotentialPassageClickNotification
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(processNotification:)
+                                                 name:MTTweeFileToolsDidGetBuiltFile
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(webViewProgressFinish)
+                                                 name:WebViewProgressFinishedNotification
+                                               object:self.webView];
 }
 
 
@@ -66,8 +74,22 @@
     [MTProjectEditor sharedMTProjectEditor].currentPassage = nil;
 }
 
+- (IBAction)webViewNavigate:(id)sender {
+    if ([sender respondsToSelector:@selector(tag)]) {
+        long tag = [sender tag];
+        if (tag == 0) { // back
+            [self.webView goBack];
+        }
+        else if (tag == 1) { // forward
+            [self.webView goForward];
+        }
+    }
+}
+
 
 #pragma mark - Private
+
+/// updates the currently selected passage in MTProjectEditor
 
 - (void)updateSelectedPassage {
     if ( self.passageArrayController.selectedObjects.count == 1 ) {
@@ -80,6 +102,8 @@
         [[MTProjectEditor sharedMTProjectEditor] setCurrentPassage:nil];
     }
 }
+
+/// called after notifcations recieved
 
 - (void)processNotification:(NSNotification *)notification {
     
@@ -111,6 +135,19 @@
             //[self updateSelectedPassage];
         }
     }
+    
+    else if ( [notification.name isEqualToString:MTTweeFileToolsDidGetBuiltFile] ) {
+        NSString * index = [notification userInfo][@"index"];
+        NSURL * url = [NSURL fileURLWithPath:index];
+        NSURLRequest * request = [NSURLRequest requestWithURL:url];
+        [self.webView.mainFrame loadRequest:request];
+        //self.webViewAddressBar.stringValue = url.path;
+    }
 }
+
+/// called after WebViewProgressFinishedNotification on self.webview
+
+- (void)webViewProgressFinish { NSLog(@"%d | %s - comment", __LINE__, __func__); }
+
 
 @end

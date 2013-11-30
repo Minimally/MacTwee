@@ -42,6 +42,8 @@
 		C69DA21417C855AD0007BD17 /* MTTweeFileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21317C855AD0007BD17 /* MTTweeFileTools.m */; };
 		C69DA21717C863520007BD17 /* MTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21617C863520007BD17 /* MTConstants.m */; };
 		C69DA21F17C87BA70007BD17 /* NSString+PDRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */; };
+		C6A2445A18496CC2005A4337 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A2445918496CC2005A4337 /* WebKit.framework */; };
+		C6A2445C18497350005A4337 /* Preferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6A2445B18497350005A4337 /* Preferences.plist */; };
 		C6B7923F17CC598300C0ADD3 /* MTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7923E17CC598300C0ADD3 /* MTTextView.m */; };
 		C6BEB60718466B1A00DD6986 /* MTDialogues.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BEB60618466B1A00DD6986 /* MTDialogues.m */; };
 		C6BEB60A1846953900DD6986 /* sample.twee in Resources */ = {isa = PBXBuildFile; fileRef = C6BEB6091846953900DD6986 /* sample.twee */; };
@@ -130,6 +132,8 @@
 		C69DA21817C865270007BD17 /* MTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTConstants.h; sourceTree = "<group>"; };
 		C69DA21D17C87BA70007BD17 /* NSString+PDRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+PDRegex.h"; path = "RegexOnNSString/NSString+PDRegex.h"; sourceTree = "<group>"; };
 		C69DA21E17C87BA70007BD17 /* NSString+PDRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PDRegex.m"; path = "RegexOnNSString/NSString+PDRegex.m"; sourceTree = "<group>"; };
+		C6A2445918496CC2005A4337 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C6A2445B18497350005A4337 /* Preferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Preferences.plist; sourceTree = "<group>"; };
 		C6B7923D17CC598300C0ADD3 /* MTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTextView.h; sourceTree = "<group>"; };
 		C6B7923E17CC598300C0ADD3 /* MTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTextView.m; sourceTree = "<group>"; };
 		C6BEB60518466B1A00DD6986 /* MTDialogues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTDialogues.h; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6A2445A18496CC2005A4337 /* WebKit.framework in Frameworks */,
 				C68A8A531841CF2900DD94B7 /* SpriteKit.framework in Frameworks */,
 				C607042517C5CE0F0076E919 /* Cocoa.framework in Frameworks */,
 			);
@@ -189,6 +194,7 @@
 		C607042317C5CE0F0076E919 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6A2445918496CC2005A4337 /* WebKit.framework */,
 				C68A8A521841CF2900DD94B7 /* SpriteKit.framework */,
 				C607042417C5CE0F0076E919 /* Cocoa.framework */,
 				C607044517C5CE0F0076E919 /* SenTestingKit.framework */,
@@ -236,6 +242,7 @@
 				C607043217C5CE0F0076E919 /* MacTwee-Prefix.pch */,
 				C607043317C5CE0F0076E919 /* Credits.rtf */,
 				C6DF46071844247D00DD9297 /* mactwee.icns */,
+				C6A2445B18497350005A4337 /* Preferences.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -478,6 +485,7 @@
 				C6E90DC917C82A370049ED37 /* MTHomeView.xib in Resources */,
 				C6DF46081844247D00DD9297 /* mactwee.icns in Resources */,
 				C69DA21117C851CE0007BD17 /* MTProjectView.xib in Resources */,
+				C6A2445C18497350005A4337 /* Preferences.plist in Resources */,
 				C63E6C6D17CF046200FCEDEB /* MTPreferencesView.xib in Resources */,
 				C6BEB60A1846953900DD6986 /* sample.twee in Resources */,
 			);

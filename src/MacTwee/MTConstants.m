@@ -18,12 +18,12 @@ NSString * const MTPrimaryWindowControllerWillOpenViewNotification = @"MTPrimary
 NSString * const MTTextViewControllerDidGetPotentialPassageClickNotification = @"altClickLink";
 NSString * const MTAppDelegateDidGetMenuClickNotification = @"menuButtonClick";
 NSString * const MTTweeImporUtilityDidImportFile = @"didImportTweeFile";
+NSString * const MTTweeFileToolsDidGetBuiltFile = @"buildFileHappened";
 
 #pragma mark - paths
 
 NSString * const kOpenPath = @"kOpenPath";
 NSString * const kSavePath = @"kSavePath";
-NSString * const kPathToTwee = @"kPathToTwee";
 
 
 #pragma mark - assorted strings
@@ -32,6 +32,13 @@ NSString * const kdefaultBuildName = @"build.html";
 NSString * const kdefaultSourceName = @"source.twee";
 NSString * const kUserApplicationSupportDirectory = @"MacTwee";
 NSString * const kLinkMatch = @"kLinkMatch";
+
+#pragma mark - Preference Keys
+
+NSString * const kPathToTwee = @"kPathToTwee";
+NSString * const kRunInWebView = @"useInternalWebView";
+NSString * const kTextSize = @"textSize";
+NSString * const kExitOnLastClose = @"exitOnLastClose";
 
 
 @end

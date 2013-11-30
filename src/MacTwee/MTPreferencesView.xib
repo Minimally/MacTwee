@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
+        <deployment defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
@@ -21,18 +21,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="503" height="450"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <tabView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="152">
+                    <tabView fixedFrame="YES" initialItem="155" translatesAutoresizingMaskIntoConstraints="NO" id="152">
                         <rect key="frame" x="13" y="10" width="477" height="434"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="General" identifier="2" id="155">
-                                <view key="view" id="156">
+                                <view key="view" ambiguous="YES" id="156">
                                     <rect key="frame" x="10" y="33" width="457" height="388"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="297">
-                                            <rect key="frame" x="15" y="15" width="180" height="18"/>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="297">
+                                            <rect key="frame" x="15" y="403" width="180" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Exit on last window close" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="298">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -42,7 +42,7 @@
                                                 <binding destination="232" name="value" keyPath="values.exitOnLastClose" id="304"/>
                                             </connections>
                                         </button>
-                                        <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="305">
+                                        <pathControl focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="305">
                                             <rect key="frame" x="17" y="311" width="423" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <pathCell key="cell" controlSize="small" lineBreakMode="truncatingHead" selectable="YES" focusRingType="none" alignment="left" id="306">
@@ -54,7 +54,7 @@
                                                 </connections>
                                             </pathCell>
                                         </pathControl>
-                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="320">
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="320">
                                             <rect key="frame" x="15" y="339" width="183" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Location of Twee executable" id="321">
@@ -63,7 +63,7 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="351">
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="351">
                                             <rect key="frame" x="386" y="329" width="60" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Set" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="352">
@@ -74,22 +74,22 @@
                                                 <action selector="setTweeLocation:" target="-2" id="358"/>
                                             </connections>
                                         </button>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RWK-Xz-cL0">
+                                            <rect key="frame" x="15" y="257" width="183" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Run builds in MacTwee" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="b99-Dt-ycE">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="232" name="value" keyPath="values.useInternalWebView" id="k9Y-Rw-c9h"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="297" secondAttribute="bottom" constant="17" id="310"/>
-                                        <constraint firstAttribute="trailing" secondItem="305" secondAttribute="trailing" constant="17" id="316"/>
-                                        <constraint firstItem="305" firstAttribute="leading" secondItem="156" secondAttribute="leading" constant="17" id="318"/>
-                                        <constraint firstItem="320" firstAttribute="leading" secondItem="156" secondAttribute="leading" constant="17" id="323"/>
-                                        <constraint firstItem="305" firstAttribute="top" secondItem="320" secondAttribute="bottom" constant="8" symbolic="YES" id="324"/>
-                                        <constraint firstItem="297" firstAttribute="leading" secondItem="156" secondAttribute="leading" constant="17" id="346"/>
-                                        <constraint firstAttribute="trailing" secondItem="351" secondAttribute="trailing" constant="17" id="355"/>
-                                        <constraint firstItem="351" firstAttribute="baseline" secondItem="320" secondAttribute="baseline" id="356"/>
-                                        <constraint firstItem="351" firstAttribute="top" secondItem="156" secondAttribute="top" constant="31" id="357"/>
-                                    </constraints>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Text &amp; Colors" identifier="1" id="153">
-                                <view key="view" ambiguous="YES" id="154">
+                                <view key="view" id="154">
                                     <rect key="frame" x="10" y="33" width="457" height="388"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>

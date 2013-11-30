@@ -72,11 +72,20 @@ NSString * const importMessage = @"Choose a twee source file to import";
 	NSString * buildDirectory = [MTProjectEditor sharedMTProjectEditor].currentProject.buildDirectory;
 	
     if (buildDirectory != nil) {
-		NSFileManager * manager = [[NSFileManager alloc]init];
-		if ( [manager fileExistsAtPath:buildDirectory] ) {
-			NSWorkspace * workspace = [NSWorkspace sharedWorkspace];
-			[workspace openFile:buildDirectory];
-		}
+        BOOL internal = [[NSUserDefaults standardUserDefaults] boolForKey:kRunInWebView];
+        
+        if (internal ) { // open in internal webView
+            NSDictionary * dict = @{ @"index":buildDirectory };
+            [[NSNotificationCenter defaultCenter] postNotificationName:MTTweeFileToolsDidGetBuiltFile object:self userInfo:dict];
+        }
+        
+        else { // open with default browser
+            NSFileManager * manager = [[NSFileManager alloc]init];
+            if ( [manager fileExistsAtPath:buildDirectory] ) {
+                NSWorkspace * workspace = [NSWorkspace sharedWorkspace];
+                [workspace openFile:buildDirectory];
+            }
+        }
 	}
 }
 
