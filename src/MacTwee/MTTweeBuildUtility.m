@@ -93,7 +93,6 @@ NSString * const kBuildFileName = @"Story.html";
         workURL = [NSURL fileURLWithPath:self.tweePath isDirectory:NO];
         if ( [workURL.lastPathComponent isEqualToString:@"twee"] ) {
             if ( [[NSFileManager defaultManager] fileExistsAtPath:self.tweePath isDirectory:NO] ) {
-                self.tweePath = nil;
                 ask = NO;
                 result = YES;
             }
