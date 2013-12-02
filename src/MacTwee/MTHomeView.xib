@@ -22,18 +22,18 @@
                     <rect key="frame" x="20" y="49" width="710" height="531"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" id="46K-Ze-Q27">
-                        <rect key="frame" x="1" y="1" width="708" height="529"/>
+                        <rect key="frame" x="1" y="17" width="708" height="513"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" id="10">
-                                <rect key="frame" x="0.0" y="0.0" width="708" height="529"/>
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" multipleSelection="NO" autosaveColumns="NO" headerView="HUM-o8-i6T" id="10">
+                                <rect key="frame" x="0.0" y="0.0" width="708" height="513"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn width="479.16015625" minWidth="40" maxWidth="1000" id="14">
+                                    <tableColumn width="293.16015625" minWidth="40" maxWidth="1000" id="14">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -49,7 +49,7 @@
                                             <binding destination="65" name="value" keyPath="arrangedObjects.projectName" id="118"/>
                                         </connections>
                                     </tableColumn>
-                                    <tableColumn editable="NO" width="222" minWidth="40" maxWidth="1000" id="15">
+                                    <tableColumn editable="NO" width="217" minWidth="40" maxWidth="1000" id="15">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Modified Date">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -64,6 +64,38 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <connections>
                                             <binding destination="65" name="value" keyPath="arrangedObjects.lastModifiedDate" id="76"/>
+                                        </connections>
+                                    </tableColumn>
+                                    <tableColumn editable="NO" width="136" minWidth="10" maxWidth="3.4028234663852886e+38" id="iV7-QB-xOf">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Passage Count">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                        </tableHeaderCell>
+                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="k7q-oh-ccI">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        <connections>
+                                            <binding destination="65" name="value" keyPath="arrangedObjects.passages.@count" id="BP3-T2-cpZ"/>
+                                        </connections>
+                                    </tableColumn>
+                                    <tableColumn width="50" minWidth="10" maxWidth="3.4028234663852886e+38" id="Tqd-4r-mRl">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Story Format">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                        </tableHeaderCell>
+                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="IVB-vL-CMr">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        <connections>
+                                            <binding destination="65" name="value" keyPath="arrangedObjects.storyFormat" id="2qu-5s-j2u"/>
                                         </connections>
                                     </tableColumn>
                                 </tableColumns>
@@ -88,6 +120,10 @@
                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
+                    <tableHeaderView key="headerView" id="HUM-o8-i6T">
+                        <rect key="frame" x="0.0" y="0.0" width="708" height="17"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tableHeaderView>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="27">
                     <rect key="frame" x="20" y="19" width="200" height="23"/>
