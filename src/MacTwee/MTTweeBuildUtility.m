@@ -65,7 +65,7 @@ NSString * const kBuildFileName = @"Story.html";
         self.buildDirectory = buildDirectory;
         [self verifyBuildDirectory];
         if (self.buildDirectory == nil) {
-            [self operationResultWithTitle:@"Error" msgFormat:@"HTML destination Unavailable" defaultButton:@"OK"];
+            [self operationResultWithTitle:@"Error" msgFormat:@"html output file destination unavailable" defaultButton:@"OK"];
             result = NO;
         }
 	}
@@ -160,6 +160,7 @@ NSString * const kBuildFileName = @"Story.html";
 /*! tries to find Twee and sets tweePath. Uses NSUserDefaults first, then prompts user if fails */
 - (void)verifyBuildDirectory {
     BOOL ask = YES;
+    NSString * fileName = (self.buildDirectory == nil) ? kBuildFileName : self.buildDirectory.lastPathComponent;
     
     if ( self.quickBuild ) {
         
@@ -178,8 +179,12 @@ NSString * const kBuildFileName = @"Story.html";
 //        }
     }
     
+    if ( ![[NSFileManager defaultManager] fileExistsAtPath:self.buildDirectory.path isDirectory:NO] ) {
+        ask = YES;
+    }
+    
     if (ask) { // prompt user
-        self.buildDirectory = [MTDialogues savePanelForFileWithMessage:promptBuild fileName:kBuildFileName];
+        self.buildDirectory = [MTDialogues savePanelForFileWithMessage:promptBuild fileName:fileName];
     }
 }
 
