@@ -39,6 +39,8 @@ NSString * const kPathToTwee = @"kPathToTwee";
 NSString * const kRunInWebView = @"useInternalWebView";
 NSString * const kTextSize = @"textSize";
 NSString * const kExitOnLastClose = @"exitOnLastClose";
+NSString * const kVisualUseCurves = @"visualUseCurves";
+NSString * const kVisualDisplayDebug = @"visualDisplayDebug";
 
 
 @end

@@ -43,6 +43,7 @@ static double kShapeIncomingXPosition = -50;
 static double kShapeIncomingYPosition = 0;
 static double kShapeOutgoingXPosition = 50;
 static double kShapeOutgoingYPosition = 0;
+static int controlPntDist = 30;
 
 // values for creating nodes
 static double kSpriteSizeX = 100;
@@ -323,6 +324,8 @@ static double kLabelDepth = 11;
 }
 
 - (void)drawLinks:(NSArray *)passages {
+    BOOL useCurves = [[NSUserDefaults standardUserDefaults] boolForKey:kVisualUseCurves];
+    
     for (MTPassage * passage in passages) {
         if (passage.outgoing.count == 0) { continue; }
         
@@ -345,58 +348,68 @@ static double kLabelDepth = 11;
                 [linkRootNode addChild:line];
             }
             
-            /*
-            double startPointX = startNode.position.x + kShapeOutgoingXPosition;
-            double startPointY = startNode.position.y;
-            
-            double endPointX = [endNode.xPosition doubleValue] + kShapeIncomingXPosition;
-            double endPointY = [endNode.yPosition doubleValue];
-            */
-            
-            double startPointX = startNode.position.x + kShapeOutgoingXPosition;
-            double startPointY = startNode.position.y + kShapeOutgoingYPosition;
-            
-            double endPointX = [endNode.xPosition doubleValue] + kShapeIncomingXPosition;
-            double endPointY = [endNode.yPosition doubleValue] + kShapeIncomingYPosition;
+            //set up end points for links
+            CGPoint startPoint = CGPointMake(startNode.position.x + kShapeOutgoingXPosition, startNode.position.y + kShapeOutgoingYPosition);
+            CGPoint endPoint = CGPointMake([endNode.xPosition doubleValue] + kShapeIncomingXPosition, [endNode.yPosition doubleValue] + kShapeIncomingYPosition);
             
             // create the path for the SKShapeNode
             CGMutablePathRef path = CGPathCreateMutable();
-            CGPathMoveToPoint(path, NULL, startPointX, startPointY);
-            CGPathAddLineToPoint(path, NULL, endPointX, endPointY);
+            CGPathMoveToPoint(path, NULL, startPoint.x, startPoint.y);
             
-            /* // pretty bad attempt at using Bezier Curves between nodes
-            double midpointBetweenNodesX = (startPointX + endPointX) / 2;
-            double midpointBetweenNodesY = (startPointY + endPointY) / 2;
+            if (useCurves) {
+                double controlPoint1X = startPoint.x + controlPntDist;
+                double controlPoint1Y = startPoint.y;
+                
+                double controlPoint2X = endPoint.x - controlPntDist;
+                double controlPoint2Y = endPoint.y;
+                
+                /* // debug control points [rootNode addChild:[self debugSpriteNode:CGPointMake(controlPoint1X, controlPoint1Y) color:[NSColor orangeColor]]];
+                 [rootNode addChild:[self debugSpriteNode:CGPointMake(controlPoint2X, controlPoint2Y) color:[NSColor redColor]]];*/
+                
+                CGPathAddCurveToPoint(path,
+                                      NULL,
+                                      // control 1
+                                      controlPoint1X, controlPoint1Y,
+                                      // control 2
+                                      controlPoint2X, controlPoint2Y,
+                                      // endpoint
+                                      endPoint.x, endPoint.y
+                                      );
+            }
             
-            double distanceBetweenNodesX = sqrt( pow((endPointX - startPointX), 2) + pow((endPointY - endPointY), 2) );
-            //double distanceBetweenNodesY = (startPointY + endPointY) / 2;
+            else {
+                CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
+            }
             
-            double controlPoint1X = startPointX + midpointBetweenNodesX / 3;
-            double controlPoint1Y = startPointY + midpointBetweenNodesY / 3;
+            // create indicators for outgoing / incoming points
+            /*
+            SKNode * start = [rootNode nodeAtPoint:startPoint];
+            if (start != nil && [start.name isEqualToString:kIgnoreName]) {
+                NSLog(@"%d | %s - skipping a node", __LINE__, __func__);
+            } else {
+                [rootNode addChild:[self debugSpriteNode:startPoint color:[NSColor greenColor]]];
+            }
             
-            double controlPoint2X = endPointX + midpointBetweenNodesX / 3;
-            double controlPoint2Y = endPointY + midpointBetweenNodesY / 3;
+            SKNode * end = [rootNode nodeAtPoint:endPoint];
+            if (end != nil && [end.name isEqualToString:kIgnoreName]) {
+                NSLog(@"%d | %s - skipping a node", __LINE__, __func__);
+            } else {
+                [rootNode addChild:[self debugSpriteNode:endPoint color:[NSColor blueColor]]];
+            }
+            */
+            //[rootNode addChild:[self debugSpriteNode:startPoint color:[NSColor greenColor]]];
+            //[rootNode addChild:[self debugSpriteNode:endPoint color:[NSColor blueColor]]];
             
-            [rootNode addChild:[self debugSpriteNode:CGPointMake(controlPoint1X, controlPoint1Y) color:[NSColor orangeColor]]];
-            [rootNode addChild:[self debugSpriteNode:CGPointMake(controlPoint2X, controlPoint2Y) color:[NSColor redColor]]];
+             SKNode * start = [rootNode nodeAtPoint:startPoint];
+             if (start == nil || ![start.name isEqualToString:kIgnoreName]) {
+                 [rootNode addChild:[self debugSpriteNode:startPoint color:[NSColor greenColor]]];
+             }
+             
+             SKNode * end = [rootNode nodeAtPoint:endPoint];
+             if (end == nil || ![end.name isEqualToString:kIgnoreName]) {
+                 [rootNode addChild:[self debugSpriteNode:endPoint color:[NSColor blueColor]]];
+             }
             
-            
-            CGPathAddCurveToPoint(path,
-                                  NULL,
-                                  // control 1
-                                  controlPoint1X,
-                                  controlPoint1Y,
-                                  // control 2
-                                  controlPoint2X,
-                                  controlPoint2Y,
-                                  // endpoint
-                                  endPointX,
-                                  endPointY
-                                  );
-             */
-            
-            [rootNode addChild:[self debugSpriteNode:CGPointMake(startPointX, startPointY) color:[NSColor greenColor]]];
-            [rootNode addChild:[self debugSpriteNode:CGPointMake(endPointX, endPointY) color:[NSColor blueColor]]];
             
             line.path = path;
             CGPathRelease(path);

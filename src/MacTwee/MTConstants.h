@@ -53,6 +53,7 @@ extern NSString * const kPathToTwee;
 extern NSString * const kRunInWebView;
 extern NSString * const kTextSize;
 extern NSString * const kExitOnLastClose;
-
+extern NSString * const kVisualUseCurves;
+extern NSString * const kVisualDisplayDebug;
 
 @end

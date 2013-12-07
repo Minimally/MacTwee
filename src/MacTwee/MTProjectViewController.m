@@ -30,9 +30,7 @@
     NSAssert(self.visualEditorSKView != nil, @"self.visualEditorSKView is nil");
     [self.visualEditorSKView addTrackingRect:self.visualEditorSKView.bounds owner:self.visualEditorSKView userData:nil assumeInside:NO]; // hack for mouse events
 	SKScene * scene = [MTVisualEditorScene sceneWithSize:CGSizeMake(1024, 768)];
-    self.visualEditorSKView.showsFPS = YES;
-    self.visualEditorSKView.showsNodeCount = YES;
-    self.visualEditorSKView.showsDrawCount = YES;
+    self.visualEditorSKView.showsFPS = self.visualEditorSKView.showsNodeCount = self.visualEditorSKView.showsDrawCount = [[NSUserDefaults standardUserDefaults] boolForKey:kVisualDisplayDebug];
     [self.visualEditorSKView presentScene:scene];
     
     [[NSNotificationCenter defaultCenter] addObserver:self

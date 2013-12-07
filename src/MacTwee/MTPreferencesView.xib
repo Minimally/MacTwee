@@ -27,7 +27,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="General" identifier="2" id="155">
-                                <view key="view" ambiguous="YES" id="156">
+                                <view key="view" id="156">
                                     <rect key="frame" x="10" y="33" width="457" height="388"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -313,6 +313,36 @@
                                                 </binding>
                                             </connections>
                                         </colorWell>
+                                    </subviews>
+                                </view>
+                            </tabViewItem>
+                            <tabViewItem label="Visual" identifier="" id="3Vy-dg-Ac0">
+                                <view key="view" ambiguous="YES" id="kgl-vV-A7O">
+                                    <rect key="frame" x="10" y="33" width="457" height="388"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ha1-Nh-gXt">
+                                            <rect key="frame" x="15" y="340" width="183" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Use bezier curves" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ky3-rD-e2N">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="232" name="value" keyPath="values.visualUseCurves" id="lJf-aC-FMd"/>
+                                            </connections>
+                                        </button>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zeW-4J-0O2">
+                                            <rect key="frame" x="15" y="320" width="183" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Display SpriteKit Debug" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="CpX-LR-tRA">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="232" name="value" keyPath="values.visualDisplayDebug" id="Uqa-KT-Q1E"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
